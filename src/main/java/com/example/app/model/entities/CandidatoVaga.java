@@ -1,0 +1,54 @@
+package com.example.app.model.entities;
+
+import java.util.Objects;
+
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
+public class CandidatoVaga {
+	
+	@EmbeddedId
+	private CandidatoVagaPK chaveCompostaPK ;
+
+	public CandidatoVaga() {
+		
+	}
+	
+	public CandidatoVaga(Candidato candidato, Vaga vaga, CandidatoVagaPK chaveCompostaPK) {
+		chaveCompostaPK.setCandidato(candidato);
+		chaveCompostaPK.setVaga(vaga);
+	}
+
+	public CandidatoVagaPK getChaveCompostaPK() {
+		return chaveCompostaPK;
+	}
+
+	public void setChaveCompostaPK(CandidatoVagaPK chaveCompostaPK) {
+		this.chaveCompostaPK = chaveCompostaPK;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(chaveCompostaPK);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CandidatoVaga other = (CandidatoVaga) obj;
+		return Objects.equals(chaveCompostaPK, other.chaveCompostaPK);
+	}
+
+	
+
+	
+
+}
