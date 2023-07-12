@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.repositories.RecrutadorRepository;
 
@@ -19,5 +20,8 @@ public class RecrutadorService {
 		return listaRecrutador;
 	}
 	
-	
+	public Recrutador inserirRecrutador(Recrutador recrutador) {
+		Recrutador r = rp.save(recrutador);
+		return r;
+	}
 }

@@ -13,11 +13,11 @@ import jakarta.servlet.http.HttpServletRequest;
 public class ManipuladorDeExcecao {
 
 	@ExceptionHandler(NoSuchElementException.class)
-	public ResponseEntity<PosicaoExcedida> TratamentoDeexcecao(NoSuchElementException e, HttpServletRequest hs){
+	public ResponseEntity<ErroPadrao> TratamentoDeexcecao(NoSuchElementException e, HttpServletRequest hs){
 		
 		HttpStatus estado = HttpStatus.NOT_FOUND;
 		
-		PosicaoExcedida erro = new PosicaoExcedida(System.currentTimeMillis(), estado.value(), e.getMessage(), "Usuário não encontrado", hs.getRequestURI());
+		ErroPadrao erro = new ErroPadrao(System.currentTimeMillis(), estado.value(), e.getMessage(), "Usuário não encontrado", hs.getRequestURI());
 		return ResponseEntity.status(estado).body(erro);
 	}
 }

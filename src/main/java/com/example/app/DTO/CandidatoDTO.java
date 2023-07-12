@@ -3,7 +3,7 @@ package com.example.app.DTO;
 import org.springframework.beans.BeanUtils;
 
 import com.example.app.model.entities.Candidato;
-
+import com.example.app.projection.VagasProjection;
 import com.example.app.model.entities.Candidato;
 
 public class CandidatoDTO {
@@ -27,6 +27,7 @@ public class CandidatoDTO {
 	public CandidatoDTO(Candidato candidato) {
 		
 		BeanUtils.copyProperties(candidato, this);
+		
 	}
 
 	public Integer getId() {

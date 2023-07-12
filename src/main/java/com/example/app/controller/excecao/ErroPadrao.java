@@ -2,7 +2,7 @@ package com.example.app.controller.excecao;
 
 import java.io.Serializable;
 
-public class PosicaoExcedida implements Serializable {
+public class ErroPadrao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -12,11 +12,11 @@ public class PosicaoExcedida implements Serializable {
 	private String mensagem;
 	private String caminho;
 	
-	public PosicaoExcedida() {
+	public ErroPadrao() {
 		
 	}
 
-	public PosicaoExcedida(Long momento, Integer erro, String descricao, String mensagem, String caminho) {
+	public ErroPadrao(Long momento, Integer erro, String descricao, String mensagem, String caminho) {
 		this.momento = momento;
 		this.erro = erro;
 		this.descricao = descricao;

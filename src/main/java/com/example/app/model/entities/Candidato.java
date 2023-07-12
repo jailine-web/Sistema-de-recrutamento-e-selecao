@@ -1,17 +1,29 @@
 package com.example.app.model.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import org.springframework.beans.BeanUtils;
+
+import com.example.app.projection.VagasProjection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table()
-public class Candidato {
+public class Candidato implements Serializable{
 	
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -26,9 +38,16 @@ public class Candidato {
 	private String curso;
 	private String termino;
 	private String instituicao;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidaturas")
+	private List<Vaga> vagas = new ArrayList<>();
 
 	public Candidato() {
 		
+	}
+	public Candidato(VagasProjection projection) {
+		BeanUtils.copyProperties(projection, this);
 	}
 	
 	public Candidato(Integer id, String nome, String telefone,String email, boolean recrutador, String curriculo, String img,
@@ -136,6 +155,18 @@ public class Candidato {
 
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
+	}
+	
+	public List<Vaga> getVagas() {
+		return vagas;
+	}
+	
+	public void addVaga(Vaga v) {
+		vagas.add(v);
+	}
+	
+	public void removerVaga(Vaga v) {
+		vagas.remove(v);
 	}
 	
 	@Override

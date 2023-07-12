@@ -1,5 +1,6 @@
 package com.example.app.model.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.EmbeddedId;
@@ -8,7 +9,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class CandidatoVaga {
+public class CandidatoVaga implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
 	private CandidatoVagaPK chaveCompostaPK ;

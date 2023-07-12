@@ -1,11 +1,16 @@
 package com.example.app.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.app.model.entities.Recrutador;
 import com.example.app.services.RecrutadorService;
@@ -21,5 +26,12 @@ public class RecrutadorController {
 	public List<Recrutador>buscarTodos(){
 		List<Recrutador> listaRecrutador = rs.buscarTodos();
 		return listaRecrutador;
+	}
+	
+	@PostMapping
+	public ResponseEntity<Recrutador> inserirRecrutador(@RequestBody Recrutador recrutador) {
+		recrutador = rs.inserirRecrutador(recrutador);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(recrutador.getId()).toUri();
+		return ResponseEntity.created(uri).body(recrutador);
 	}
 }
