@@ -11,7 +11,7 @@ import com.example.app.model.entities.Vaga;
 import com.example.app.services.VagaService;
 
 @RestController
-@RequestMapping(value="vagas")
+@RequestMapping(value="/vagas")
 public class VagaController {
 	
 	@Autowired

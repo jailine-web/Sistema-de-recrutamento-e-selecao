@@ -16,7 +16,7 @@ import com.example.app.model.entities.Recrutador;
 import com.example.app.services.RecrutadorService;
 
 @RestController
-@RequestMapping(value="/recrutador")
+@RequestMapping(value="/usuarios/recrutadores")
 public class RecrutadorController {
 
 	@Autowired

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ import com.example.app.model.entities.Candidato;
 import com.example.app.services.CandidatoService;
 
 @RestController
-@RequestMapping(value="/candidatos")
+@RequestMapping(value="/usuarios/candidatos")
 public class CandidatoController {
 
 	@Autowired
@@ -47,7 +48,7 @@ public class CandidatoController {
 		return ResponseEntity.created(uri).body(candidato);
 		
 	}
-	
+
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<Candidato> excluirCandidato(@PathVariable Integer id) {
 		
@@ -59,5 +60,11 @@ public class CandidatoController {
 	public List<CandidatoReduzido> buscarCandidatos(@PathVariable Integer idVagas){
 		List<CandidatoReduzido> listaCandidatos = cs.buscarCandidatos(idVagas);
 		return listaCandidatos;
+	}
+	
+	@PutMapping(value="/{id}")
+	public ResponseEntity<Candidato> atualizarCandidato(@PathVariable Integer id, @RequestBody Candidato candidato) {
+		candidato = cs.atualizarCandidato(id, candidato);
+		return ResponseEntity.ok().body(candidato);
 	}
 }
