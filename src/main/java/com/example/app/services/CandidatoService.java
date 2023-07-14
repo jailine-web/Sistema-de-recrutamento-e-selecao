@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.example.app.DTO.CandidatoReduzido;
+import com.example.app.DTO.VagaMinDTO;
 import com.example.app.controller.excecao.IdNaoEncontrado;
 import com.example.app.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Candidato;
-import com.example.app.projection.VagasProjection;
+import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
+import com.example.app.repositories.VagaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,9 @@ public class CandidatoService {
 
 	@Autowired
 	private CandidatoRepository cr;
+	
+	@Autowired
+	private VagaRepository vr;
 
 	@Transactional
 	public List<Candidato> buscarTodos() {
@@ -91,9 +95,9 @@ public class CandidatoService {
 		candidatoAux.setInstituicao(candidato.getInstituicao());
 	}
 
-	public List<CandidatoReduzido> buscarCandidatos(Integer idVagas) {
-		List<VagasProjection> resultado = cr.buscarCandidatosDaVaga(idVagas);
-		return resultado.stream().map(x -> new CandidatoReduzido(x)).toList();
+	public List<VagaMinDTO> buscarCandidaturas(Integer id){
+		List<CandidaturasCandidatoProjection> lista = vr.buscarCandidaturas(id);
+		List<VagaMinDTO> vagas = lista.stream().map(x -> new VagaMinDTO(x)).toList();
+		return vagas;
 	}
-
 }

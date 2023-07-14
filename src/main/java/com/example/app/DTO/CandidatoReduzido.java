@@ -3,7 +3,7 @@ package com.example.app.DTO;
 import org.springframework.beans.BeanUtils;
 
 import com.example.app.model.entities.Candidato;
-import com.example.app.projection.VagasProjection;
+import com.example.app.projection.CandidaturasProjection;
 
 public class CandidatoReduzido {
 
@@ -22,7 +22,7 @@ public class CandidatoReduzido {
 		termino = candidato.getTermino();
 	}
 
-	public CandidatoReduzido(VagasProjection projection) {
+	public CandidatoReduzido(CandidaturasProjection projection) {
 
 		BeanUtils.copyProperties(projection, this);
 	}

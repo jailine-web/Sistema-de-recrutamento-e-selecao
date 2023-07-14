@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.app.model.entities.Candidato;
-import com.example.app.projection.VagasProjection;
+import com.example.app.projection.CandidaturasProjection;
 
 public interface CandidatoRepository extends JpaRepository<Candidato, Integer>{
 
@@ -14,5 +14,7 @@ public interface CandidatoRepository extends JpaRepository<Candidato, Integer>{
 			SELECT distinct c.id, c.nome, c.telefone, c.curso, c.termino FROM CANDIDATO as c inner join VAGA as v inner join CANDIDATO_VAGA as cv
 			where cv.candidato_id = c.id and cv.vaga_id = :idVagas """)
 
-	List<VagasProjection> buscarCandidatosDaVaga(Integer idVagas);
+	List<CandidaturasProjection> buscarCandidatosDaVaga(Integer idVagas);
+	
+	
 }

@@ -69,7 +69,7 @@ public class Recrutador implements Serializable{
 		return recrutador;
 	}
 
-	public void setrecrutador(boolean recrutador) {
+	public void setRecrutador(boolean recrutador) {
 		this.recrutador = recrutador;
 	}
 

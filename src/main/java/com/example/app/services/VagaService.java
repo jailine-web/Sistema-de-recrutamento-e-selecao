@@ -14,8 +14,11 @@ public class VagaService {
 	@Autowired
 	private VagaRepository vr;
 	
+	
 	public List<Vaga> buscarTodos(){
 		List<Vaga> listaVagas = vr.findAll();
 		return listaVagas;
 	}
+	
+	
 }

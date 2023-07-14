@@ -17,10 +17,13 @@ public class VagaController {
 	@Autowired
 	private VagaService vs;
 	
+	
 	@GetMapping
 	public List<Vaga> buscarTodos(){
 		List<Vaga> listaVagas = vs.buscarTodos();
 		
 		return listaVagas;
 	}
+	
+	
 }

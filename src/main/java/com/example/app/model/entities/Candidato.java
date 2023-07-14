@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
 
-import com.example.app.projection.VagasProjection;
+import com.example.app.projection.CandidaturasProjection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -46,7 +46,7 @@ public class Candidato implements Serializable{
 	public Candidato() {
 		
 	}
-	public Candidato(VagasProjection projection) {
+	public Candidato(CandidaturasProjection projection) {
 		BeanUtils.copyProperties(projection, this);
 	}
 	

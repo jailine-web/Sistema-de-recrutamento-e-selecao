@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.app.DTO.CandidatoReduzido;
 import com.example.app.model.entities.Candidato;
+import com.example.app.projection.CandidaturasCandidatoProjection;
+import com.example.app.repositories.VagaRepository;
 import com.example.app.services.CandidatoService;
 
 @RestController
@@ -25,6 +26,9 @@ public class CandidatoController {
 
 	@Autowired
 	private CandidatoService cs;
+	
+	@Autowired
+	private VagaRepository vr;
 	
 	@GetMapping
 	public List<Candidato> buscarTodos(){
@@ -56,15 +60,15 @@ public class CandidatoController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@GetMapping(value="/{idVagas}/candidatura")
-	public List<CandidatoReduzido> buscarCandidatos(@PathVariable Integer idVagas){
-		List<CandidatoReduzido> listaCandidatos = cs.buscarCandidatos(idVagas);
-		return listaCandidatos;
-	}
-	
 	@PutMapping(value="/{id}")
 	public ResponseEntity<Candidato> atualizarCandidato(@PathVariable Integer id, @RequestBody Candidato candidato) {
 		candidato = cs.atualizarCandidato(id, candidato);
 		return ResponseEntity.ok().body(candidato);
+	}
+	
+	@GetMapping(value="/{idCand}/candidaturas")
+	public List<CandidaturasCandidatoProjection> buscarCandidaturas(@PathVariable Integer idCand){
+		List<CandidaturasCandidatoProjection> vagas = vr.buscarCandidaturas(idCand);
+		return vagas;
 	}
 }
