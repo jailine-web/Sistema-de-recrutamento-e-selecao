@@ -20,5 +20,10 @@ public class VagaService {
 		return listaVagas;
 	}
 	
+	public Vaga buscarPorId(Integer id) {
+		Vaga vaga = vr.findById(id).get();
+		return vaga;
+	}
+	
 	
 }
