@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,4 +34,10 @@ public class VagaController {
 		return ResponseEntity.ok().body(v);
 	}
 	
+	@PutMapping(value="/{id}")
+	public ResponseEntity<Vaga> atualizarVaga(@PathVariable Integer id, @RequestBody Vaga vaga){
+		vaga = vs.atualizarVaga(id, vaga);
+		return ResponseEntity.ok().body(vaga);
+		
+	}
 }
