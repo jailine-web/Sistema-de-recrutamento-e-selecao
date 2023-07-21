@@ -39,7 +39,6 @@ public class CandidatoService {
 		if (id != candBanco.getId()) {
 			throw new Tratamentoexcecao("Objeto não encontrado");
 		}
-
 		return candBanco;
 	}
 
@@ -74,11 +73,9 @@ public class CandidatoService {
 			atualizarDados(candidatoAux, candidato);
 			return cr.save(candidatoAux);
 		}
-		
 		catch (EntityNotFoundException e) {
 			throw new IdNaoEncontrado(id);
 		}
-
 	}
 
 	private void atualizarDados(Candidato candidatoAux, Candidato candidato) {

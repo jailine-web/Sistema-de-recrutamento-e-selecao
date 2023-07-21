@@ -19,9 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table()
-public class Candidato implements Serializable{
-	
-	
+public class Candidato implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -65,9 +63,6 @@ public class Candidato implements Serializable{
 		this.termino = termino;
 		this.instituicao = instituicao;
 	}
-
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -187,9 +182,6 @@ public class Candidato implements Serializable{
 	}
 
 	public void apresentarAreaLogada() {
-		
+		// Frontend CSS e mapeamento de botões
 	}
-
-	
-	
 }
