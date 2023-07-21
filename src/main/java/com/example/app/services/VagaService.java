@@ -25,6 +25,12 @@ public class VagaService {
 	}
 	
 	@Transactional
+	public Vaga inserirVaga(Vaga vaga) {
+		Vaga v = vr.save(vaga);
+		return v;
+	}
+	
+	@Transactional
 	public Vaga buscarPorId(Integer id) {
 		Vaga vaga = vr.findById(id).get();
 		return vaga;
