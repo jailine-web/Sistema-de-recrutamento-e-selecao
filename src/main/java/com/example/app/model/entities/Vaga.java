@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 @Table
 public class Vaga implements Serializable{
 	
+	private static int candidatura;
 	
 	private static final long serialVersionUID = 1L;
 
