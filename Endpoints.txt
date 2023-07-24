@@ -3,12 +3,14 @@ GET(retorna todos os candidatos) : localhost:8080/usuarios/candidatos
 GET(retorna pelo id): localhost:8080/usuarios/candidatos/3
 DELETE(exclui): localhost:8080/usuarios/candidatos/3
 POST(insere): localhost:8080/usuarios/candidatos
-PUT(atualiza): localhost:8080/usuarios/recrutadores/1/candidaturas
+PUT(atualiza): localhost:8080/usuarios/candidatos/1
 
 Vagas:
 GET: localhost:8080/vagas
 GET: localhost:8080/vagas/2
+POST: localhost:8080/vagas 
 PUT: localhost:8080/vagas/2
+
 
 Recrutador:
 GET: localhost:8080/usuarios/recrutadores
