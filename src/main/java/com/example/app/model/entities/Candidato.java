@@ -14,14 +14,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table()
-public class Candidato implements Serializable{
-	
-	
+public class Candidato implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,7 +31,8 @@ public class Candidato implements Serializable{
 	private String telefone;
 	private String email;
 	private boolean recrutador;
-	private String curriculo;
+	@Lob
+	private byte[] curriculo;
 	private String img;
 	private String semestreVigente;
 	private String curso;
@@ -50,7 +50,7 @@ public class Candidato implements Serializable{
 		BeanUtils.copyProperties(projection, this);
 	}
 	
-	public Candidato(Integer id, String nome, String telefone,String email, boolean recrutador, String curriculo, String img,
+	public Candidato(Integer id, String nome, String telefone,String email, boolean recrutador, String img,
 			String semestreVigente, String curso, String termino, String instituicao) {
 		
 		this.id = id;
@@ -58,16 +58,12 @@ public class Candidato implements Serializable{
 		this.telefone = telefone;
 		this.email = email;
 		this.recrutador = recrutador;
-		this.curriculo = curriculo;
 		this.img = img;
 		this.semestreVigente = semestreVigente;
 		this.curso = curso;
 		this.termino = termino;
 		this.instituicao = instituicao;
 	}
-
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -108,12 +104,12 @@ public class Candidato implements Serializable{
 	public void setRecrutador(boolean recrutador) {
 		this.recrutador = recrutador;
 	}
-
-	public String getCurriculo() {
+	
+	public byte[] getCurriculo() {
 		return curriculo;
 	}
-
-	public void setCurriculo(String curriculo) {
+	
+	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
 	}
 
@@ -187,9 +183,6 @@ public class Candidato implements Serializable{
 	}
 
 	public void apresentarAreaLogada() {
-		
+		// Frontend CSS e mapeamento de botões
 	}
-
-	
-	
 }

@@ -33,8 +33,8 @@ public class Config implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Candidato c1 = new Candidato(null, "Mavie", " 32 9 9867- 4657", "mavie@gmail.com", false, "curriculo", "img", "semestre", "curso", "Terminio", "Anhanguera");
-		Candidato c2 = new Candidato(null, "Felipe", " 45 9 9097- 4755", "fevie@gmail.com", false, "curriculo", "img", "semestre", "curso", "Terminio", "Unip");
+		Candidato c1 = new Candidato(null, "Mavie", " 32 9 9867- 4657", "mavie@gmail.com", false, "img", "semestre", "curso", "Terminio", "Anhanguera");
+		Candidato c2 = new Candidato(null, "Felipe", " 45 9 9097- 4755", "fevie@gmail.com", false, "img", "semestre", "curso", "Terminio", "Unip");
 		
 		cp.saveAll(Arrays.asList(c1,c2));
 		
