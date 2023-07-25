@@ -9,6 +9,7 @@ Vagas:
 GET: localhost:8080/vagas
 GET: localhost:8080/vagas/2
 PUT: localhost:8080/vagas/2
+POST: localhost:8080/vagas
 
 Recrutador:
 GET: localhost:8080/usuarios/recrutadores

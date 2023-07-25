@@ -3,6 +3,8 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.example.app.utils.EstadoVaga;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -97,6 +99,7 @@ public class Vaga implements Serializable{
 		this.formato = formato;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nome);

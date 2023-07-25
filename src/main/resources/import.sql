@@ -13,7 +13,11 @@ INSERT INTO Vaga (nome, descricao, requisitos, localizacao, formato, candidatos_
 INSERT INTO Vaga (nome, descricao, requisitos, localizacao, formato, candidatos_id) VALUES ('Progamador Jr', 'Tarefas: Desenvolver programas em C','linguagens: Java e C', 'Bahia', 'Home office', 2);
 INSERT INTO Vaga (nome, descricao, requisitos, localizacao, formato, candidatos_id) VALUES ('Gastronomia', 'Tarefas: Desenvolver receitas saudáveis','Ter curso técnico em gastronomia', 'Rio de Janeiro', 'Presencial', 3);
 
-insert into Candidato_vaga(candidato_id, vaga_id) Values(1,1);
-insert into Candidato_vaga(candidato_id, vaga_id) Values(1,2);
-insert into Candidato_vaga(candidato_id, vaga_id) Values(2,3);
-insert into Candidato_vaga(candidato_id, vaga_id) Values(3,4);
+INSERT INTO Candidato_vaga(candidato_id, vaga_id) VALUES(1,1);
+INSERT INTO Candidato_vaga(candidato_id, vaga_id) VALUES(1,2);
+INSERT INTO Candidato_vaga(candidato_id, vaga_id) VALUES(2,3);
+INSERT INTO Candidato_vaga(candidato_id, vaga_id) VALUES(3,4);
+INSERT INTO Candidato_vaga(candidato_id, vaga_id) VALUES(3,1);
+
+INSERT INTO Login(nome_usuario, senha) VALUES('Pedro Campos','$dndsjbh23');
+INSERT INTO Login(nome_usuario, senha) VALUES('Gabriela Alves','dsahdbh23');
