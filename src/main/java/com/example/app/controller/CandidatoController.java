@@ -5,6 +5,10 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +27,6 @@ import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.services.CandidatoService;
-import com.example.app.utils.PDFUtils;
 
 @RestController
 @RequestMapping(value="/usuarios/candidatos")
@@ -82,6 +85,7 @@ public class CandidatoController {
 	
 	@PostMapping("/{candidatoId}/curriculo")
 	public ResponseEntity<String> inserirCurriculo(@PathVariable Integer candidatoId, @RequestParam("file") MultipartFile file){
+		
 		if (file.isEmpty()) {
 			return ResponseEntity.badRequest().body("O arquivo do currículo está vazio");
 		}
@@ -93,6 +97,21 @@ public class CandidatoController {
 			e.printStackTrace();
 			return ResponseEntity.internalServerError().body("Erro ao ler o arquivo do currículo");
 		}
+	}
+	
+	@GetMapping("/{candidatoId}/curriculo")
+	public ResponseEntity<byte[]> obterCurriculo(@PathVariable Integer candidatoId){
 		
+		Candidato candidato = cr.findById(candidatoId).orElse(null);
+		
+		if (candidato ==null || candidato.getCurriculo() == null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_PDF);
+		headers.setContentDisposition(ContentDisposition.builder("attachment").filename("Curriculo.pdf").build());
+		
+		return new ResponseEntity<>(candidato.getCurriculo(), headers, HttpStatus.OK);
 	}
 }
