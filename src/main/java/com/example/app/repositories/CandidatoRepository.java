@@ -14,12 +14,15 @@ import jakarta.transaction.Transactional;
 public interface CandidatoRepository extends JpaRepository<Candidato, Integer>{
 	
 	@Transactional
-	// Adicionei o Transactional para proteger o código de SQL Injection pois ela garante que todos os comandos SQL emitidos
-	//pelo método sejam executados dentro de uma transação, se falhar, todos os comandos serão desfeitos protegendo contra danos
 	@Query(nativeQuery = true, value = """
 			SELECT distinct c.id, c.nome, c.telefone, c.curso, c.termino FROM CANDIDATO as c inner join VAGA as v inner join CANDIDATO_VAGA as cv
 			where cv.candidato_id = c.id and cv.vaga_id = :idVagas """)
-	//Parametrização de argumentos para sanitizar a entrada de dados (Anti-SQL Injection)
 	List<CandidaturasProjection> buscarCandidatosDaVaga(@Param("idVagas") Integer idVagas);
 	
+	@Transactional
+	default void salvarCurriculo(Integer candidatoId, byte[] curriculo) {
+		Candidato candidato = findById(candidatoId).orElse(null);
+		candidato.setCurriculo(curriculo);
+		save(candidato);
+	}
 }
