@@ -1,6 +1,6 @@
 package com.example.app.utils;
 
-import com.example.app.excecao.Tratamentoexcecao;
+import com.example.app.controller.excecao.Tratamentoexcecao;
 
 public enum EstadoVaga {
 

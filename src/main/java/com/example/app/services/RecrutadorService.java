@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.app.DTO.CandidatoReduzido;
 import com.example.app.controller.excecao.IdNaoEncontrado;
-import com.example.app.excecao.Tratamentoexcecao;
+import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.projection.CandidaturasProjection;
 import com.example.app.repositories.CandidatoRepository;

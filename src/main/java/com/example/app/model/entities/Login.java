@@ -3,6 +3,7 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,10 @@ public class Login implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(nullable = false)
 	private String nomeUsuario;
+	
+	@Column(nullable = false)
 	private String senha;
 	
 	public Login() {
@@ -32,6 +36,14 @@ public class Login implements Serializable{
 		this.senha = senha;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}

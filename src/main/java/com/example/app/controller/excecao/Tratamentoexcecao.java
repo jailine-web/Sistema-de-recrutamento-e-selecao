@@ -1,7 +1,6 @@
-package com.example.app.excecao;
+package com.example.app.controller.excecao;
 
 public class Tratamentoexcecao extends RuntimeException{
-
 
 	private static final long serialVersionUID = 1L;
 	
