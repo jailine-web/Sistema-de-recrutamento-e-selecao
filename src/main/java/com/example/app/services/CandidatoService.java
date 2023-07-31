@@ -1,10 +1,13 @@
 package com.example.app.services;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.app.DTO.VagaMinDTO;
 import com.example.app.controller.excecao.IdNaoEncontrado;
@@ -96,5 +99,14 @@ public class CandidatoService {
 		List<CandidaturasCandidatoProjection> lista = vr.buscarCandidaturas(id);
 		List<VagaMinDTO> vagas = lista.stream().map(x -> new VagaMinDTO(x)).toList();
 		return vagas;
+	}
+	
+	public void inserirCurriculo(Integer candidatoId, MultipartFile curriculo) throws IOException {
+		Candidato candidato = cr.findById(candidatoId).orElseThrow(() -> new NoSuchElementException("Candidato não encontrado"));
+		
+		byte[] curriculoBytes = curriculo.getBytes();
+		candidato.setCurriculo(curriculoBytes);
+		
+		cr.save(candidato);
 	}
 }

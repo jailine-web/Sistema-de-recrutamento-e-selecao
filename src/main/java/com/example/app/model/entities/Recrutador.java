@@ -3,6 +3,7 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,8 +24,12 @@ public class Recrutador implements Serializable{
 	private Integer id;
 	
 	private String nome;
+<<<<<<< HEAD
 	
 	@Email
+=======
+	private String telefone;
+>>>>>>> 348dd47a5a5e8e285ff0dc19e5dd0c13a5b7af82
 	private String email;
 	
 	@NotBlank
@@ -34,9 +39,15 @@ public class Recrutador implements Serializable{
 	private String senha;
 	
 	private boolean recrutador;
+<<<<<<< HEAD
 	
 	@Lob
 	private String curriculo;
+=======
+	@Lob
+	@Column(length = 10485760)
+	private byte[] curriculo;
+>>>>>>> 348dd47a5a5e8e285ff0dc19e5dd0c13a5b7af82
 	private String img;
 	private String time;
 	
@@ -44,15 +55,19 @@ public class Recrutador implements Serializable{
 		
 	}
 	
+<<<<<<< HEAD
 	public Recrutador(Integer id, String nome, String email, String usuario, String senha,boolean recrutador, 
 			String curriculo, String img, String time) {
+=======
+	public Recrutador(Integer id, String nome, String telefone, String email, boolean recrutador, String img, String time) {
+>>>>>>> 348dd47a5a5e8e285ff0dc19e5dd0c13a5b7af82
 		this.id = id;
 		this.nome = nome;
+		this.telefone = telefone;
 		this.email = email;
 		this.usuario = usuario;
 		this.senha = senha;
 		this.recrutador = recrutador;
-		this.curriculo = curriculo;
 		this.img = img;
 		this.time = time;
 		
@@ -72,6 +87,14 @@ public class Recrutador implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getEmail() {
@@ -106,11 +129,11 @@ public class Recrutador implements Serializable{
 		this.recrutador = recrutador;
 	}
 
-	public String getCurriculo() {
+	public byte[] getCurriculo() {
 		return curriculo;
 	}
 
-	public void setCurriculo(String curriculo) {
+	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
 	}
 
