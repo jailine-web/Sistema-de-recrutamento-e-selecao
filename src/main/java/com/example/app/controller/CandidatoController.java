@@ -1,6 +1,5 @@
 package com.example.app.controller;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -83,34 +82,26 @@ public class CandidatoController {
 		return vagas;
 	}
 	
-	@PostMapping("/{candidatoId}/curriculo")
-	public ResponseEntity<String> inserirCurriculo(@PathVariable Integer candidatoId, @RequestParam("file") MultipartFile file){
-		
-		if (file.isEmpty()) {
-			return ResponseEntity.badRequest().body("O arquivo do currículo está vazio");
-		}
-		try {
-			byte[] curriculoBytes = file.getBytes();
-			cr.salvarCurriculo(candidatoId, curriculoBytes);
-			return ResponseEntity.ok("Currículo inserido com sucesso!");
-		} catch (IOException e) {
-			e.printStackTrace();
-			return ResponseEntity.internalServerError().body("Erro ao ler o arquivo do currículo");
-		}
-	}
+	@PostMapping("/{id}/curriculo")
+    public ResponseEntity<String> adicionarCurriculo(@PathVariable Integer id, @RequestParam("curriculo") MultipartFile curriculo) {
+        try {
+            cs.inserirCurriculo(id, curriculo);
+            return ResponseEntity.ok("Currículo enviado com sucesso.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao enviar o currículo.");
+        }
+    }
 	
-	@GetMapping("/{candidatoId}/curriculo")
-	public ResponseEntity<byte[]> baixarCurriculo(@PathVariable Integer candidatoId){
-		// Este método deve ser testado nop navegar pois irá retornar um download do arquivo .pdf
-		Candidato candidato = cr.findById(candidatoId).orElse(null);
-		
+	@GetMapping("/{id}/curriculo")
+	public ResponseEntity<byte[]> obterCurriculo(@PathVariable Integer id) {
+		Candidato candidato = cs.buscarPorId(id);
 		if (candidato == null || candidato.getCurriculo() == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_PDF);
-		headers.setContentDisposition(ContentDisposition.builder("attachment").filename("Curriculo.pdf").build());
+		headers.setContentDisposition(ContentDisposition.builder("inline").filename("Curriculo.pdf").build());
 		
 		return new ResponseEntity<>(candidato.getCurriculo(), headers, HttpStatus.OK);
 	}

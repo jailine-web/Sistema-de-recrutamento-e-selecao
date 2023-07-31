@@ -29,11 +29,11 @@ public class Candidato implements Serializable {
 	private Integer id;
 	
 	private String nome;
-	@Column(name="telefone")
 	private String telefone;
 	private String email;
 	private boolean recrutador;
 	@Lob
+	@Column(length = 10485760)
 	private byte[] curriculo;
 	private String img;
 	private String semestreVigente;

@@ -3,6 +3,7 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Recrutador implements Serializable{
 	private String email;
 	private boolean recrutador;
 	@Lob
+	@Column(length = 10485760)
 	private byte[] curriculo;
 	private String img;
 	private String time;
