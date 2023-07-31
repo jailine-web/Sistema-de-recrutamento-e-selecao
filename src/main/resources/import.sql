@@ -21,4 +21,3 @@ INSERT INTO Candidato_vaga(candidato_id, vaga_id) VALUES(3,1);
 
 INSERT INTO Login(nome_usuario, senha) VALUES('Pedro Campos','$dndsjbh23');
 INSERT INTO Login(nome_usuario, senha) VALUES('Gabriela Alves','dsahdbh23');
-INSERT INTO Login(nome_usuario, senha) VALUES('','');

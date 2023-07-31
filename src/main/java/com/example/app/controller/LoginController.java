@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.app.model.entities.Login;
+import com.example.app.model.entities.Recrutador;
 import com.example.app.services.LoginService;
 
 @RestController
@@ -49,11 +50,18 @@ public class LoginController {
 		
 	}
 	
+//	@PostMapping
+//	public ResponseEntity<Login> inserirLogin(@RequestBody Login login){
+//		loginService.inserirLogin(login);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(login.getId()).toUri();
+//		return ResponseEntity.created(uri).body(login);
+//	}
+	
 	@PostMapping
-	public ResponseEntity<Login> inserirLogin(@RequestBody Login login){
-		loginService.inserirLogin(login);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(login.getId()).toUri();
-		return ResponseEntity.created(uri).body(login);
+	public ResponseEntity<Login> inserirLogin(@RequestBody Login l) throws Exception{
+		loginService.validar(l);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(l.getId()).toUri();
+		return ResponseEntity.created(uri).body(l);
 	}
 	
 }

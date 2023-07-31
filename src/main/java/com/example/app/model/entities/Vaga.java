@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.example.app.utils.EstadoVaga;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,13 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table
 public class Vaga implements Serializable{
-	
-	private static int candidatura;
-	
+		
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -31,11 +31,10 @@ public class Vaga implements Serializable{
 	private String localizacao;
 	private String formato;
 	
-	
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "candidatos_id")
 	private Candidato candidaturas;
-	
 	
 	public Vaga() {
 		super();
@@ -100,6 +99,14 @@ public class Vaga implements Serializable{
 	}
 
 	
+	public Candidato getCandidaturas() {
+		return candidaturas;
+	}
+
+	public void setCandidaturas(Candidato candidaturas) {
+		this.candidaturas = candidaturas;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nome);

@@ -17,20 +17,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table()
+@Table
 public class Candidato implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
 	private String telefone;
 	private String email;
 	private boolean recrutador;
+
 	@Lob
 	private byte[] curriculo;
 	private String img;
@@ -38,23 +41,24 @@ public class Candidato implements Serializable {
 	private String curso;
 	private String termino;
 	private String instituicao;
+
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "candidaturas")
 	private List<Vaga> vagas = new ArrayList<>();
 
 	public Candidato() {
-		
+
 	}
+
 	public Candidato(CandidaturasProjection projection) {
 		BeanUtils.copyProperties(projection, this);
 	}
-	
-	public Candidato(Integer id, String nome, String telefone,String email, boolean recrutador, String img,
+
+	public Candidato(Integer id, String nome, String telefone, String email, boolean recrutador, String img,
 			String semestreVigente, String curso, String termino, String instituicao) {
-		
+
 		this.id = id;
-		this.nome =nome;
+		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.recrutador = recrutador;
@@ -72,7 +76,7 @@ public class Candidato implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -84,11 +88,11 @@ public class Candidato implements Serializable {
 	public String getTelefone() {
 		return telefone;
 	}
-	
+
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -104,11 +108,11 @@ public class Candidato implements Serializable {
 	public void setRecrutador(boolean recrutador) {
 		this.recrutador = recrutador;
 	}
-	
+
 	public byte[] getCurriculo() {
 		return curriculo;
 	}
-	
+
 	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
 	}
@@ -136,15 +140,15 @@ public class Candidato implements Serializable {
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
-	
+
 	public String getTermino() {
 		return termino;
 	}
-	
+
 	public void setTermino(String termino) {
 		this.termino = termino;
 	}
-	
+
 	public String getInstituicao() {
 		return instituicao;
 	}
@@ -152,19 +156,19 @@ public class Candidato implements Serializable {
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
 	}
-	
+
 	public List<Vaga> getVagas() {
 		return vagas;
 	}
-	
+
 	public void addVaga(Vaga v) {
 		vagas.add(v);
 	}
-	
+
 	public void removerVaga(Vaga v) {
 		vagas.remove(v);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, id);
