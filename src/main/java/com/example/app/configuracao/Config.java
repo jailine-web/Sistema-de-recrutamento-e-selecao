@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Vaga;
@@ -15,7 +14,6 @@ import com.example.app.repositories.RecrutadorRepository;
 import com.example.app.repositories.VagaRepository;
 
 @Configuration
-@Profile("test")
 public class Config implements CommandLineRunner{
 	
 	@Autowired

@@ -11,7 +11,7 @@ public class CandidatoDTO {
 	private String telefone;
 	private String email;
 	private boolean recrutador;
-	private String curriculo;
+	private byte[] curriculo;
 	private String img;
 	private String semestreVigente;
 	private String curso;
@@ -68,11 +68,11 @@ public class CandidatoDTO {
 		this.recrutador = recrutador;
 	}
 
-	public String getCurriculo() {
+	public byte[] getCurriculo() {
 		return curriculo;
 	}
 
-	public void setCurriculo(String curriculo) {
+	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
 	}
 

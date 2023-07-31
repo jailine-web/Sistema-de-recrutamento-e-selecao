@@ -100,11 +100,11 @@ public class CandidatoController {
 	}
 	
 	@GetMapping("/{candidatoId}/curriculo")
-	public ResponseEntity<byte[]> obterCurriculo(@PathVariable Integer candidatoId){
-		
+	public ResponseEntity<byte[]> baixarCurriculo(@PathVariable Integer candidatoId){
+		// Este método deve ser testado nop navegar pois irá retornar um download do arquivo .pdf
 		Candidato candidato = cr.findById(candidatoId).orElse(null);
 		
-		if (candidato ==null || candidato.getCurriculo() == null) {
+		if (candidato == null || candidato.getCurriculo() == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
