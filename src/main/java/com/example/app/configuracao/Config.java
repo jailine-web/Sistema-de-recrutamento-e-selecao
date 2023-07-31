@@ -31,16 +31,18 @@ public class Config implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Candidato c1 = new Candidato(null, "Mavie", " 32 9 9867- 4657", "mavie@gmail.com", false, "img", "semestre", "curso", "Terminio", "Anhanguera");
-		Candidato c2 = new Candidato(null, "Felipe", " 45 9 9097- 4755", "fevie@gmail.com", false, "img", "semestre", "curso", "Terminio", "Unip");
+		Candidato c1 = new Candidato(null, "Mavie", "32998674657", "mavie@gmail.com", false, "img", "semestre", "curso", "termino", "Anhanguera");
+		Candidato c2 = new Candidato(null, "Felipe", "45990974755", "fevie@gmail.com", false, "img", "semestre", "curso", "termino", "Unip");
+		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "img", "semestre", "curso", "meio", "Estacio");
 		
-		cp.saveAll(Arrays.asList(c1,c2));
+		cp.saveAll(Arrays.asList(c1,c2,c3));
 		
 		Vaga v1 = new Vaga(null, "Programador", "Desenvolver programas na linguagem C#", "Conhecimento em C# e Banco de dados", "Bahia", "Home office");
 		
 		vr.save(v1);
 		
 		c1.addVaga(v1);
+		c2.addVaga(v1);
 	}
 
 }

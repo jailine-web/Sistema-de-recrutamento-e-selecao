@@ -3,8 +3,6 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.example.app.utils.EstadoVaga;
-
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

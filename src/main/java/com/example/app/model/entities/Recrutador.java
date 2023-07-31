@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,9 +21,11 @@ public class Recrutador implements Serializable{
 	private Integer id;
 	
 	private String nome;
+	private String telefone;
 	private String email;
 	private boolean recrutador;
-	private String curriculo;
+	@Lob
+	private byte[] curriculo;
 	private String img;
 	private String time;
 	
@@ -30,13 +33,12 @@ public class Recrutador implements Serializable{
 		
 	}
 	
-	public Recrutador(Integer id, String nome, String email, boolean recrutador, 
-			String curriculo, String img, String time) {
+	public Recrutador(Integer id, String nome, String telefone, String email, boolean recrutador, String img, String time) {
 		this.id = id;
 		this.nome = nome;
+		this.telefone = telefone;
 		this.email = email;
 		this.recrutador = recrutador;
-		this.curriculo = curriculo;
 		this.img = img;
 		this.time = time;
 	}
@@ -56,6 +58,14 @@ public class Recrutador implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 	public String getEmail() {
 		return email;
@@ -73,11 +83,11 @@ public class Recrutador implements Serializable{
 		this.recrutador = recrutador;
 	}
 
-	public String getCurriculo() {
+	public byte[] getCurriculo() {
 		return curriculo;
 	}
 
-	public void setCurriculo(String curriculo) {
+	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
 	}
 
