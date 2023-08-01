@@ -23,7 +23,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.app.model.entities.Candidato;
 import com.example.app.projection.CandidaturasCandidatoProjection;
-import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.services.CandidatoService;
 
@@ -33,9 +32,6 @@ public class CandidatoController {
 
 	@Autowired
 	private CandidatoService cs;
-	
-	@Autowired
-	private CandidatoRepository cr;
 	
 	@Autowired
 	private VagaRepository vr;

@@ -33,7 +33,7 @@ public class Candidato implements Serializable {
 	private String email;
 	private boolean recrutador;
 	@Lob
-	@Column(length = 10485760)
+	@Column(length = 3145728) // currículo de até 3MB
 	private byte[] curriculo;
 	private String img;
 	private String semestreVigente;
