@@ -3,7 +3,7 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.example.app.utils.EstadoVaga;
+import com.example.app.utils.EstadoCandidatura;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;

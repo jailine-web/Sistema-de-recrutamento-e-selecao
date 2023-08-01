@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +27,16 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
+	private final PasswordEncoder senhaEncriptada;
+	
 	@GetMapping
 	public List<Login>buscarTodos(){
 		return loginService.buscarTodos();
+	}
+	
+	public LoginController(LoginService ls, PasswordEncoder senha) {
+		this.loginService = ls;
+		this.senhaEncriptada = senha;
 	}
 	
 	@GetMapping(value ="/{id}")
@@ -50,18 +58,12 @@ public class LoginController {
 		
 	}
 	
-//	@PostMapping
-//	public ResponseEntity<Login> inserirLogin(@RequestBody Login login){
-//		loginService.inserirLogin(login);
-//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(login.getId()).toUri();
-//		return ResponseEntity.created(uri).body(login);
-//	}
-	
 	@PostMapping
-	public ResponseEntity<Login> inserirLogin(@RequestBody Login l) throws Exception{
-		loginService.validar(l);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(l.getId()).toUri();
-		return ResponseEntity.created(uri).body(l);
+	public ResponseEntity<Login> inserirLogin(@RequestBody Login login){
+		loginService.inserirLogin(login);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(login.getId()).toUri();
+		return ResponseEntity.created(uri).body(login);
 	}
+	
 	
 }

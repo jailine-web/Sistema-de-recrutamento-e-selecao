@@ -2,16 +2,16 @@ package com.example.app.utils;
 
 import com.example.app.controller.excecao.Tratamentoexcecao;
 
-public enum EstadoVaga {
+public enum EstadoCandidatura {
 
-	RECEBIDO (1),
-	AVALIADO (2),
-	PRE_SELECIONADO (3),
+	ADEQUADO (1),
+	INADEQUADO (2),
+	TALVEZ (3),
 	FINALISTA (4);
 	
 	int status;
 	
-	private EstadoVaga(int n) {
+	private EstadoCandidatura(int n) {
 		status = n;
 	}
 	
@@ -19,9 +19,9 @@ public enum EstadoVaga {
 		return status;
 	}
 	
-	public static EstadoVaga conversaoStatus(int status) {
+	public static EstadoCandidatura conversaoStatus(int status) {
 		
-		for(EstadoVaga valor: EstadoVaga.values()) {
+		for(EstadoCandidatura valor: EstadoCandidatura.values()) {
 			if(valor.getStatus() == status) {
 				return valor;
 			}
