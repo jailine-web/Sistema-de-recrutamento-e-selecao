@@ -1,9 +1,11 @@
 package com.example.app.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
-import com.example.app.utils.EstadoVaga;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,13 +13,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table
 public class Vaga implements Serializable{
-	
-	private static int candidatura;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -31,10 +32,14 @@ public class Vaga implements Serializable{
 	private String localizacao;
 	private String formato;
 	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "candidato_id")
+	private Candidato candidato;
 	
-	@ManyToOne()
-	@JoinColumn(name = "candidatos_id")
-	private Candidato candidaturas;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "vaga")
+	private List<Candidatura> candidaturas;
 	
 	
 	public Vaga() {

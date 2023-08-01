@@ -9,6 +9,9 @@ import org.springframework.beans.BeanUtils;
 
 import com.example.app.projection.CandidaturasProjection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +24,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table()
+@JsonInclude(Include.NON_NULL)
 public class Candidato implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -41,8 +45,11 @@ public class Candidato implements Serializable {
 	private String termino;
 	private String instituicao;
 	
+	@OneToMany(mappedBy = "candidato")
+	private List<Candidatura> candidaturas;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidaturas")
+	@OneToMany(mappedBy = "candidato")
 	private List<Vaga> vagas = new ArrayList<>();
 
 	public Candidato() {
@@ -155,7 +162,7 @@ public class Candidato implements Serializable {
 		this.instituicao = instituicao;
 	}
 	
-	public List<Vaga> getVagas() {
+	public List<Vaga> getVagas(){
 		return vagas;
 	}
 	
