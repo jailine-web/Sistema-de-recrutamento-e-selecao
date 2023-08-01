@@ -11,13 +11,14 @@ import com.example.app.projection.CandidaturasProjection;
 
 import jakarta.transaction.Transactional;
 
-public interface CandidatoRepository extends JpaRepository<Candidato, Integer> {
 
-	@Transactional
-	@Query(nativeQuery = true, value = """
+public interface CandidatoRepository extends JpaRepository<Candidato, Integer>{
+	
+	 @Query (nativeQuery = true, value = """
 			SELECT distinct c.id, c.nome, c.telefone, c.curso, c.termino FROM CANDIDATO as c inner join VAGA as v inner join CANDIDATO_VAGA as cv
 			where cv.candidato_id = c.id and cv.vaga_id = :idVagas """)
 	List<CandidaturasProjection> buscarCandidatosDaVaga(@Param("idVagas") Integer idVagas);
+	
 
 	@Transactional
 	default void salvarCurriculo(Integer candidatoId, byte[] curriculo) {

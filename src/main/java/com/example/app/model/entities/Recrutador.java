@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table()
@@ -22,9 +24,19 @@ public class Recrutador implements Serializable{
 	private Integer id;
 	
 	private String nome;
+	
+	@Email
 	private String telefone;
 	private String email;
+	
+	@NotBlank
+	private String usuario;
+	
+	@NotBlank
+	private String senha;
+	
 	private boolean recrutador;
+	
 	@Lob
 	@Column(length = 10485760)
 	private byte[] curriculo;
@@ -35,14 +47,18 @@ public class Recrutador implements Serializable{
 		
 	}
 	
+
 	public Recrutador(Integer id, String nome, String telefone, String email, boolean recrutador, String img, String time) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
+		this.usuario = usuario;
+		this.senha = senha;
 		this.recrutador = recrutador;
 		this.img = img;
 		this.time = time;
+		
 	}
 	
 	public Integer getId() {
@@ -77,6 +93,22 @@ public class Recrutador implements Serializable{
 		this.email = email;
 	}
 
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public boolean isRecrutador() {
 		return recrutador;
 	}
@@ -108,6 +140,7 @@ public class Recrutador implements Serializable{
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
 
 	@Override
 	public int hashCode() {

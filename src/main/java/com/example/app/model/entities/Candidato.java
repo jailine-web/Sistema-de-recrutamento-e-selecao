@@ -8,10 +8,13 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import com.example.app.projection.CandidaturasProjection;
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+=======
+>>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,19 +26,25 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+<<<<<<< HEAD
 @Table()
 @JsonInclude(Include.NON_NULL)
+=======
+@Table
+>>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 public class Candidato implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
 	private String telefone;
 	private String email;
 	private boolean recrutador;
+
 	@Lob
 	@Column(length = 3145728) // currículo de até 3MB
 	private byte[] curriculo;
@@ -44,26 +53,32 @@ public class Candidato implements Serializable {
 	private String curso;
 	private String termino;
 	private String instituicao;
+
 	
+<<<<<<< HEAD
 	@OneToMany(mappedBy = "candidato")
 	private List<Candidatura> candidaturas;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidato")
+=======
+	@OneToMany(mappedBy = "candidaturas")
+>>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 	private List<Vaga> vagas = new ArrayList<>();
 
 	public Candidato() {
-		
+
 	}
+
 	public Candidato(CandidaturasProjection projection) {
 		BeanUtils.copyProperties(projection, this);
 	}
-	
-	public Candidato(Integer id, String nome, String telefone,String email, boolean recrutador, String img,
+
+	public Candidato(Integer id, String nome, String telefone, String email, boolean recrutador, String img,
 			String semestreVigente, String curso, String termino, String instituicao) {
-		
+
 		this.id = id;
-		this.nome =nome;
+		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.recrutador = recrutador;
@@ -81,7 +96,7 @@ public class Candidato implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -93,11 +108,11 @@ public class Candidato implements Serializable {
 	public String getTelefone() {
 		return telefone;
 	}
-	
+
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -113,11 +128,11 @@ public class Candidato implements Serializable {
 	public void setRecrutador(boolean recrutador) {
 		this.recrutador = recrutador;
 	}
-	
+
 	public byte[] getCurriculo() {
 		return curriculo;
 	}
-	
+
 	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
 	}
@@ -145,15 +160,15 @@ public class Candidato implements Serializable {
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
-	
+
 	public String getTermino() {
 		return termino;
 	}
-	
+
 	public void setTermino(String termino) {
 		this.termino = termino;
 	}
-	
+
 	public String getInstituicao() {
 		return instituicao;
 	}
@@ -161,19 +176,24 @@ public class Candidato implements Serializable {
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
 	}
+<<<<<<< HEAD
 	
 	public List<Vaga> getVagas(){
+=======
+
+	public List<Vaga> getVagas() {
+>>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 		return vagas;
 	}
-	
+
 	public void addVaga(Vaga v) {
 		vagas.add(v);
 	}
-	
+
 	public void removerVaga(Vaga v) {
 		vagas.remove(v);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, id);

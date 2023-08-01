@@ -9,6 +9,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+import jakarta.persistence.Entity;
+
+
 
 @Entity
 @Table
@@ -20,19 +34,27 @@ public class Login implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable = false)
-	private String nomeUsuario;
+	@Email
+	@NotBlank
+	private String email;
 	
-	@Column(nullable = false)
+	@NotBlank
+	@Column(unique=true)
+	private String usuario;
+	
+	@NotBlank
 	private String senha;
-	
-	public Login() {
-		super();
-	}
 
-	public Login(String nomeUsuario, String senha) {
+	public Login() {
+		
+	}
+	
+	public Login(Integer id, @Email @NotBlank String email, @NotBlank String usuario,
+			@NotBlank String senha) {
 		super();
-		this.nomeUsuario = nomeUsuario;
+		this.id = id;
+		this.email = email;
+		this.usuario = usuario;
 		this.senha = senha;
 	}
 
@@ -44,12 +66,20 @@ public class Login implements Serializable{
 		this.id = id;
 	}
 	
-	public String getNomeUsuario() {
-		return nomeUsuario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getSenha() {
@@ -62,7 +92,7 @@ public class Login implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nomeUsuario, senha);
+		return Objects.hash(usuario, senha);
 	}
 
 	@Override
@@ -74,7 +104,7 @@ public class Login implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Login other = (Login) obj;
-		return Objects.equals(nomeUsuario, other.nomeUsuario) && Objects.equals(senha, other.senha);
+		return Objects.equals(usuario, other.usuario) && Objects.equals(senha, other.senha);
 	}
 	
 	

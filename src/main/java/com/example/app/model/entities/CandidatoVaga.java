@@ -16,13 +16,13 @@ public class CandidatoVaga implements Serializable{
 	private static int candidaturas;
 
 	@EmbeddedId
-	private CandidatoVagaPK chaveCompostaPK ;
+	private CandidatoVagaPK chaveCompostaPK = new CandidatoVagaPK();
 
 	public CandidatoVaga() {
 		
 	}
 	
-	public CandidatoVaga(Candidato candidato, Vaga vaga, CandidatoVagaPK chaveCompostaPK) {
+	public CandidatoVaga(Candidato candidato, Vaga vaga) {
 		chaveCompostaPK.setCandidato(candidato);
 		chaveCompostaPK.setVaga(vaga);
 		candidaturas ++;
