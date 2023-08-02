@@ -8,13 +8,9 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import com.example.app.projection.CandidaturasProjection;
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-=======
->>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,12 +22,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-<<<<<<< HEAD
-@Table()
 @JsonInclude(Include.NON_NULL)
-=======
 @Table
->>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 public class Candidato implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -55,15 +47,11 @@ public class Candidato implements Serializable {
 	private String instituicao;
 
 	
-<<<<<<< HEAD
 	@OneToMany(mappedBy = "candidato")
 	private List<Candidatura> candidaturas;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidato")
-=======
-	@OneToMany(mappedBy = "candidaturas")
->>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 	private List<Vaga> vagas = new ArrayList<>();
 
 	public Candidato() {
@@ -176,13 +164,8 @@ public class Candidato implements Serializable {
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
 	}
-<<<<<<< HEAD
 	
-	public List<Vaga> getVagas(){
-=======
-
 	public List<Vaga> getVagas() {
->>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 		return vagas;
 	}
 

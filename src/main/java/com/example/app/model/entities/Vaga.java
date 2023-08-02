@@ -4,13 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-=======
-import com.example.app.utils.EstadoCandidatura;
-import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,16 +15,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table
 public class Vaga implements Serializable{
-<<<<<<< HEAD
-	
-=======
-		
->>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -42,7 +32,6 @@ public class Vaga implements Serializable{
 	private String localizacao;
 	private String formato;
 	
-<<<<<<< HEAD
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "candidato_id")
@@ -51,12 +40,7 @@ public class Vaga implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy = "vaga")
 	private List<Candidatura> candidaturas;
-=======
-	@JsonIgnore
-	@ManyToOne()
-	@JoinColumn(name = "candidatos_id")
-	private Candidato candidaturas;
->>>>>>> 6428e6f9f61db07e5b023c0688d41d6714e56f48
+
 	
 	public Vaga() {
 		super();
@@ -121,11 +105,11 @@ public class Vaga implements Serializable{
 	}
 
 	
-	public Candidato getCandidaturas() {
+	public List<Candidatura> getCandidaturas() {
 		return candidaturas;
 	}
 
-	public void setCandidaturas(Candidato candidaturas) {
+	public void setCandidaturas(List<Candidatura> candidaturas) {
 		this.candidaturas = candidaturas;
 	}
 
