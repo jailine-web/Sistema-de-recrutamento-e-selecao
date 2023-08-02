@@ -3,6 +3,7 @@ package com.example.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,15 @@ public class CandidaturaController {
 	@PostMapping
 	public ResponseEntity<?> criarCandidatura(@RequestBody Candidatura candidatura){
 		
+		// Requisição JSON com "vaga":{"id": 1}, "candidato":{"id":2}
+		if (candidatura.getVaga() == null || candidatura.getVaga().getId() == null) {
+			return ResponseEntity.badRequest().body("O ID da vaga é obrigatório");
+		}
+		
+		if (candidatura.getCandidato() == null || candidatura.getCandidato().getId() == null) {
+			return ResponseEntity.badRequest().body("O ID do candidato é obrigatório");
+		}
+		
 		Vaga vaga = vagaRepository.findById(candidatura.getVaga().getId()).orElse(null);
 		if (vaga == null) {
 			return ResponseEntity.badRequest().body("Vaga não encontrada");
@@ -55,16 +65,27 @@ public class CandidaturaController {
 		candidaturaDTO.setId(candidatura.getId());
 		candidaturaDTO.setCandidato(candidatoReduzido);
 		
-		Candidatura novaCandidatura = candidaturaRepository.save(candidatura);
+		candidaturaRepository.save(candidatura);
 		return ResponseEntity.status(HttpStatus.CREATED).body(candidaturaDTO);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> retornarCandidaturaById(@PathVariable Long id){
+	public ResponseEntity<?> retornarCandidatura(@PathVariable Long id){
 		Candidatura candidatura = candidaturaRepository.findById(id).orElse(null);
 		if (candidatura == null) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(candidatura);
 	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> excluirCandidatura(@PathVariable Long id){
+		Candidatura candidatura = candidaturaRepository.findById(id).orElse(null);
+		if (candidatura == null) {
+			return ResponseEntity.notFound().build();
+		}
+		candidaturaRepository.delete(candidatura);
+		return ResponseEntity.ok().build();
+	}
+	
 }

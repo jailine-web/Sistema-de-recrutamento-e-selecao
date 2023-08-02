@@ -38,7 +38,7 @@ public class Recrutador implements Serializable{
 	private boolean recrutador;
 	
 	@Lob
-	@Column(length = 10485760)
+	@Column(length = 1000000) // currículo de até 1MB
 	private byte[] curriculo;
 	private String img;
 	private String time;

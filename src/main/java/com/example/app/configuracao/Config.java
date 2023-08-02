@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Login;
@@ -14,7 +15,7 @@ import com.example.app.repositories.LoginRepository;
 import com.example.app.repositories.VagaRepository;
 
 @Configuration
-//@Profile("test")
+@Profile("test")
 public class Config implements CommandLineRunner{
 	
 	@Autowired
@@ -29,8 +30,8 @@ public class Config implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false, "img", "semestre", "curso", "Terminio", "Anhanguera");
-		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "img", "semestre", "curso", "Terminio", "Unip");
+		Candidato c1 = new Candidato(null, "Paulo", "32998674657", "paulo@gmail.com", false, "img", "semestre", "curso", "Terminio", "Anhanguera");
+		Candidato c2 = new Candidato(null, "Felipe", "45990974755", "felipe@gmail.com", false, "img", "semestre", "curso", "Terminio", "Unip");
 		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "img", "semestre", "curso", "meio", "Estacio");
 		
 
