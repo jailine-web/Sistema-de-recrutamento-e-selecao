@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+//os parâmetros inseridos entre parênteses não executa a classe definida abaixo (.class), 
+//evitando o aviso "não autorizado" do spring security no postman.
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class})
 public class Application {
 

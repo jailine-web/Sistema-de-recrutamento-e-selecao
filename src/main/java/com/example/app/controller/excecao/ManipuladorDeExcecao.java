@@ -1,5 +1,6 @@
 package com.example.app.controller.excecao;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,15 @@ public class ManipuladorDeExcecao {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		
 		ErroPadrao er = new ErroPadrao(System.currentTimeMillis(), status.value(), e.getMessage(), "Os campos de login e senha não podem ser vazios", requisicao.getRequestURI());
+		return ResponseEntity.status(status).body(er);
+	}
+	
+	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+	public ResponseEntity<ErroPadrao> TratamentoDeExcecao(SQLIntegrityConstraintViolationException e, HttpServletRequest requisicao){
+		
+		HttpStatus status = HttpStatus.CONFLICT;
+		
+		ErroPadrao er = new ErroPadrao(System.currentTimeMillis(), status.value(), e.getMessage(), "Os dados apresentados já existem no banco de dados", requisicao.getRequestURI());
 		return ResponseEntity.status(status).body(er);
 	}
 }

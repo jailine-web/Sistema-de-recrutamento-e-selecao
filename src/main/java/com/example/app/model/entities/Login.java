@@ -3,6 +3,8 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,35 +24,33 @@ import jakarta.validation.constraints.NotBlank;
 
 import jakarta.persistence.Entity;
 
-
-
 @Entity
 @Table
-public class Login implements Serializable{
+public class Login implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Email
 	@NotBlank
+	@Column(unique= true)
 	private String email;
-	
+
 	@NotBlank
-	@Column(unique=true)
+	@Column(unique = true)
 	private String usuario;
-	
+
 	@NotBlank
 	private String senha;
 
 	public Login() {
-		
+
 	}
-	
-	public Login(Integer id, @Email @NotBlank String email, @NotBlank String usuario,
-			@NotBlank String senha) {
+
+	public Login(Integer id, @Email @NotBlank String email, @NotBlank String usuario, @NotBlank String senha) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -65,12 +65,13 @@ public class Login implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
+
 		this.email = email;
 	}
 
@@ -106,7 +107,5 @@ public class Login implements Serializable{
 		Login other = (Login) obj;
 		return Objects.equals(usuario, other.usuario) && Objects.equals(senha, other.senha);
 	}
-	
-	
-	
+
 }
