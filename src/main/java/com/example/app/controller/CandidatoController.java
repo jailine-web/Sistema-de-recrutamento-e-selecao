@@ -2,11 +2,9 @@ package com.example.app.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.app.model.entities.Candidato;
 import com.example.app.projection.CandidaturasCandidatoProjection;
+import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.services.CandidatoService;
 
@@ -39,6 +38,9 @@ public class CandidatoController {
 	@Autowired
 	private VagaRepository vr;
 	
+	@Autowired
+	private CandidatoRepository cr;
+	
 	@GetMapping
 	public List<Candidato> buscarTodos(){
 		List<Candidato> listaCandidatos = cs.buscarTodos();
@@ -46,10 +48,15 @@ public class CandidatoController {
 	}
 	
 	@GetMapping(value ="/{id}")
-	public ResponseEntity<Candidato> buscarPorId(@PathVariable Integer id) {
+	public ResponseEntity<Candidato> obterCandidato(@PathVariable Integer id){
+		Optional<Candidato> candidatoOptional = cr.findById(id);
 		
-		Candidato idArmazenado = cs.buscarPorId(id);
-		return ResponseEntity.ok().body(idArmazenado);	
+		if (candidatoOptional.isPresent()) {
+			Candidato candidato = candidatoOptional.get();
+			return ResponseEntity.ok(candidato);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@PostMapping

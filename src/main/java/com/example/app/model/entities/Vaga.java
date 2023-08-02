@@ -1,10 +1,11 @@
 package com.example.app.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
-import com.example.app.utils.EstadoCandidatura;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,13 +13,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table
 public class Vaga implements Serializable{
-		
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -31,10 +32,15 @@ public class Vaga implements Serializable{
 	private String localizacao;
 	private String formato;
 	
-	@JsonIgnore
-	@ManyToOne()
-	@JoinColumn(name = "candidatos_id")
-	private Candidato candidaturas;
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "candidato_id")
+	private Candidato candidato;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "vaga")
+	private List<Candidatura> candidaturas;
+
 	
 	public Vaga() {
 		super();
@@ -99,11 +105,11 @@ public class Vaga implements Serializable{
 	}
 
 	
-	public Candidato getCandidaturas() {
+	public List<Candidatura> getCandidaturas() {
 		return candidaturas;
 	}
 
-	public void setCandidaturas(Candidato candidaturas) {
+	public void setCandidaturas(List<Candidatura> candidaturas) {
 		this.candidaturas = candidaturas;
 	}
 

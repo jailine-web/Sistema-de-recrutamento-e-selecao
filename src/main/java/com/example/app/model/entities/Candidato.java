@@ -8,6 +8,9 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import com.example.app.projection.CandidaturasProjection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +22,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@JsonInclude(Include.NON_NULL)
 @Table
 public class Candidato implements Serializable {
 
@@ -34,7 +38,7 @@ public class Candidato implements Serializable {
 	private boolean recrutador;
 
 	@Lob
-	@Column(length = 3145728) // currículo de até 3MB
+	@Column(length = 1000000) // currículo de até 1MB
 	private byte[] curriculo;
 	private String img;
 	private String semestreVigente;
@@ -43,7 +47,11 @@ public class Candidato implements Serializable {
 	private String instituicao;
 
 	
-	@OneToMany(mappedBy = "candidaturas")
+	@OneToMany(mappedBy = "candidato")
+	private List<Candidatura> candidaturas;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidato")
 	private List<Vaga> vagas = new ArrayList<>();
 
 	public Candidato() {
@@ -156,7 +164,7 @@ public class Candidato implements Serializable {
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
 	}
-
+	
 	public List<Vaga> getVagas() {
 		return vagas;
 	}

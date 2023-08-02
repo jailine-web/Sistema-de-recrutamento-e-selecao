@@ -10,16 +10,19 @@ public class CandidatoReduzido {
 	private Integer id;
 	private String nome;
 	private String telefone;
-	private String curso;
-	private String termino;
+	private String email;
+	private byte[] curriculo;
 
+	public CandidatoReduzido() {
+	}
+	
 	public CandidatoReduzido(Candidato candidato) {
 		
 		id = candidato.getId();
 		nome = candidato.getNome();
 		telefone = candidato.getTelefone();
-		curso = candidato.getCurso();
-		termino = candidato.getTermino();
+		email = candidato.getEmail();
+		curriculo = candidato.getCurriculo();
 	}
 
 	public CandidatoReduzido(CandidaturasProjection projection) {
@@ -51,20 +54,19 @@ public class CandidatoReduzido {
 		this.telefone = telefone;
 	}
 
-	public String getCurso() {
-		return curso;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCurso(String curso) {
-		this.curso = curso;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getTermino() {
-		return termino;
+	public byte[] getCurriculo() {
+		return curriculo;
 	}
 
-	public void setTermino(String termino) {
-		this.termino = termino;
+	public void setCurriculo(byte[] curriculo) {
+		this.curriculo = curriculo;
 	}
-	
 }
