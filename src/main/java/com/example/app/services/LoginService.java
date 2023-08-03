@@ -82,7 +82,7 @@ public class LoginService {
 		if (login.getUsuario().isEmpty()) {
 			return false;
 		}
-		if(!login.getEmail().equals(log.getEmail())) {
+		if(!login.getEmail().equals(log.getEmail()) || !login.getUsuario().equals(log.getUsuario())) {
 			return false;
 		}
 		if(log.equals(null)) {
