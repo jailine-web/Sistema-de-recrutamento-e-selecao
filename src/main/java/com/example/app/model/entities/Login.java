@@ -3,8 +3,6 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,20 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-
-<<<<<<< HEAD
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-
-import jakarta.persistence.Entity;
-=======
-
->>>>>>> cb3a34f71a6f26d9e848dac9de94bae1f386f173
 
 @Entity
 @Table

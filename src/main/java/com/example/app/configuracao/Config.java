@@ -30,13 +30,8 @@ public class Config implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-<<<<<<< HEAD
 		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false, "img", "semestre", "curso", "Terminio", "Anhanguera");
 		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "img", "semestre", "curso", "Terminio", "Unip");
-=======
-		Candidato c1 = new Candidato(null, "Paulo", "32998674657", "paulo@gmail.com", false, "img", "semestre", "curso", "Terminio", "Anhanguera");
-		Candidato c2 = new Candidato(null, "Felipe", "45990974755", "felipe@gmail.com", false, "img", "semestre", "curso", "Terminio", "Unip");
->>>>>>> cb3a34f71a6f26d9e848dac9de94bae1f386f173
 		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "img", "semestre", "curso", "meio", "Estacio");
 		
 
@@ -59,8 +54,4 @@ public class Config implements CommandLineRunner{
 		
 		c2.addVaga(v1);
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> cb3a34f71a6f26d9e848dac9de94bae1f386f173

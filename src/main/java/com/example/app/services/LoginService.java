@@ -72,22 +72,25 @@ public class LoginService {
 	}
 
 	@Transactional
-	public Boolean validarSenha(String email, String usuario, String senha) {
-
+	public Boolean validarSenha(Login log) {
+		
 		// Consulta para retornar o login pelo campo usuario
-		Optional<LoginProjection> loginOpt = lr.buscarUsuarios(usuario);
+		Optional<LoginProjection> loginOpt = lr.buscarUsuarios(log.getUsuario());
 		
 		LoginProjection login = loginOpt.get();
 
 		if (login.getUsuario().isEmpty()) {
 			return false;
 		}
-		if(!login.getEmail().equals(email)) {
+		if(!login.getEmail().equals(log.getEmail())) {
+			return false;
+		}
+		if(log.equals(null)) {
 			return false;
 		}
 
 		// Verifica se a senha passada por parâmetro é igual a que está armazenada no BD
-		boolean valido = senhaEncriptada.matches(senha, login.getSenha());
+		boolean valido = senhaEncriptada.matches(log.getSenha(), login.getSenha());
 
 		return valido;
 	}

@@ -63,12 +63,12 @@ public class LoginController {
 		return ResponseEntity.created(uri).body(login);
 	}
 	
-	@GetMapping(value="/validarsenha")
-	public ResponseEntity<Boolean> validarSenha(@RequestParam String email, @RequestParam String usuario, @RequestParam String senha) {
-		
+	@PostMapping(value="/validarsenha")
+	public ResponseEntity<Boolean> validarSenha(@RequestBody Login login) {
+			
 		HttpStatus status = null;
 		
-		boolean valido = loginService.validarSenha(email, usuario, senha);
+		boolean valido = loginService.validarSenha(login);
 		if(valido == true) {
 			status = OK;
 		}
