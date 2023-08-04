@@ -1,6 +1,7 @@
 package com.example.app.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -13,6 +14,8 @@ import com.example.app.DTO.VagaMinDTO;
 import com.example.app.controller.excecao.IdNaoEncontrado;
 import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Candidato;
+import com.example.app.model.entities.Candidatura;
+import com.example.app.model.entities.Vaga;
 import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
@@ -108,5 +111,17 @@ public class CandidatoService {
 		candidato.setCurriculo(curriculoBytes);
 		
 		cr.save(candidato);
+	}
+	
+	@Transactional
+	public List<Candidato> buscarCandidatosPorVaga(Integer idVaga){
+		Vaga vaga = vr.findById(idVaga).orElseThrow(() -> new NoSuchElementException("Vaga não encontrada"));
+		List<Candidatura> candidaturas = vaga.getCandidaturas();
+		List<Candidato> candidatos = new ArrayList<>();
+		
+		for (Candidatura candidatura : candidaturas) {
+			candidatos.add(candidatura.getCandidato());
+		}
+		return candidatos;
 	}
 }

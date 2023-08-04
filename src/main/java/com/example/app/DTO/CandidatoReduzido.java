@@ -9,8 +9,6 @@ public class CandidatoReduzido {
 
 	private Integer id;
 	private String nome;
-	private String telefone;
-	private String email;
 	private byte[] curriculo;
 
 	public CandidatoReduzido() {
@@ -20,8 +18,6 @@ public class CandidatoReduzido {
 		
 		id = candidato.getId();
 		nome = candidato.getNome();
-		telefone = candidato.getTelefone();
-		email = candidato.getEmail();
 		curriculo = candidato.getCurriculo();
 	}
 
@@ -44,22 +40,6 @@ public class CandidatoReduzido {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public byte[] getCurriculo() {

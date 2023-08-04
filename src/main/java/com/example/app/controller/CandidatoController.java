@@ -1,6 +1,7 @@
 package com.example.app.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.app.DTO.CandidatoReduzido;
 import com.example.app.model.entities.Candidato;
 import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
@@ -110,5 +112,29 @@ public class CandidatoController {
 		headers.setContentDisposition(ContentDisposition.builder("inline").filename("Curriculo.pdf").build());
 		
 		return new ResponseEntity<>(candidato.getCurriculo(), headers, HttpStatus.OK);
+	}
+	
+	@GetMapping("/curriculos")
+	public ResponseEntity<List<CandidatoReduzido>> obterCurriculoPorVaga(@RequestParam("idVaga") Integer idVaga){
+		List<Candidato> candidatos = cs.buscarCandidatosPorVaga(idVaga);
+		
+		if (candidatos.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		List<CandidatoReduzido> curriculosDTO = new ArrayList<>();
+		
+		for (Candidato candidato : candidatos) {
+			byte[] curriculo = candidato.getCurriculo();
+			if (curriculo != null) {
+				curriculosDTO.add(new CandidatoReduzido(candidato));
+			}
+		}
+		
+		if (curriculosDTO.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		return ResponseEntity.ok(curriculosDTO);
 	}
 }

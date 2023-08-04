@@ -41,7 +41,6 @@ public class Vaga implements Serializable{
 	@OneToMany(mappedBy = "vaga")
 	private List<Candidatura> candidaturas;
 
-	
 	public Vaga() {
 		super();
 	}

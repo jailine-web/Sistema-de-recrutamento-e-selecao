@@ -57,8 +57,6 @@ public class CandidaturaController {
 		CandidatoReduzido candidatoReduzido = new CandidatoReduzido();
 		candidatoReduzido.setId(candidato.getId());
 		candidatoReduzido.setNome(candidato.getNome());
-		candidatoReduzido.setTelefone(candidato.getTelefone());
-		candidatoReduzido.setEmail(candidato.getEmail());
 		candidatoReduzido.setCurriculo(candidato.getCurriculo());
 		
 		CandidaturaDTO candidaturaDTO = new CandidaturaDTO();
