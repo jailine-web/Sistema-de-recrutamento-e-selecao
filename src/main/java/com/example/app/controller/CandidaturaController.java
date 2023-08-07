@@ -1,5 +1,7 @@
 package com.example.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import com.example.app.model.entities.Vaga;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.CandidaturaRepository;
 import com.example.app.repositories.VagaRepository;
+import com.example.app.services.NotificacaoService;
 
 @RestController
 @RequestMapping("/candidaturas")
@@ -32,6 +35,9 @@ public class CandidaturaController {
 	
 	@Autowired
 	private CandidatoRepository candidatoRepository;
+	
+	@Autowired
+	private NotificacaoService notificacaoService;
 	
 	@PostMapping
 	public ResponseEntity<?> criarCandidatura(@RequestBody Candidatura candidatura){
@@ -86,4 +92,10 @@ public class CandidaturaController {
 		return ResponseEntity.ok().build();
 	}
 	
+	@PostMapping("/emitir_notificacoes")
+	public ResponseEntity<Void> emitirNotificacoes(){
+		List<Candidatura> candidaturas = candidaturaRepository.findAll();
+		notificacaoService.gerarAlertas(candidaturas);
+		return ResponseEntity.ok().build();
+	}
 }
