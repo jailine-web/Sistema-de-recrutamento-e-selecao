@@ -8,18 +8,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.example.app.model.entities.Candidato;
+import com.example.app.model.entities.CandidatoVaga;
 import com.example.app.model.entities.Login;
 import com.example.app.model.entities.Vaga;
 import com.example.app.repositories.CandidatoRepository;
+import com.example.app.repositories.CandidatoVagaRepository;
 import com.example.app.repositories.LoginRepository;
 import com.example.app.repositories.VagaRepository;
 
 @Configuration
-@Profile("test")
+//@Profile("test")
 public class Config implements CommandLineRunner{
 	
 	@Autowired
 	private CandidatoRepository cr;
+	
+	@Autowired
+	private CandidatoVagaRepository cvr;
 	
 	@Autowired
 	private VagaRepository vr;
@@ -36,22 +41,30 @@ public class Config implements CommandLineRunner{
 		
 
 		cr.saveAll(Arrays.asList(c1,c2,c3));
-
-		
 	
 		Vaga v1 = new Vaga(null, "Programador", "Desenvolver programas na linguagem C#", "Conhecimento em C# e Banco de dados", "Bahia", "Home office");
-		Vaga v2 = new Vaga(null, "Esteticista", "#### ", "Conhecimento em ....", "Bahia", "Home office");
+		Vaga v2 = new Vaga(null, "Desenvolvedor Jr", "Desenvolver aplicativos web", "Conhecimento em java e Spring boot", "São Paulo", "Home office");
+		Vaga v3 = new Vaga(null, "Redator Jr", " Redigir textos para publis", "Conhecimento em Linguagens", "São Paulo", "Home office");
+		Vaga v4 = new Vaga(null, "Designer Jr", " Protótipos de telas", "Conhecimento em PS e adobe", "São Paulo", "presencial");
 		
-		vr.saveAll(Arrays.asList(v1,v2));
+		vr.saveAll(Arrays.asList(v1,v2, v4));
 		
 		c1.addVaga(v1);
-		
 		
 		Login l1 = new Login(null, "julia@gmail.com", "Julia", "dshgyg45");
 		Login l2 = new Login(null, "Fernanda@gmail.com", "Fe", "fhh478");
 		
 		lr.saveAll(Arrays.asList(l1,l2));
 		
+		CandidatoVaga cv1 = new CandidatoVaga(c1, v1);
+		CandidatoVaga cv2 = new CandidatoVaga(c2, v2);
+		CandidatoVaga cv3 = new CandidatoVaga(c1, v2);
+		CandidatoVaga cv4 = new CandidatoVaga(c1, v3);
+//		CandidatoVaga cv5 = new CandidatoVaga(c2, v1);
+		
+		cvr.saveAll(Arrays.asList(cv1,cv2, cv3, cv4));
+		
 		c2.addVaga(v1);
+		
 	}
 }

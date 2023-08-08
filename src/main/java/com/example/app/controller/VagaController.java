@@ -50,4 +50,5 @@ public class VagaController {
 		return ResponseEntity.ok().body(vaga);
 		
 	}
+	
 }

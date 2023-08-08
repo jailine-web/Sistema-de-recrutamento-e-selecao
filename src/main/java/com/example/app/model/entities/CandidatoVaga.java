@@ -13,8 +13,6 @@ public class CandidatoVaga implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static int candidaturas;
-
 	@EmbeddedId
 	private CandidatoVagaPK chaveCompostaPK = new CandidatoVagaPK();
 
@@ -25,7 +23,6 @@ public class CandidatoVaga implements Serializable{
 	public CandidatoVaga(Candidato candidato, Vaga vaga) {
 		chaveCompostaPK.setCandidato(candidato);
 		chaveCompostaPK.setVaga(vaga);
-		candidaturas ++;
 	}
 
 	public CandidatoVagaPK getChaveCompostaPK() {
@@ -36,10 +33,8 @@ public class CandidatoVaga implements Serializable{
 		this.chaveCompostaPK = chaveCompostaPK;
 	}
 	
-	public static int getCandidaturas() {
-		return candidaturas;
-	}
-
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(chaveCompostaPK);

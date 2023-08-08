@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.app.DTO.CandidatoReduzido;
 import com.example.app.controller.excecao.IdNaoEncontrado;
@@ -89,24 +91,5 @@ public class RecrutadorService {
 			throw new Tratamentoexcecao("Recrutador não encontrado");
 		}
 	}
-
-//	public void salvarLogin(Recrutador rec) {
-//		
-//		try {
-//			
-//			if(lr.findByEmail(rec.getEmail()) != null) {
-//				throw new Tratamentoexcecao("O email já está cadastrado");
-//			}
-//			
-//			rec.setSenha(Util.md5(rec.getSenha()));
-//			
-//		}
-//		catch(Exception e) {
-//			throw new Tratamentoexcecao("Erro na criptografia da senha");
-//		}
-//		
-////		rr.save(rec);
-////		
-//			
-//	}
+	
 }

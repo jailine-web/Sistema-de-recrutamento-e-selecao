@@ -40,7 +40,6 @@ public class Vaga implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy = "vaga")
 	private List<Candidatura> candidaturas;
-
 	
 	public Vaga() {
 		super();
@@ -54,6 +53,7 @@ public class Vaga implements Serializable{
 		this.requisitos = requisitos;
 		this.localizacao = localizacao;
 		this.formato = formato;
+		
 	}
 
 	public Integer getId() {
@@ -111,6 +111,15 @@ public class Vaga implements Serializable{
 
 	public void setCandidaturas(List<Candidatura> candidaturas) {
 		this.candidaturas = candidaturas;
+	}
+
+	
+	public Candidato getCandidato() {
+		return candidato;
+	}
+
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
 	}
 
 	@Override

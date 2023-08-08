@@ -20,13 +20,16 @@ public class CandidatoVagaPK implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "vaga_id")
 	private Vaga vaga;
-
+	
 	public CandidatoVagaPK() {
+		
 	}
 
 	public CandidatoVagaPK(Candidato candidato, Vaga vaga) {
 		this.candidato = candidato;
 		this.vaga = vaga;
+		
+		
 	}
 	
 	public Candidato getCandidato() {
@@ -44,6 +47,7 @@ public class CandidatoVagaPK implements Serializable{
 	public void setVaga(Vaga vaga) {
 		this.vaga = vaga;
 	}
+	
 
 	@Override
 	public int hashCode() {
