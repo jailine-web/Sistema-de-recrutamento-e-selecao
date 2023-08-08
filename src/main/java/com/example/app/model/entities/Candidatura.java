@@ -3,9 +3,12 @@ package com.example.app.model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.example.app.utils.EstadoInscricao;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,13 +35,17 @@ public class Candidatura implements Serializable {
 	@JoinColumn(name = "candidato_id")
 	private Candidato candidato;
 	
+	@Enumerated(EnumType.STRING)
+	private EstadoInscricao estado;
+	
 	public Candidatura() {
 	}
 	
-	public Candidatura(Long id, Vaga vaga, Candidato candidato) {
+	public Candidatura(Long id, Vaga vaga, Candidato candidato, EstadoInscricao estado) {
 		this.id = id;
 		this.vaga = vaga;
 		this.candidato = candidato;
+		this.estado = estado;
 	}
 
 	public Long getId() {
@@ -63,6 +70,14 @@ public class Candidatura implements Serializable {
 
 	public void setCandidato(Candidato candidato) {
 		this.candidato = candidato;
+	}
+	
+	public EstadoInscricao getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoInscricao estado) {
+		this.estado = estado;
 	}
 
 	@Override
