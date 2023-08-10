@@ -1,6 +1,7 @@
 package com.example.app.model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,11 +27,13 @@ public class Vaga implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String nome;
+	private String titulo;
 	private String descricao;
 	private String requisitos;
 	private String localizacao;
 	private String formato;
+	private Date data;
+	private String categoria;
 	
 	@JsonBackReference
 	@ManyToOne
@@ -45,10 +48,10 @@ public class Vaga implements Serializable{
 		super();
 	}
 
-	public Vaga(Integer id, String nome, String descricao, String requisitos, String localizacao, String formato) {
-		super();
+	public Vaga(Integer id, String titulo, String descricao, String requisitos, String localizacao, 
+			String formato, Date data, String categoria) {
 		this.id = id;
-		this.nome = nome;
+		this.titulo = titulo;
 		this.descricao = descricao;
 		this.requisitos = requisitos;
 		this.localizacao = localizacao;
@@ -64,12 +67,12 @@ public class Vaga implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getDescricao() {
@@ -104,7 +107,22 @@ public class Vaga implements Serializable{
 		this.formato = formato;
 	}
 
-	
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
 	public List<Candidatura> getCandidaturas() {
 		return candidaturas;
 	}
@@ -124,7 +142,7 @@ public class Vaga implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nome);
+		return Objects.hash(id, titulo);
 	}
 
 	@Override
@@ -136,7 +154,7 @@ public class Vaga implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Vaga other = (Vaga) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
+		return Objects.equals(id, other.id) && Objects.equals(titulo, other.titulo);
 	}
 	
 

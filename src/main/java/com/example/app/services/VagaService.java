@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.app.controller.excecao.IdNaoEncontrado;
 import com.example.app.model.entities.Vaga;
 import com.example.app.repositories.CandidatoRepository;
-import com.example.app.repositories.CandidatoVagaRepository;
 import com.example.app.repositories.VagaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -19,9 +18,6 @@ public class VagaService {
 
 	@Autowired
 	private VagaRepository vr;
-	
-	@Autowired
-	private CandidatoVagaRepository cvr;
 	
 	@Autowired
 	private CandidatoRepository cr;
@@ -60,7 +56,7 @@ public class VagaService {
 
 	private void atualizarDados(Vaga vagaAtualizada, Vaga vaga) {
 		
-			vagaAtualizada.setNome(vaga.getNome());
+			vagaAtualizada.setTitulo(vaga.getTitulo());
 			vagaAtualizada.setDescricao(vaga.getDescricao());
 			vagaAtualizada.setRequisitos(vaga.getRequisitos());
 			vagaAtualizada.setLocalizacao(vaga.getLocalizacao());

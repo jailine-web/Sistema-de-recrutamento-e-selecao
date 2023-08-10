@@ -23,7 +23,7 @@ import com.example.app.model.entities.Login;
 import com.example.app.services.LoginService;
 
 @RestController
-@RequestMapping(value="/login")
+@RequestMapping(value="/hisig10/login")
 public class LoginController {
 
 	@Autowired

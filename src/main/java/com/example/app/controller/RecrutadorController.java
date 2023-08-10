@@ -21,7 +21,7 @@ import com.example.app.repositories.CandidatoRepository;
 import com.example.app.services.RecrutadorService;
 
 @RestController
-@RequestMapping(value="/usuarios/recrutadores")
+@RequestMapping(value="/hisig10/usuarios/recrutadores")
 public class RecrutadorController {
 
 	@Autowired

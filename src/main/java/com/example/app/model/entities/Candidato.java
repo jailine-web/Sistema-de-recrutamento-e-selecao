@@ -45,7 +45,7 @@ public class Candidato implements Serializable {
 	private String curso;
 	private String termino;
 	private String instituicao;
-
+	private String localizacao;
 	
 	@OneToMany(mappedBy = "candidato")
 	private List<Candidatura> candidaturas;
@@ -63,7 +63,7 @@ public class Candidato implements Serializable {
 	}
 
 	public Candidato(Integer id, String nome, String telefone, String email, boolean recrutador, String img,
-			String semestreVigente, String curso, String termino, String instituicao) {
+			String semestreVigente, String curso, String termino, String instituicao, String localizacao) {
 
 		this.id = id;
 		this.nome = nome;
@@ -75,6 +75,7 @@ public class Candidato implements Serializable {
 		this.curso = curso;
 		this.termino = termino;
 		this.instituicao = instituicao;
+		this.localizacao = localizacao;
 	}
 
 	public Integer getId() {
@@ -165,6 +166,14 @@ public class Candidato implements Serializable {
 		this.instituicao = instituicao;
 	}
 	
+	public String getLocalizacao() {
+		return localizacao;
+	}
+
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
+	}
+
 	public List<Vaga> getVagas() {
 		return vagas;
 	}

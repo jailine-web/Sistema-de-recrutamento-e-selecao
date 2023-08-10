@@ -31,7 +31,7 @@ import com.example.app.repositories.VagaRepository;
 import com.example.app.services.CandidatoService;
 
 @RestController
-@RequestMapping(value="/usuarios/candidatos")
+@RequestMapping(value="/hisig10/usuarios/candidatos")
 public class CandidatoController {
 
 	@Autowired

@@ -27,7 +27,7 @@ import com.example.app.repositories.VagaRepository;
 import com.example.app.services.NotificacaoService;
 
 @RestController
-@RequestMapping("/candidaturas")
+@RequestMapping("/hisig10/candidaturas")
 public class CandidaturaController {
 	
 	@Autowired
@@ -66,6 +66,7 @@ public class CandidaturaController {
 		if (candidato == null) {
 			return ResponseEntity.badRequest().body("Candidato não encontrado");
 		}
+		
 		CandidatoReduzido candidatoReduzido = new CandidatoReduzido();
 		candidatoReduzido.setId(candidato.getId());
 		candidatoReduzido.setNome(candidato.getNome());

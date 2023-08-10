@@ -12,7 +12,7 @@ import com.example.app.repositories.VagaRepository;
 import com.example.app.services.EstatisticasVagaService;
 
 @RestController
-@RequestMapping(value="/estatisticas")
+@RequestMapping(value="/hisig10/estatisticas")
 public class EstatisticaController {
 
 	@Autowired

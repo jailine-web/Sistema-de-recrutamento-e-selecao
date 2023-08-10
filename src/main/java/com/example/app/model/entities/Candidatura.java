@@ -17,7 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "candidaturas")
+@Table(name = "/hisig10/candidaturas")
 public class Candidatura implements Serializable {
 
 	private static final long serialVersionUID = 1L;
