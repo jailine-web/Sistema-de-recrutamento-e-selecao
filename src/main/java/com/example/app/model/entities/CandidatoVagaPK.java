@@ -28,8 +28,6 @@ public class CandidatoVagaPK implements Serializable{
 	public CandidatoVagaPK(Candidato candidato, Vaga vaga) {
 		this.candidato = candidato;
 		this.vaga = vaga;
-		
-		
 	}
 	
 	public Candidato getCandidato() {
@@ -65,7 +63,4 @@ public class CandidatoVagaPK implements Serializable{
 		CandidatoVagaPK other = (CandidatoVagaPK) obj;
 		return Objects.equals(candidato, other.candidato) && Objects.equals(vaga, other.vaga);
 	}
-	
-	
-	
 }

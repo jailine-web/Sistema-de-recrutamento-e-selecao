@@ -15,9 +15,9 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-	
-	@Bean
-	public PasswordEncoder getSenhaCodada() {
+
+    @Bean
+    PasswordEncoder getSenhaCodada() {
 		BCryptPasswordEncoder encriptar = new BCryptPasswordEncoder();
 		return encriptar;
 	}

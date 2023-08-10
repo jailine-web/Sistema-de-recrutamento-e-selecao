@@ -11,17 +11,17 @@ public class Alerta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Long candidaturaId;
+	private Integer candidaturaId;
 	private String mensagem;
 	
 	public Alerta() {
 	}
 
-	public Long getCandidaturaId() {
+	public Integer getCandidaturaId() {
 		return candidaturaId;
 	}
 
-	public void setCandidaturaId(Long candidaturaId) {
+	public void setCandidaturaId(Integer candidaturaId) {
 		this.candidaturaId = candidaturaId;
 	}
 

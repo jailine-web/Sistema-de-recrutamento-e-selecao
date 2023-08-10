@@ -40,11 +40,7 @@ public class Vaga implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy = "vaga")
 	private List<Candidatura> candidaturas;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 673ff08d2a0b2ea0b0988af11d7483928d998ef1
 	public Vaga() {
 		super();
 	}

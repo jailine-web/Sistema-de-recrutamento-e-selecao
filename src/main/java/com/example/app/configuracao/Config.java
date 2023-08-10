@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.CandidatoVaga;
@@ -47,7 +46,7 @@ public class Config implements CommandLineRunner{
 		Vaga v3 = new Vaga(null, "Redator Jr", " Redigir textos para publis", "Conhecimento em Linguagens", "São Paulo", "Home office");
 		Vaga v4 = new Vaga(null, "Designer Jr", " Protótipos de telas", "Conhecimento em PS e adobe", "São Paulo", "presencial");
 		
-		vr.saveAll(Arrays.asList(v1,v2, v4));
+		vr.saveAll(Arrays.asList(v1,v2, v3, v4));
 		
 		c1.addVaga(v1);
 		

@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,11 @@ import com.example.app.DTO.CandidatoReduzido;
 import com.example.app.DTO.CandidaturaDTO;
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Candidatura;
+import com.example.app.model.entities.Mensagem;
 import com.example.app.model.entities.Vaga;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.CandidaturaRepository;
+import com.example.app.repositories.MensagemRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.services.NotificacaoService;
 
@@ -38,6 +41,9 @@ public class CandidaturaController {
 	
 	@Autowired
 	private NotificacaoService notificacaoService;
+	
+	@Autowired
+	private MensagemRepository mensagemRepository;
 	
 	@PostMapping
 	public ResponseEntity<?> criarCandidatura(@RequestBody Candidatura candidatura){
@@ -97,5 +103,24 @@ public class CandidaturaController {
 		List<Candidatura> candidaturas = candidaturaRepository.findAll();
 		notificacaoService.gerarAlertas(candidaturas);
 		return ResponseEntity.ok().build();
+	}
+	
+	@PostMapping("/mensagem_candidato")
+/*		exemplo: 
+    	"candidatoId": 1,
+    	"conteudo": "Esta é uma mensagem de teste"*/
+	public ResponseEntity<?> enviarMensagemCandidato(@RequestBody Mensagem mensagem){
+		if (mensagem.getCandidatoId() == null) {
+			return ResponseEntity.badRequest().body("O ID do candidato é obrigatório");
+		}
+		Candidato candidato = candidatoRepository.findById(mensagem.getCandidatoId().intValue()).orElse(null);
+		if (candidato == null) {
+			return ResponseEntity.notFound().build();
+		}
+		mensagem.setDataEnvio(LocalDateTime.now());
+		
+		Mensagem mensagemSalva = mensagemRepository.save(mensagem);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(mensagemSalva);
 	}
 }

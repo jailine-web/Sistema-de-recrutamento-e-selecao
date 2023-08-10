@@ -51,6 +51,4 @@ public class CandidatoVaga implements Serializable{
 		CandidatoVaga other = (CandidatoVaga) obj;
 		return Objects.equals(chaveCompostaPK, other.chaveCompostaPK);
 	}
-
-
 }

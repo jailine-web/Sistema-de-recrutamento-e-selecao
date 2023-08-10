@@ -12,7 +12,7 @@ public class Mensagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long candidatoId;
+	private Integer candidatoId;
 	private String conteudo;
 	private LocalDateTime dataEnvio;
 	
@@ -27,11 +27,11 @@ public class Mensagem {
 		this.id = id;
 	}
 
-	public Long getCandidatoId() {
+	public Integer getCandidatoId() {
 		return candidatoId;
 	}
 
-	public void setCandidatoId(Long candidatoId) {
+	public void setCandidatoId(Integer candidatoId) {
 		this.candidatoId = candidatoId;
 	}
 
