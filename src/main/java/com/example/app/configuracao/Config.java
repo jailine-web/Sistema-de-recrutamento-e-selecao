@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import com.example.app.model.entities.Alerta;
 import com.example.app.model.entities.Candidato;
+import com.example.app.model.entities.CandidatoVaga;
 import com.example.app.model.entities.Candidatura;
 import com.example.app.model.entities.Login;
 import com.example.app.model.entities.Vaga;
+import com.example.app.repositories.AlertaRepository;
 import com.example.app.repositories.CandidatoRepository;
+import com.example.app.repositories.CandidatoVagarepository;
 import com.example.app.repositories.CandidaturaRepository;
 import com.example.app.repositories.LoginRepository;
 import com.example.app.repositories.VagaRepository;
+import com.example.app.utils.EstadoInscricao;
 
 @Configuration
 //@Profile("test")
@@ -31,6 +36,12 @@ public class Config implements CommandLineRunner{
 	
 	@Autowired
 	private CandidaturaRepository cd;
+	
+	@Autowired
+	private CandidatoVagarepository cv;
+	
+	@Autowired
+	private AlertaRepository ar;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -55,14 +66,19 @@ public class Config implements CommandLineRunner{
 		
 		lr.saveAll(Arrays.asList(l1,l2));
 		
-		
-		Candidatura cd1 = new Candidatura(null, v1, c1, null);
-		Candidatura cd2 = new Candidatura(null, v2, c2, null);
-		Candidatura cd3 = new Candidatura(null, v3, c1, null);
+		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO);
+		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA);
+		Candidatura cd3 = new Candidatura(null, v4, c2, EstadoInscricao.REJEITADO);
 		Candidatura cd4 = new Candidatura(null, v1, c3, null);
-		Candidatura cd5 = new Candidatura(null, v4, c3, null);
+		Candidatura cd5 = new Candidatura(null, v4, c2, null);
 		
 		cd.saveAll(Arrays.asList(cd1,cd2,cd3,cd4,cd5));
+		
+		CandidatoVaga cv1 = new CandidatoVaga(c1, v4);
+		CandidatoVaga cv2 = new CandidatoVaga(c1, v3);
+		CandidatoVaga cv3 = new CandidatoVaga(c2, v1);
+		
+		cv.saveAll(Arrays.asList(cv1, cv2, cv3));
 		
 	}
 }
