@@ -25,8 +25,8 @@ public class Recrutador implements Serializable{
 	
 	private String nome;
 	
-	@Email
 	private String telefone;
+	@Email
 	private String email;
 	
 	@NotBlank
@@ -48,7 +48,7 @@ public class Recrutador implements Serializable{
 	}
 	
 
-	public Recrutador(Integer id, String nome, String telefone, String email, boolean recrutador, String img, String time) {
+	public Recrutador(Integer id, String nome, String telefone, String email, String usuario, String senha, boolean recrutador, String img, String time) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;

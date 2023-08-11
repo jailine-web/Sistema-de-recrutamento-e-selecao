@@ -121,20 +121,40 @@ public class CandidatoController {
 		if (candidatos.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		
 		List<CandidatoReduzido> curriculosDTO = new ArrayList<>();
-		
 		for (Candidato candidato : candidatos) {
 			byte[] curriculo = candidato.getCurriculo();
 			if (curriculo != null) {
 				curriculosDTO.add(new CandidatoReduzido(candidato));
 			}
 		}
-		
 		if (curriculosDTO.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		
 		return ResponseEntity.ok(curriculosDTO);
+	}
+	
+	@PutMapping("/perfil/{id}")
+	public ResponseEntity<Candidato> atualizarPerfilCandidato(@PathVariable Integer id, @RequestBody Candidato candidatoNovo){
+		Optional<Candidato> candidatoOptional = cr.findById(id);
+		if(candidatoOptional.isPresent()) {
+			Candidato candidatoAtual = candidatoOptional.get();
+			
+			candidatoAtual.setNome(candidatoNovo.getNome());
+			candidatoAtual.setTelefone(candidatoNovo.getTelefone());
+			candidatoAtual.setEmail(candidatoNovo.getEmail());
+			candidatoAtual.setRecrutador(candidatoNovo.isRecrutador());
+			candidatoAtual.setSemestreVigente(candidatoNovo.getSemestreVigente());
+			candidatoAtual.setCurso(candidatoNovo.getCurso());
+			candidatoAtual.setTermino(candidatoNovo.getTermino());
+			candidatoAtual.setInstituicao(candidatoNovo.getInstituicao());
+			candidatoAtual.setLocalizacao(candidatoNovo.getLocalizacao());
+			
+			Candidato candidatoAtualizado = cr.save(candidatoAtual);
+			return ResponseEntity.ok(candidatoAtualizado);
+		}
+		else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

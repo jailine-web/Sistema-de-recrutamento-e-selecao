@@ -66,5 +66,4 @@ public class RecrutadorController {
 		rs.excluirRecrutador(id);
 		return ResponseEntity.noContent().build();
 	}
-	
 }
