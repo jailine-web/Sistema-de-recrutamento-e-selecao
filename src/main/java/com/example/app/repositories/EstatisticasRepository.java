@@ -13,8 +13,8 @@ public interface EstatisticasRepository extends JpaRepository<EstatisticasVaga, 
 	
 	@Transactional
 	@Query(nativeQuery = true, value ="""
-			SELECT DISTINCT count(cd.vaga_id), v.titulo vaga FROM candidaturas as cd inner join vaga as v 
-			where cd.vaga_id = v.id and vaga_id = :idVaga """)
+			SELECT DISTINCT count(cv.vaga_id), v.titulo vaga FROM candidato_vaga as cv inner join vaga as v 
+			where cv.vaga_id = v.id and vaga_id = :idVaga """)
 	
 	Long quantidadeDeCandidaturas(Integer idVaga);
 }

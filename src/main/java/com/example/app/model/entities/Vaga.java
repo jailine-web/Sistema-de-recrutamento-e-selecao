@@ -56,6 +56,8 @@ public class Vaga implements Serializable{
 		this.requisitos = requisitos;
 		this.localizacao = localizacao;
 		this.formato = formato;
+		this.data = data;
+		this.categoria = categoria;
 		
 	}
 
