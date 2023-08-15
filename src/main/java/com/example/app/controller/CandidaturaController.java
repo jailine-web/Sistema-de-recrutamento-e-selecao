@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -133,9 +134,23 @@ public class CandidaturaController {
 	
 	@GetMapping("/localizacao")
 	/*
-	 http://localhost:8080/hisig10/candidaturas/localidade?localizacao=São Paulo
+	 http://localhost:8080/hisig10/candidaturas/localizacao?localizacao=São Paulo
 	 */
 	public List<Candidatura> listarCandidaturasPorLocalidade(@RequestParam("localizacao") String localizacao){
 			return candidaturaRepository.findByCandidatoLocalizacao(localizacao);
+	}
+	
+	@GetMapping("/ordemalfabetica")
+	public List<Candidatura> listarCandidaturaEmOrdemAlfabetica(){
+		List<Candidatura> candidaturas = candidaturaRepository.findAllByOrderByCandidatoNomeAsc();
+		return candidaturas;
+	}
+	
+	@GetMapping("/datainscricao")
+	public List<Candidatura> listarCandidaturasPorDataInscricao(
+			@RequestParam @DateTimeFormat(pattern= "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime start,
+			@RequestParam @DateTimeFormat(pattern= "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime end){
+		List<Candidatura> candidaturas = candidaturaRepository.findByDataInscricaoBetween(start, end);
+		return candidaturas;
 	}
 }

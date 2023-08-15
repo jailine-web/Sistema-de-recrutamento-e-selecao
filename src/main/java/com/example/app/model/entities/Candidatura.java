@@ -1,6 +1,7 @@
 package com.example.app.model.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.example.app.utils.EstadoInscricao;
@@ -38,14 +39,17 @@ public class Candidatura implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EstadoInscricao estado;
 	
+	private LocalDateTime dataInscricao;
+	
 	public Candidatura() {
 	}
 	
-	public Candidatura(Long id, Vaga vaga, Candidato candidato, EstadoInscricao estado) {
+	public Candidatura(Long id, Vaga vaga, Candidato candidato, EstadoInscricao estado, LocalDateTime dataInscricao) {
 		this.id = id;
 		this.vaga = vaga;
 		this.candidato = candidato;
 		this.estado = estado;
+		this.dataInscricao = dataInscricao;
 	}
 
 	public Long getId() {
@@ -78,6 +82,14 @@ public class Candidatura implements Serializable {
 
 	public void setEstado(EstadoInscricao estado) {
 		this.estado = estado;
+	}
+	
+	public LocalDateTime getDataInscricao() {
+		return dataInscricao;
+	}
+	
+	public void setDataInscricao(LocalDateTime dataInscricao) {
+		this.dataInscricao = dataInscricao;
 	}
 
 	@Override

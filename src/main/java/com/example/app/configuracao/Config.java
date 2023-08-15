@@ -1,5 +1,6 @@
 package com.example.app.configuracao;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.app.model.entities.Alerta;
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.CandidatoVaga;
 import com.example.app.model.entities.Candidatura;
@@ -66,11 +66,11 @@ public class Config implements CommandLineRunner{
 		
 		lr.saveAll(Arrays.asList(l1,l2));
 		
-		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO);
-		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA);
-		Candidatura cd3 = new Candidatura(null, v4, c2, EstadoInscricao.REJEITADO);
-		Candidatura cd4 = new Candidatura(null, v1, c3, null);
-		Candidatura cd5 = new Candidatura(null, v4, c2, null);
+		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO,LocalDateTime.now());
+		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
+		Candidatura cd3 = new Candidatura(null, v4, c2, EstadoInscricao.REJEITADO, LocalDateTime.now());
+		Candidatura cd4 = new Candidatura(null, v1, c3, null, null);
+		Candidatura cd5 = new Candidatura(null, v4, c2, null, null);
 		
 		cd.saveAll(Arrays.asList(cd1,cd2,cd3,cd4,cd5));
 		
