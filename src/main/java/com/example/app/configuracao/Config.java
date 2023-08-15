@@ -61,10 +61,6 @@ public class Config implements CommandLineRunner{
 		
 		c1.addVaga(v1);
 		
-		Login l1 = new Login(null, "julia@gmail.com", "Julia", "dshgyg45");
-		Login l2 = new Login(null, "Fernanda@gmail.com", "Fe", "fhh478");
-		
-		lr.saveAll(Arrays.asList(l1,l2));
 		
 		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO,LocalDateTime.now());
 		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
@@ -74,6 +70,10 @@ public class Config implements CommandLineRunner{
 		
 		cd.saveAll(Arrays.asList(cd1,cd2,cd3,cd4,cd5));
 		
+//		Login l1 = new Login(null, "julia@gmail.com", "Julia", "dshgyg45");
+//		Login l2 = new Login(null, "Fernanda@gmail.com", "Fe", "fhh478");
+//		
+//		lr.saveAll(Arrays.asList(l1,l2));
 		CandidatoVaga cv1 = new CandidatoVaga(c1, v4);
 		CandidatoVaga cv2 = new CandidatoVaga(c1, v3);
 		CandidatoVaga cv3 = new CandidatoVaga(c2, v1);

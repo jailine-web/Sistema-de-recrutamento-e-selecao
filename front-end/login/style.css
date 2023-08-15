@@ -1,0 +1,27 @@
+.formulario{
+margin-top: 130px;
+justify-content: center;
+align-items: center;
+text-align: center;
+display: flexbox;
+padding: 10px;
+}
+
+input{
+    padding: 20px;
+    margin-top:10px;
+    margin-bottom: 20px;
+    width: 400px;
+   
+}
+
+button{
+    margin-top: 20px;
+    padding: 10px;
+}
+
+a{
+  
+    font-size: 20px;
+    font-family: inherit;
+}
