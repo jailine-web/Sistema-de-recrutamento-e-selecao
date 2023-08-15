@@ -1,6 +1,7 @@
 package com.example.app.controller;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.app.DTO.CandidatoReduzido;
 import com.example.app.DTO.CandidaturaDTO;
+import com.example.app.DTO.CandidaturaRelatorioDTO;
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Candidatura;
 import com.example.app.model.entities.Mensagem;
@@ -27,6 +29,7 @@ import com.example.app.repositories.CandidaturaRepository;
 import com.example.app.repositories.MensagemRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.services.NotificacaoService;
+import com.example.app.utils.EstadoInscricao;
 
 @RestController
 @RequestMapping("/hisig10/candidaturas")
@@ -152,5 +155,24 @@ public class CandidaturaController {
 			@RequestParam @DateTimeFormat(pattern= "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime end){
 		List<Candidatura> candidaturas = candidaturaRepository.findByDataInscricaoBetween(start, end);
 		return candidaturas;
+	}
+	
+	@GetMapping("/relatorio")
+	public ResponseEntity<List<CandidaturaRelatorioDTO>> gerarRelatorioCandidaturasAdequadas(){
+		List<Candidatura> candidaturasSelecionadas = candidaturaRepository.findByEstado(EstadoInscricao.SELECIONADO);
+		
+		List<CandidaturaRelatorioDTO> relatorioDTOs = new ArrayList<>();
+		for (Candidatura candidatura : candidaturasSelecionadas) {
+			CandidaturaRelatorioDTO relatorioDTO = new CandidaturaRelatorioDTO();
+			relatorioDTO.setCandidaturaId(candidatura.getId());
+			relatorioDTO.setVagaId(candidatura.getVaga().getId().longValue());
+			relatorioDTO.setVagaTitulo(candidatura.getVaga().getTitulo());
+			relatorioDTO.setCandidatoId(candidatura.getCandidato().getId().longValue());
+			relatorioDTO.setCandidatoNome(candidatura.getCandidato().getNome());
+			relatorioDTO.setEstadoInscricao(candidatura.getEstado());
+			
+			relatorioDTOs.add(relatorioDTO);
+		}
+		return ResponseEntity.ok(relatorioDTOs);
 	}
 }
