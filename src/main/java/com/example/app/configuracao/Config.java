@@ -20,6 +20,7 @@ import com.example.app.repositories.CandidaturaRepository;
 import com.example.app.repositories.LoginRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.utils.EstadoInscricao;
+import com.example.app.utils.StatusCurriculoAvaliado;
 
 @Configuration
 //@Profile("test")
@@ -47,6 +48,7 @@ public class Config implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false, "img", "semestre", "curso", "Terminio", "Anhanguera","São Paulo");
+		c1.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "img", "semestre", "curso", "Terminio", "Unip", "Bahia");
 		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "img", "semestre", "curso", "meio", "Estacio","SC");
 
@@ -64,8 +66,8 @@ public class Config implements CommandLineRunner{
 		
 		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO,LocalDateTime.now());
 		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
-		Candidatura cd3 = new Candidatura(null, v4, c2, EstadoInscricao.REJEITADO, LocalDateTime.now());
-		Candidatura cd4 = new Candidatura(null, v1, c3, null, null);
+		Candidatura cd3 = new Candidatura(null, v4, c2, EstadoInscricao.INADEQUADO, LocalDateTime.now());
+		Candidatura cd4 = new Candidatura(null, v1, c3, EstadoInscricao.TALVEZ, LocalDateTime.now());
 		Candidatura cd5 = new Candidatura(null, v4, c2, null, null);
 		
 		cd.saveAll(Arrays.asList(cd1,cd2,cd3,cd4,cd5));

@@ -8,12 +8,15 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import com.example.app.projection.CandidaturasProjection;
+import com.example.app.utils.StatusCurriculoAvaliado;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,6 +50,9 @@ public class Candidato implements Serializable {
 	private String instituicao;
 	@Column
 	private String localizacao;
+	@Column(name = "curriculo_avaliado")
+	@Enumerated(EnumType.STRING)
+	private StatusCurriculoAvaliado curriculoAvaliado;
 	
 	@OneToMany(mappedBy = "candidato")
 	private List<Candidatura> candidaturas;
@@ -173,6 +179,14 @@ public class Candidato implements Serializable {
 
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
+	}
+	
+	public StatusCurriculoAvaliado getCurriculoAvaliado() {
+		return curriculoAvaliado;
+	}
+
+	public void setCurriculoAvaliado(StatusCurriculoAvaliado curriculoAvaliado) {
+		this.curriculoAvaliado = curriculoAvaliado;
 	}
 
 	public List<Vaga> getVagas() {

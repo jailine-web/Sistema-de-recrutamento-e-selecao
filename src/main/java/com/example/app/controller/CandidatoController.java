@@ -29,6 +29,7 @@ import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.services.CandidatoService;
+import com.example.app.utils.StatusCurriculoAvaliado;
 
 @RestController
 @RequestMapping(value="/hisig10/usuarios/candidatos")
@@ -90,8 +91,8 @@ public class CandidatoController {
 		return vagas;
 	}
 	
-	@PostMapping("/{id}/curriculo")
-    public ResponseEntity<String> adicionarCurriculo(@PathVariable Integer id, @RequestParam("curriculo") MultipartFile curriculo) {
+	@PostMapping("/curriculo/{id}")
+    public ResponseEntity<String> adicionarCurriculo(@RequestParam("curriculo") MultipartFile curriculo, @PathVariable Integer id) {
         try {
             cs.inserirCurriculo(id, curriculo);
             return ResponseEntity.ok("Currículo enviado com sucesso.");
@@ -100,12 +101,13 @@ public class CandidatoController {
         }
     }
 	
-	@GetMapping("/{id}/curriculo")
+	@GetMapping("/curriculo/{id}")
 	public ResponseEntity<byte[]> obterCurriculo(@PathVariable Integer id) {
 		Candidato candidato = cs.buscarPorId(id);
 		if (candidato == null || candidato.getCurriculo() == null) {
 			return ResponseEntity.notFound().build();
 		}
+		candidato.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_PDF);

@@ -19,6 +19,7 @@ import com.example.app.model.entities.Vaga;
 import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
+import com.example.app.utils.StatusCurriculoAvaliado;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -109,6 +110,7 @@ public class CandidatoService {
 		
 		byte[] curriculoBytes = curriculo.getBytes();
 		candidato.setCurriculo(curriculoBytes);
+		candidato.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		
 		cr.save(candidato);
 	}

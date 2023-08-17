@@ -50,7 +50,7 @@ public class NotificacaoService {
 				emitirAlerta(candidatura.getId().intValue(),"Você foi selecionado para a próxima etapa");
 				candidatura.setEstado(EstadoInscricao.ALERTA_GERADO);
 				
-			} else if (estado == EstadoInscricao.REJEITADO) {
+			} else if (estado == EstadoInscricao.INADEQUADO) {
 				emitirAlerta(candidatura.getId().intValue(),"Pedimos desculpas mas você não passou para a próxima etapa");
 				candidatura.setEstado(EstadoInscricao.ALERTA_GERADO);
 				
