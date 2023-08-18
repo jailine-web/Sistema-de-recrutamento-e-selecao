@@ -9,10 +9,13 @@ import org.springframework.data.repository.query.Param;
 import com.example.app.model.entities.Candidato;
 import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.projection.CandidaturasProjection;
+import com.example.app.projection.CurriculoAvaliadoProjection;
+import com.example.app.utils.StatusCurriculoAvaliado;
 
 import jakarta.transaction.Transactional;
 
 public interface CandidatoRepository extends JpaRepository<Candidato, Integer>{
+	List<CurriculoAvaliadoProjection> findByCurriculoAvaliado(StatusCurriculoAvaliado status);
 	
 	@Transactional
 	// Adicionei o Transactional para proteger o código de SQL Injection pois ela garante que todos os comandos SQL emitidos

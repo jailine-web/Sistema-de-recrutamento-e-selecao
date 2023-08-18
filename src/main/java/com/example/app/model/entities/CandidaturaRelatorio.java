@@ -1,8 +1,24 @@
-package com.example.app.DTO;
+package com.example.app.model.entities;
+
+import java.io.Serializable;
 
 import com.example.app.utils.EstadoInscricao;
 
-public class CandidaturaRelatorioDTO {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "candidatura_relatorios")
+public class CandidaturaRelatorio implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
 	private Long candidaturaId;
 	private Long vagaId;
 	private String vagaTitulo;
@@ -10,7 +26,15 @@ public class CandidaturaRelatorioDTO {
 	private String candidatoNome;
 	private EstadoInscricao estadoInscricao;
 	
-	public CandidaturaRelatorioDTO() {
+	public CandidaturaRelatorio() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getCandidaturaId() {
@@ -60,6 +84,5 @@ public class CandidaturaRelatorioDTO {
 	public void setEstadoInscricao(EstadoInscricao estadoInscricao) {
 		this.estadoInscricao = estadoInscricao;
 	}
-	
 	
 }
