@@ -1,6 +1,7 @@
 package com.example.app.model.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +36,9 @@ public class Vaga implements Serializable{
 	private String formato;
 	private Date data;
 	private String categoria;
+	
+	@OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Questionario> questionarios = new ArrayList<>();
 	
 	@JsonBackReference
 	@ManyToOne
@@ -123,6 +128,14 @@ public class Vaga implements Serializable{
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+	
+	public List<Questionario> getQuestionarios() {
+		return questionarios;
+	}
+
+	public void setQuestionarios(List<Questionario> questionarios) {
+		this.questionarios = questionarios;
 	}
 
 	public List<Candidatura> getCandidaturas() {
