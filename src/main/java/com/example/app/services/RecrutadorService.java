@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.app.DTO.CandidatoReduzido;
 import com.example.app.controller.excecao.IdNaoEncontrado;
@@ -14,7 +12,6 @@ import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.projection.CandidaturasProjection;
 import com.example.app.repositories.CandidatoRepository;
-import com.example.app.repositories.LoginRepository;
 import com.example.app.repositories.RecrutadorRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -29,8 +26,6 @@ public class RecrutadorService {
 	@Autowired
 	private CandidatoRepository cr;
 
-	@Autowired
-	LoginRepository lr;
 
 	@Transactional
 	public List<Recrutador> buscarTodos() {

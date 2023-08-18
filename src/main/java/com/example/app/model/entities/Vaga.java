@@ -54,14 +54,14 @@ public class Vaga implements Serializable{
 	}
 
 	public Vaga(Integer id, String titulo, String descricao, String requisitos, String localizacao, 
-			String formato, Date data, String categoria) {
+			String formato, String categoria) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.requisitos = requisitos;
 		this.localizacao = localizacao;
 		this.formato = formato;
-		this.data = data;
+		this.data = new Date(System.currentTimeMillis());
 		this.categoria = categoria;
 		
 	}
