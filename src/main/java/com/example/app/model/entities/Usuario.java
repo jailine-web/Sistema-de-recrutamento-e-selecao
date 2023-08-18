@@ -63,6 +63,14 @@ public class Usuario implements UserDetails{
 		else return java.util.List.of(new SimpleGrantedAuthority("REGRA_CANDIDATOS"));
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getUsuario() {
 		return usuario;
 	}
