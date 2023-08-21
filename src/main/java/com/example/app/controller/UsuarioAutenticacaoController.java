@@ -56,7 +56,7 @@ public class UsuarioAutenticacaoController {
 
 		String senhaEncriptada = new BCryptPasswordEncoder().encode(login.senha());
 
-		Usuario usuario = new Usuario(login.email(), login.usuario().toUpperCase(), senhaEncriptada, Regras.ADMIN);
+		Usuario usuario = new Usuario(login.email(), login.usuario().toUpperCase(), senhaEncriptada, login.regras());
 
 		usuarioRepository.save(usuario);
 

@@ -35,9 +35,6 @@ public class Config implements CommandLineRunner{
 	@Autowired
 	private CandidatoVagarepository cv;
 	
-	@Autowired
-	private AlertaRepository ar;
-	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -56,7 +53,6 @@ public class Config implements CommandLineRunner{
 		vr.saveAll(Arrays.asList(v1,v2, v3, v4));
 		
 		c1.addVaga(v1);
-		
 		
 		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO,LocalDateTime.now());
 		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());

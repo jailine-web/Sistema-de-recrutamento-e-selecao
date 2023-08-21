@@ -23,6 +23,7 @@ public class FiltroDeSeguranca extends OncePerRequestFilter{
 	@Autowired
 	private TokenService tokenService;
 	
+	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
 	@Override
@@ -30,15 +31,23 @@ public class FiltroDeSeguranca extends OncePerRequestFilter{
 									HttpServletResponse response, 
 									FilterChain filterChain)
 			throws ServletException, IOException {
-		var token = this.recuperarToken(request);
-		if(token != null) {
-			var login = tokenService.validacaoDeToken(token);
-			UserDetails usuario = usuarioRepository.findByUsuario(login);
-			
-			var autenticacao = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-			SecurityContextHolder.getContext().setAuthentication(autenticacao);
 		
-		}
+		var token = this.recuperarToken(request);
+		
+		try {
+			
+			if(token != null) {
+				var login = tokenService.validacaoDeToken(token);
+				UserDetails usuario = usuarioRepository.findByUsuario(login);
+				
+				var autenticacao = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+				SecurityContextHolder.getContext().setAuthentication(autenticacao);
+				
+			}}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		
 		filterChain.doFilter(request, response);
 	}
 

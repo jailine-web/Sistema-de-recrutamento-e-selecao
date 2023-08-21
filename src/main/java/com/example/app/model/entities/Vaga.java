@@ -61,8 +61,8 @@ public class Vaga implements Serializable{
 		this.requisitos = requisitos;
 		this.localizacao = localizacao;
 		this.formato = formato;
-		this.data = new Date(System.currentTimeMillis());
 		this.categoria = categoria;
+		this.data = new Date(System.currentTimeMillis());
 		
 	}
 
