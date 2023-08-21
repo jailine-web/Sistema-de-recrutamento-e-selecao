@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.app.DTO.CadastroLoginDTO;
 import com.example.app.DTO.DadosLoginDTO;
+import com.example.app.DTO.UsuarioTokenResponseDTO;
 import com.example.app.model.entities.Usuario;
 import com.example.app.repositories.UsuarioRepository;
+import com.example.app.security.TokenService;
 import com.example.app.utils.Regras;
 
 import jakarta.validation.Valid;
@@ -29,17 +31,23 @@ public class UsuarioAutenticacaoController {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private TokenService tokenService;
 
+	//Passa usuário e senha no corpo da requisição para validação do usuário
 	@PostMapping(value = "/logar")
-	public ResponseEntity<DadosLoginDTO> login(@RequestBody @Valid DadosLoginDTO data) {
+	public ResponseEntity login(@RequestBody @Valid DadosLoginDTO data) {
 
 		var usernamePassword = new UsernamePasswordAuthenticationToken(data.usuario().toUpperCase(), data.senha());
 		var auth = authenticationManager.authenticate(usernamePassword);
 		System.out.println(auth);
 
-		return ResponseEntity.ok().build();
+		var token = tokenService.gerarToken((Usuario) auth.getPrincipal());
+		return ResponseEntity.ok(new UsuarioTokenResponseDTO(token));
 	}
 
+	//Passa o email, usuario e senha no corpo da requisição
 	@PostMapping(value = "/cadastro")
 	public ResponseEntity cadastro(@RequestBody @Valid CadastroLoginDTO login) {
 
@@ -48,7 +56,7 @@ public class UsuarioAutenticacaoController {
 
 		String senhaEncriptada = new BCryptPasswordEncoder().encode(login.senha());
 
-		Usuario usuario = new Usuario(login.email(), login.usuario().toUpperCase(), senhaEncriptada, Regras.ADMIN);
+		Usuario usuario = new Usuario(login.email(), login.usuario().toUpperCase(), senhaEncriptada, login.regras());
 
 		usuarioRepository.save(usuario);
 
