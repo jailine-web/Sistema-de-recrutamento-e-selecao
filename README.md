@@ -16,7 +16,7 @@ Itens essenciais para a aplicação 📥
 * Dependência Aut0: https://github.com/auth0/java-jwt
 * Dependência RabbitMQ: https://www.rabbitmq.com/download.html
 *   Erlang: https://www.erlang.org/
-* Depedeência : Jpa/Hibernate
+* Dependência : Jpa/Hibernate
 
 #### Módulo 02
 
