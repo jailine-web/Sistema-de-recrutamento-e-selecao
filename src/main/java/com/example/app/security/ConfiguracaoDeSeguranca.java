@@ -23,12 +23,12 @@ public class ConfiguracaoDeSeguranca {
 		return httpSecurity
 				.csrf(csrf->csrf.disable())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(authorize-> authorize
+				/*.authorizeHttpRequests(authorize-> authorize
 						.requestMatchers(HttpMethod.POST, "/hisig10/auth/logar").permitAll()
 						.requestMatchers(HttpMethod.POST, "/hisig10/auth/cadastro").permitAll()
 						.requestMatchers(HttpMethod.POST, "/hisig10/usuarios/recrutador").hasAnyRole("ADMIN")
 						.anyRequest().authenticated())
-				.build();
+			*/	.build();
 	}
 	
 	@Bean

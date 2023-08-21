@@ -3,10 +3,12 @@ package com.example.app.controller;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -92,5 +94,37 @@ public class VagaController {
 	public ResponseEntity<List<Questionario>> buscarQuestionariosDeTodasVagas() {
 		List<Questionario> questionarios = questionarioRepository.findAll();
 		return ResponseEntity.ok().body(questionarios);
+	}
+	
+	@GetMapping("/questionarios/{id}")
+	public ResponseEntity<?> buscarQuestionarioPorId(@PathVariable Long id){
+		try {
+			Optional<Questionario> questionarioOptional = questionarioRepository.findById(id);
+			
+			if (questionarioOptional.isPresent()) {
+				Questionario questionario = questionarioOptional.get();
+				return ResponseEntity.ok().body(questionario);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+	
+	@DeleteMapping("/questionarios/{id}")
+	public ResponseEntity<?> excluirQuestionario(@PathVariable Long id){
+		try {
+			Optional<Questionario> questionarioOptional = questionarioRepository.findById(id);
+			
+			if (questionarioOptional.isPresent()) {
+				questionarioRepository.delete(questionarioOptional.get());
+				return ResponseEntity.noContent().build();
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
 	}
 }
