@@ -93,4 +93,16 @@ public class VagaController {
 		List<Questionario> questionarios = questionarioRepository.findAll();
 		return ResponseEntity.ok().body(questionarios);
 	}
+	
+	@PutMapping(value ="{id}/fecharvaga")
+	public ResponseEntity<Void> FecharVaga(@PathVariable Integer id) {
+		Vaga v1 = vs.fecharVaga(id);
+		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping(value="/{id}/vagaativa")
+	public ResponseEntity<Long> vagaAtiva(@PathVariable Integer id) {
+		Long diasAtiva = vs.vagaAtiva(id);
+		return ResponseEntity.ok().body(diasAtiva);
+	}
 }

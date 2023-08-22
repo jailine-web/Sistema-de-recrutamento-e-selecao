@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.app.DTO.VagaMinDTO;
-import com.example.app.controller.excecao.IdNaoEncontrado;
 import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Candidatura;
@@ -81,7 +80,7 @@ public class CandidatoService {
 			return cr.save(candidatoAux);
 		}
 		catch (EntityNotFoundException e) {
-			throw new IdNaoEncontrado(id);
+			throw new Tratamentoexcecao("O id: "+id +" candidato não foi encontrado ");
 		}
 	}
 
@@ -92,7 +91,6 @@ public class CandidatoService {
 		candidatoAux.setEmail(candidato.getEmail());
 		candidatoAux.setRecrutador(candidato.isRecrutador());
 		candidatoAux.setCurriculo(candidato.getCurriculo());
-		candidatoAux.setImg(candidato.getImg());
 		candidatoAux.setSemestreVigente(candidato.getSemestreVigente());
 		candidatoAux.setCurso(candidato.getCurso());
 		candidatoAux.setTermino(candidato.getTermino());

@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.app.DTO.CandidatoReduzido;
-import com.example.app.controller.excecao.IdNaoEncontrado;
 import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.projection.CandidaturasProjection;
@@ -35,8 +35,10 @@ public class RecrutadorService {
 
 	@Transactional
 	public Recrutador inserirRecrutador(Recrutador recrutador) {
-		Recrutador r = rr.save(recrutador);
-		return r;
+		
+		String encriptar = new BCryptPasswordEncoder().encode(recrutador.getSenha());
+		Recrutador r = new Recrutador(null, recrutador.getNome(), recrutador.getTelefone(), recrutador.getEmail(), recrutador.getUsuario(), encriptar, false, "DevOps");
+		return rr.save(r);
 	}
 
 	@Transactional
@@ -62,7 +64,7 @@ public class RecrutadorService {
 			return rr.save(recrutadorAtualizado);
 		} catch (EntityNotFoundException e) {
 
-			throw new IdNaoEncontrado(id);
+			throw new Tratamentoexcecao("O id: "+id +" recrutador não foi encontrado ");
 		}
 	}
 
@@ -72,7 +74,6 @@ public class RecrutadorService {
 		r1.setEmail(r2.getEmail());
 		r1.setRecrutador(r2.isRecrutador());
 		r1.setCurriculo(r2.getCurriculo());
-		r1.setImg(r2.getImg());
 		r1.setTime(r2.getTime());
 	}
 

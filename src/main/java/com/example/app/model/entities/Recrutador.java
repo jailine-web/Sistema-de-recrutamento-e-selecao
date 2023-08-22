@@ -40,15 +40,14 @@ public class Recrutador implements Serializable{
 	@Lob
 	@Column(length = 1000000) // currículo de até 1MB
 	private byte[] curriculo;
-	private String img;
 	private String time;
 	
 	public Recrutador() {
 		
 	}
-	
 
-	public Recrutador(Integer id, String nome, String telefone, String email, String usuario, String senha, boolean recrutador, String img, String time) {
+	public Recrutador(Integer id, String nome, String telefone, String email, 
+			String usuario, String senha, boolean recrutador, String time) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -56,7 +55,6 @@ public class Recrutador implements Serializable{
 		this.usuario = usuario;
 		this.senha = senha;
 		this.recrutador = recrutador;
-		this.img = img;
 		this.time = time;
 		
 	}
@@ -123,14 +121,6 @@ public class Recrutador implements Serializable{
 
 	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
 	}
 
 	public String getTime() {

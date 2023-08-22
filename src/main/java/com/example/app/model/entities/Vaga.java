@@ -1,16 +1,20 @@
 package com.example.app.model.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import com.example.app.utils.EstadoVaga;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,8 +38,12 @@ public class Vaga implements Serializable{
 	private String requisitos;
 	private String localizacao;
 	private String formato;
-	private Date data;
+	private LocalDateTime dataAbertura;
+	private LocalDateTime dataFechamento;
 	private String categoria;
+	
+	@Enumerated(EnumType.STRING)
+	private EstadoVaga estadoVaga;
 	
 	@OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Questionario> questionarios = new ArrayList<>();
@@ -62,7 +70,8 @@ public class Vaga implements Serializable{
 		this.localizacao = localizacao;
 		this.formato = formato;
 		this.categoria = categoria;
-		this.data = new Date(System.currentTimeMillis());
+		setDataAbertura(LocalDateTime.now());
+		setEstadoVaga(estadoVaga.ATIVA);
 		
 	}
 
@@ -114,12 +123,21 @@ public class Vaga implements Serializable{
 		this.formato = formato;
 	}
 
-	public Date getData() {
-		return data;
+	public LocalDateTime getDataAbertura() {
+		return dataAbertura;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataAbertura(LocalDateTime dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	
+	public LocalDateTime getDataFechamento() {
+		return dataFechamento;
+	}
+
+	public void setDataFechamento(LocalDateTime dataFechamento) {
+		this.dataFechamento = dataFechamento;
 	}
 
 	public String getCategoria() {
@@ -153,6 +171,14 @@ public class Vaga implements Serializable{
 
 	public void setCandidato(Candidato candidato) {
 		this.candidato = candidato;
+	}
+
+	public EstadoVaga getEstadoVaga() {
+		return estadoVaga;
+	}
+
+	public void setEstadoVaga(EstadoVaga estadoVaga) {
+		this.estadoVaga = estadoVaga;
 	}
 
 	@Override

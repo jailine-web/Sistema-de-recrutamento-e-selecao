@@ -43,7 +43,6 @@ public class Candidato implements Serializable {
 	@Lob
 	@Column(length = 1000000) // currículo de até 1MB
 	private byte[] curriculo;
-	private String img;
 	private String semestreVigente;
 	private String curso;
 	private String termino;
@@ -69,15 +68,15 @@ public class Candidato implements Serializable {
 		BeanUtils.copyProperties(projection, this);
 	}
 
-	public Candidato(Integer id, String nome, String telefone, String email, boolean recrutador, String img,
-			String semestreVigente, String curso, String termino, String instituicao, String localizacao) {
+	public Candidato(Integer id, String nome, String telefone, String email, boolean recrutador,
+			String semestreVigente, String curso, String termino, String instituicao, 
+			String localizacao) {
 
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.recrutador = recrutador;
-		this.img = img;
 		this.semestreVigente = semestreVigente;
 		this.curso = curso;
 		this.termino = termino;
@@ -131,14 +130,6 @@ public class Candidato implements Serializable {
 
 	public void setCurriculo(byte[] curriculo) {
 		this.curriculo = curriculo;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
 	}
 
 	public String getSemestreVigente() {
@@ -218,7 +209,4 @@ public class Candidato implements Serializable {
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id);
 	}
 
-	public void apresentarAreaLogada() {
-		// Frontend CSS e mapeamento de botões
-	}
 }
