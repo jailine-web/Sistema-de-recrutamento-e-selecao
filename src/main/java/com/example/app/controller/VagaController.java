@@ -139,4 +139,8 @@ public class VagaController {
 		Long diasAtiva = vs.vagaAtiva(id);
 		return ResponseEntity.ok().body(diasAtiva);
 }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a6bcf940f15a4e6ec48d8c633675dd4f199677dc
