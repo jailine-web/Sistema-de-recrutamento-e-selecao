@@ -62,7 +62,7 @@ public class Vaga implements Serializable{
 	}
 
 	public Vaga(Integer id, String titulo, String descricao, String requisitos, String localizacao, 
-			String formato, String categoria) {
+			String formato, String categoria, LocalDateTime dataAbertura) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -70,7 +70,8 @@ public class Vaga implements Serializable{
 		this.localizacao = localizacao;
 		this.formato = formato;
 		this.categoria = categoria;
-		setDataAbertura(LocalDateTime.now());
+//		setDataAbertura(LocalDateTime.now());
+		this.dataAbertura = dataAbertura;
 		setEstadoVaga(estadoVaga.ATIVA);
 		
 	}

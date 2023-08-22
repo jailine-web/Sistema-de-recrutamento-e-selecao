@@ -42,7 +42,7 @@ public class Config implements CommandLineRunner{
 	@Autowired
 	private RecrutadorRepository rr;
 	
-	//LocalDateTime teste = LocalDateTime.parse("2023-08-10T01:30:26");
+	LocalDateTime teste = LocalDateTime.parse("2023-08-10T01:30:26");
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -54,12 +54,12 @@ public class Config implements CommandLineRunner{
 
 		cr.saveAll(Arrays.asList(c1,c2,c3));
 	
-		Vaga v1 = new Vaga(null, "Programador", "Desenvolver programas na linguagem C#", "Conhecimento em C# e Banco de dados", "Bahia", "Home office", "TI");
-		Vaga v2 = new Vaga(null, "Desenvolvedor Jr", "Desenvolver aplicativos web", "Conhecimento em java e Spring boot", "São Paulo", "Home office", "TI");
-		Vaga v3 = new Vaga(null, "Redator Jr", " Redigir textos para publis", "Conhecimento em Linguagens", "São Paulo", "Home office", "Redator");
-		Vaga v4 = new Vaga(null, "Designer Jr", " Protótipos de telas", "Conhecimento em PS e adobe", "São Paulo", "presencial", "Design");
+		Vaga v1 = new Vaga(null, "Programador", "Desenvolver programas na linguagem C#", "Conhecimento em C# e Banco de dados", "Bahia", "Home office", "TI", teste);
+//		Vaga v2 = new Vaga(null, "Desenvolvedor Jr", "Desenvolver aplicativos web", "Conhecimento em java e Spring boot", "São Paulo", "Home office", "TI");
+//		Vaga v3 = new Vaga(null, "Redator Jr", " Redigir textos para publis", "Conhecimento em Linguagens", "São Paulo", "Home office", "Redator");
+//		Vaga v4 = new Vaga(null, "Designer Jr", " Protótipos de telas", "Conhecimento em PS e adobe", "São Paulo", "presencial", "Design");
 		
-		vr.saveAll(Arrays.asList(v1,v2,v3,v4));
+		vr.saveAll(Arrays.asList(v1));
 		
 		Recrutador r1 = new Recrutador(null, "Júlio Ramos", "71 9 9999-0909", "julio@gmail.com", 
 				"julio", "12345", true, "DevOps");
@@ -69,18 +69,19 @@ public class Config implements CommandLineRunner{
 		c1.addVaga(v1);
 		
 		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO,LocalDateTime.now());
-		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
-		Candidatura cd3 = new Candidatura(null, v4, c2, EstadoInscricao.INADEQUADO, LocalDateTime.now());
 		Candidatura cd4 = new Candidatura(null, v1, c3, EstadoInscricao.TALVEZ, LocalDateTime.now());
-		Candidatura cd5 = new Candidatura(null, v4, c2, null, null);
+//		Candidatura cd2 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
+//		Candidatura cd3 = new Candidatura(null, v4, c2, EstadoInscricao.INADEQUADO, LocalDateTime.now());
+//		Candidatura cd5 = new Candidatura(null, v4, c2, null, null);
 		
-		cd.saveAll(Arrays.asList(cd1,cd2, cd3,cd4,cd5));
+		cd.saveAll(Arrays.asList(cd1,cd4));
+		//cd.saveAll(Arrays.asList(cd1,cd2, cd3,cd4,cd5));
 		
-		CandidatoVaga cv1 = new CandidatoVaga(c1, v4);
-		CandidatoVaga cv2 = new CandidatoVaga(c1, v3);
+//		CandidatoVaga cv1 = new CandidatoVaga(c1, v4);
+//		CandidatoVaga cv2 = new CandidatoVaga(c1, v3);
 		CandidatoVaga cv3 = new CandidatoVaga(c2, v1);
 		
-		cv.saveAll(Arrays.asList(cv1, cv2, cv3));
+		//cv.saveAll(Arrays.asList(cv1, cv2, cv3));
 		
 	}
 }
