@@ -29,12 +29,13 @@ public class ConfiguracaoDeSeguranca {
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
 				.csrf(csrf->csrf.disable())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(authorize-> authorize
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				/*.authorizeHttpRequests(authorize-> authorize
 						.requestMatchers(HttpMethod.POST, "/hisig10/auth/logar").permitAll()
 						.requestMatchers(HttpMethod.POST, "/hisig10/auth/cadastro").permitAll()
 						.requestMatchers(HttpMethod.POST, "/hisig10/usuarios/recrutador").hasAnyRole("ADMIN")
-						.anyRequest().authenticated()
+						.anyRequest().authenticated())
+				 */	
 				)
 				.addFilterBefore(filtroDeSeguranca, UsernamePasswordAuthenticationFilter.class)
 				.build();

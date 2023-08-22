@@ -60,7 +60,11 @@ public class CandidaturaController {
 	@PostMapping
 	public ResponseEntity<?> criarCandidatura(@RequestBody Candidatura candidatura) {
 
-		// Requisição JSON com "vaga":{"id": 1}, "candidato":{"id":2}
+		// Requisição JSON com "vaga":{"id": 1}, "candidato":{"id":2}, "estado": "X"
+		List<Candidatura> candidaturasExistentes = candidaturaRepository.findByCandidatoAndVaga(candidatura.getCandidato(), candidatura.getVaga());
+		if (!candidaturasExistentes.isEmpty()) {
+			return ResponseEntity.badRequest().body("Este candidato já se candidatou para uma vaga");
+		}
 		if (candidatura.getVaga() == null || candidatura.getVaga().getId() == null) {
 			return ResponseEntity.badRequest().body("O ID da vaga é obrigatório");
 		}
@@ -78,18 +82,12 @@ public class CandidaturaController {
 		if (candidato == null) {
 			return ResponseEntity.badRequest().body("Candidato não encontrado");
 		}
-
-		CandidatoReduzido candidatoReduzido = new CandidatoReduzido();
-		candidatoReduzido.setId(candidato.getId());
-		candidatoReduzido.setNome(candidato.getNome());
-		candidatoReduzido.setCurriculo(candidato.getCurriculo());
-
-		CandidaturaDTO candidaturaDTO = new CandidaturaDTO();
-		candidaturaDTO.setId(candidatura.getId());
-		candidaturaDTO.setCandidato(candidatoReduzido);
+		candidatura.setVaga(vaga);
+		candidatura.setCandidato(candidato);
+		candidatura.setDataInscricao(LocalDateTime.now());
 
 		candidaturaRepository.save(candidatura);
-		return ResponseEntity.status(HttpStatus.CREATED).body(candidaturaDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(candidatura);
 	}
 
 	@GetMapping("/{id}")
