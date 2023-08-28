@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.DTO.CadastroLoginDTO;
 import com.example.app.DTO.DadosLoginDTO;
 import com.example.app.DTO.UsuarioTokenResponseDTO;
-import com.example.app.model.entities.Usuario;
+import com.example.app.model.entities.Login;
 import com.example.app.repositories.UsuarioRepository;
 import com.example.app.security.TokenService;
 import com.example.app.utils.Regras;
@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "/hisig10/auth")
-public class UsuarioAutenticacaoController {
+public class LoginAutenticacaoController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -43,7 +43,7 @@ public class UsuarioAutenticacaoController {
 		var auth = authenticationManager.authenticate(usernamePassword);
 		System.out.println(auth);
 
-		var token = tokenService.gerarToken((Usuario) auth.getPrincipal());
+		var token = tokenService.gerarToken((Login) auth.getPrincipal());
 		return ResponseEntity.ok(new UsuarioTokenResponseDTO(token));
 	}
 
@@ -56,7 +56,7 @@ public class UsuarioAutenticacaoController {
 
 		String senhaEncriptada = new BCryptPasswordEncoder().encode(login.senha());
 
-		Usuario usuario = new Usuario(login.email(), login.usuario().toUpperCase(), senhaEncriptada, login.regras());
+		Login usuario = new Login(login.email(), login.usuario().toUpperCase(), senhaEncriptada, login.regras());
 
 		usuarioRepository.save(usuario);
 
