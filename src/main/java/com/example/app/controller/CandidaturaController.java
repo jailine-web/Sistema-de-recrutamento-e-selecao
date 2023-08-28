@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.app.DTO.CandidatoReduzido;
-import com.example.app.DTO.CandidaturaDTO;
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Candidatura;
 import com.example.app.model.entities.CandidaturaRelatorio;
@@ -60,7 +58,7 @@ public class CandidaturaController {
 	@PostMapping
 	public ResponseEntity<?> criarCandidatura(@RequestBody Candidatura candidatura) {
 
-		// Requisição JSON com "vaga":{"id": 1}, "candidato":{"id":2}, "estado": "X"
+		// Requisição JSON com "vaga":{"id": 1}, "candidato":{"id": 2}, "estado": "SELECIONADO"
 		List<Candidatura> candidaturasExistentes = candidaturaRepository.findByCandidatoAndVaga(candidatura.getCandidato(), candidatura.getVaga());
 		if (!candidaturasExistentes.isEmpty()) {
 			return ResponseEntity.badRequest().body("Este candidato já se candidatou para uma vaga");

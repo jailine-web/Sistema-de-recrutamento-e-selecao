@@ -62,7 +62,7 @@ public class RecrutadorController {
 	}
 	
 	@DeleteMapping(value="/{id}")
-	public ResponseEntity<Recrutador> excluirCandidato(@PathVariable Integer id){
+	public ResponseEntity<Recrutador> excluirRecrutador(@PathVariable Integer id){
 		rs.excluirRecrutador(id);
 		return ResponseEntity.noContent().build();
 	}

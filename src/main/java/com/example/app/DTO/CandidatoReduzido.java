@@ -9,7 +9,10 @@ public class CandidatoReduzido {
 
 	private Integer id;
 	private String nome;
-	private byte[] curriculo;
+	private String telefone;
+	private String email;
+	private String curso;
+	private String semestreVigente;
 
 	public CandidatoReduzido() {
 	}
@@ -18,7 +21,10 @@ public class CandidatoReduzido {
 		
 		id = candidato.getId();
 		nome = candidato.getNome();
-		curriculo = candidato.getCurriculo();
+		telefone = candidato.getTelefone();
+		email = candidato.getEmail();
+		curso = candidato.getCurso();
+		semestreVigente = candidato.getSemestreVigente();
 	}
 
 	public CandidatoReduzido(CandidaturasProjection projection) {
@@ -42,11 +48,36 @@ public class CandidatoReduzido {
 		this.nome = nome;
 	}
 
-	public byte[] getCurriculo() {
-		return curriculo;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setCurriculo(byte[] curriculo) {
-		this.curriculo = curriculo;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public String getSemestreVigente() {
+		return semestreVigente;
+	}
+
+	public void setSemestreVigente(String semestreVigente) {
+		this.semestreVigente = semestreVigente;
+	}
+
 }
