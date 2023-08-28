@@ -23,7 +23,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table
-public class Usuario implements UserDetails{
+public class Login implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,11 +45,11 @@ public class Usuario implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private Regras regras;
 	
-	public Usuario() {
+	public Login() {
 		
 	}
 	
-	public Usuario(@NotBlank String email, @NotBlank String usuario, String senha, Regras regras) {
+	public Login(@NotBlank String email, @NotBlank String usuario, String senha, Regras regras) {
 		this.email = email;
 		this.usuario = usuario;
 		this.senha = senha;
@@ -147,7 +147,7 @@ public class Usuario implements UserDetails{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Login other = (Login) obj;
 		return Objects.equals(senha, other.senha) && Objects.equals(usuario, other.usuario);
 	}
 	

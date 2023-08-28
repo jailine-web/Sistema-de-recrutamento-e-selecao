@@ -141,3 +141,7 @@ public class VagaController {
 	}
 
 }
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 684cffc2814c79c67733c63d412d2341a2ff3280

@@ -32,7 +32,7 @@ public class ConfiguracaoDeSeguranca {
 			/*	.authorizeHttpRequests(authorize-> authorize
 						.requestMatchers(HttpMethod.POST, "/hisig10/auth/logar").permitAll()
 						.requestMatchers(HttpMethod.POST, "/hisig10/auth/cadastro").permitAll()
-						.requestMatchers(HttpMethod.POST, "/hisig10/usuarios/recrutador").hasAnyRole("ADMIN")
+						.requestMatchers(HttpMethod.POST, "/hisig10/usuarios/recrutadores").hasAnyRole("ADMIN")
 						.anyRequest().authenticated()
 				)
 				.addFilterBefore(filtroDeSeguranca, UsernamePasswordAuthenticationFilter.class)
