@@ -1,6 +1,7 @@
 package com.example.app.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.app.model.entities.Candidatura;
+import com.example.app.model.entities.CandidaturaRelatorio;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.projection.CandidaturasProjection;
 import com.example.app.repositories.CandidatoRepository;
+import com.example.app.repositories.CandidaturaRelatorioRepository;
+import com.example.app.repositories.CandidaturaRepository;
 import com.example.app.services.RecrutadorService;
+import com.example.app.utils.EstadoInscricao;
 
 @RestController
 @RequestMapping(value="/hisig10/usuarios/recrutadores")
@@ -29,6 +35,12 @@ public class RecrutadorController {
 	
 	@Autowired
 	private CandidatoRepository cr;
+	
+	@Autowired
+	private CandidaturaRepository candidaturaRepository;
+	
+	@Autowired
+	private CandidaturaRelatorioRepository relatorioRepository;
 	
 	@GetMapping
 	public List<Recrutador>buscarTodos(){
@@ -65,5 +77,25 @@ public class RecrutadorController {
 	public ResponseEntity<Recrutador> excluirRecrutador(@PathVariable Integer id){
 		rs.excluirRecrutador(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/relatorio")
+	public ResponseEntity<List<CandidaturaRelatorio>> gerarRelatorioCandidaturasAdequadas() {
+		List<Candidatura> candidaturasSelecionadas = candidaturaRepository.findByEstado(EstadoInscricao.SELECIONADO);
+
+		List<CandidaturaRelatorio> relatorioDTOs = new ArrayList<>();
+		for (Candidatura candidatura : candidaturasSelecionadas) {
+			CandidaturaRelatorio relatorio = new CandidaturaRelatorio();
+			relatorio.setCandidaturaId(candidatura.getId());
+			relatorio.setVagaId(candidatura.getVaga().getId().longValue());
+			relatorio.setVagaTitulo(candidatura.getVaga().getTitulo());
+			relatorio.setCandidatoId(candidatura.getCandidato().getId().longValue());
+			relatorio.setCandidatoNome(candidatura.getCandidato().getNome());
+			relatorio.setEstadoInscricao(candidatura.getEstado());
+			
+			relatorioRepository.save(relatorio);
+			relatorioDTOs.add(relatorio);
+		}
+		return ResponseEntity.ok(relatorioDTOs);
 	}
 }
