@@ -8,20 +8,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.example.app.model.entities.Candidato;
-import com.example.app.model.entities.CandidatoVaga;
 import com.example.app.model.entities.Candidatura;
+import com.example.app.model.entities.Entrevista;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.model.entities.Vaga;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.CandidatoVagarepository;
 import com.example.app.repositories.CandidaturaRepository;
+import com.example.app.repositories.EntrevistaRepository;
+import com.example.app.repositories.LembreteRepository;
 import com.example.app.repositories.RecrutadorRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.utils.EstadoInscricao;
+import com.example.app.utils.StatusCandidato;
+import com.example.app.utils.StatusComparacimento;
 import com.example.app.utils.StatusCurriculoAvaliado;
-
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 
 @Configuration
 //@Profile("test")
@@ -42,7 +43,13 @@ public class Config implements CommandLineRunner{
 	@Autowired
 	private RecrutadorRepository rr;
 	
-	LocalDateTime teste = LocalDateTime.parse("2023-08-10T01:30:26");
+	@Autowired
+	private EntrevistaRepository er;
+	
+	@Autowired
+	private LembreteRepository lr;
+	
+	LocalDateTime teste = LocalDateTime.parse("2023-08-29T14:50:26");
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -74,6 +81,9 @@ public class Config implements CommandLineRunner{
 		
 		cd.saveAll(Arrays.asList(cd1,cd2, cd4));
 		
+		Entrevista e = new Entrevista(null, StatusComparacimento.COMPARECEU, StatusCandidato.APROVADO);
+		
+		er.save(e);
 //		CandidatoVaga cv1 = new CandidatoVaga(c1, v4);
 //		CandidatoVaga cv2 = new CandidatoVaga(c1, v3);
 //		CandidatoVaga cv3 = new CandidatoVaga(c2, v1);

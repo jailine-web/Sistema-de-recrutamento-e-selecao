@@ -1,6 +1,5 @@
 package com.example.app.services;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -97,7 +96,7 @@ public class VagaService {
 			LocalDateTime dateAbertura = vaga.getDataAbertura();
 			LocalDateTime dataFechamento = vaga.getDataFechamento();
 			
-			dias = ChronoUnit.DAYS.between(dateAbertura, dataFechamento);
+			dias = ChronoUnit.HOURS.between(dateAbertura, dataFechamento);
 		}else {
 			dias = ChronoUnit.DAYS.between(vaga.getDataAbertura(), LocalDateTime.now());
 		}

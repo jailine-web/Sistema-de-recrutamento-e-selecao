@@ -2,18 +2,22 @@ package com.example.app.model.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import com.example.app.utils.StatusCandidato;
 import com.example.app.utils.StatusComparacimento;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name="entrevistas")
 public class Entrevista implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -23,14 +27,25 @@ public class Entrevista implements Serializable{
 	private Integer id;
 	
 	private LocalDateTime data;
-	private StatusComparacimento compareceu;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusComparacimento comparecimento;
+	
 	private Candidato candidato;
 	private Recrutador recrutador;
 	
-	public Entrevista(Integer id, LocalDateTime data, StatusComparacimento compareceu) {
+	@Enumerated(EnumType.STRING)
+	private StatusCandidato statusCandidato;
+	
+	public Entrevista() {
+		
+	}
+	
+	public Entrevista(Integer id, StatusComparacimento comparecimento, StatusCandidato statusCandidato) {
 		this.id = id;
-		this.data = data;
-		this.compareceu = compareceu;
+		//this.data = data;
+		this.comparecimento = comparecimento;
+		this.statusCandidato = statusCandidato;
 	}
 
 	public Integer getId() {
@@ -49,12 +64,20 @@ public class Entrevista implements Serializable{
 		this.data = data;
 	}
 
-	public StatusComparacimento getCompareceu() {
-		return compareceu;
+	public StatusComparacimento getComparecimento() {
+		return comparecimento;
 	}
 
-	public void setCompareceu(StatusComparacimento compareceu) {
-		this.compareceu = compareceu;
+	public void setComparecimento(StatusComparacimento comparecimento) {
+		this.comparecimento = comparecimento;
+	}
+
+	public StatusCandidato getStatusCandidato() {
+		return statusCandidato;
+	}
+
+	public void setStatusCandidato(StatusCandidato statusCandidato) {
+		this.statusCandidato = statusCandidato;
 	}
 
 	public Candidato getCandidato() {
@@ -79,7 +102,7 @@ public class Entrevista implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(data, id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -91,9 +114,9 @@ public class Entrevista implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Entrevista other = (Entrevista) obj;
-		return Objects.equals(data, other.data) && Objects.equals(id, other.id);
+		return Objects.equals(id, other.id);
 	}
-	
+
 	
 
 }
