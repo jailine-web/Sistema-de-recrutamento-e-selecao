@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.app.model.entities.MensagemEntrevista;
 import com.example.app.repositories.MensagemEntrevistaRepository;
-import com.example.app.repositories.MensagemRepository;
 
 @RestController
-@RequestMapping(value="/hisig10/mensagemEntrevista")
-
-public class MensagemEntrevistaController {
-
+@RequestMapping(value="/hisig10/entrevista")
+public class EntrevistaController {
+	
 	@Autowired
 	private MensagemEntrevistaRepository mensagemRepository;
 	
@@ -24,4 +22,5 @@ public class MensagemEntrevistaController {
 		 MensagemEntrevista mensagem = mensagemRepository.save(me);
 		return ResponseEntity.ok().body(mensagem);
 	}
+
 }

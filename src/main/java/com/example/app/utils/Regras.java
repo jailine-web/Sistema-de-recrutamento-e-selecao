@@ -2,8 +2,8 @@ package com.example.app.utils;
 
 public enum Regras {
 	ADMIN("admin"),
-	ESTAGIARIO("est"),
-	CANDIDATO("cand");
+	ESTAGIARIO("estagiario"),
+	CANDIDATO("candidato");
 	
 	private String regras;
 	
