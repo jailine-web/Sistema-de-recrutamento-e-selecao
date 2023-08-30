@@ -62,6 +62,14 @@ public class VagaController {
 		return ResponseEntity.ok().body(vaga);	
 	}
 	
+	@DeleteMapping(value="/{id}")
+	public ResponseEntity<Void> excluirVaga(@PathVariable Integer id) {
+		
+		vs.excluirVaga(id);
+		return ResponseEntity.ok().build();
+		
+	}
+	
 	@PostMapping("/questionarios/{vagaId}")
 	public ResponseEntity<?> criarQuestionarioParaVaga(@RequestBody QuestionarioDTO questionarioDTO, @PathVariable Integer vagaId){
 		try {

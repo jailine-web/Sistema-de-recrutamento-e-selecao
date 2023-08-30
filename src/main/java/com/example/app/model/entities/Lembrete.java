@@ -21,6 +21,10 @@ public class Lembrete implements Serializable{
 	
 	private String descricao;
 	
+	public Lembrete() {
+		
+	}
+	
 	public Lembrete(Integer id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;

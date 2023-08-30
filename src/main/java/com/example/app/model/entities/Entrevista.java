@@ -2,7 +2,6 @@ package com.example.app.model.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import com.example.app.utils.StatusCandidato;
@@ -17,35 +16,30 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="entrevistas")
+@Table
 public class Entrevista implements Serializable{
-
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	private LocalDateTime data;
 	
 	@Enumerated(EnumType.STRING)
-	private StatusComparacimento comparecimento;
-	
-	private Candidato candidato;
-	private Recrutador recrutador;
+	private StatusComparacimento presenca;
 	
 	@Enumerated(EnumType.STRING)
-	private StatusCandidato statusCandidato;
-	
+	private StatusCandidato situacao;
+
 	public Entrevista() {
-		
 	}
-	
-	public Entrevista(Integer id, StatusComparacimento comparecimento, StatusCandidato statusCandidato) {
-		this.id = id;
-		//this.data = data;
-		this.comparecimento = comparecimento;
-		this.statusCandidato = statusCandidato;
+
+	public Entrevista(Integer id, LocalDateTime data, StatusComparacimento presenca, StatusCandidato situacao) {
+		this.id= id;
+		this.data= data;
+		this.presenca = presenca;
+		this.situacao = situacao;
 	}
 
 	public Integer getId() {
@@ -64,40 +58,20 @@ public class Entrevista implements Serializable{
 		this.data = data;
 	}
 
-	public StatusComparacimento getComparecimento() {
-		return comparecimento;
+	public StatusComparacimento getPresenca() {
+		return presenca;
 	}
 
-	public void setComparecimento(StatusComparacimento comparecimento) {
-		this.comparecimento = comparecimento;
+	public void setPresenca(StatusComparacimento presenca) {
+		this.presenca = presenca;
 	}
 
-	public StatusCandidato getStatusCandidato() {
-		return statusCandidato;
+	public StatusCandidato getSituacao() {
+		return situacao;
 	}
 
-	public void setStatusCandidato(StatusCandidato statusCandidato) {
-		this.statusCandidato = statusCandidato;
-	}
-
-	public Candidato getCandidato() {
-		return candidato;
-	}
-
-	public void setCandidato(Candidato candidato) {
-		this.candidato = candidato;
-	}
-
-	public Recrutador getRecrutador() {
-		return recrutador;
-	}
-
-	public void setRecrutador(Recrutador recrutador) {
-		this.recrutador = recrutador;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setSituacao(StatusCandidato situacao) {
+		this.situacao = situacao;
 	}
 
 	@Override
@@ -116,7 +90,6 @@ public class Entrevista implements Serializable{
 		Entrevista other = (Entrevista) obj;
 		return Objects.equals(id, other.id);
 	}
-
 	
-
+	
 }

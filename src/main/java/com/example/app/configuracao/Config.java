@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Candidatura;
 import com.example.app.model.entities.Entrevista;
+import com.example.app.model.entities.Login;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.model.entities.Vaga;
 import com.example.app.repositories.CandidatoRepository;
@@ -49,7 +50,7 @@ public class Config implements CommandLineRunner{
 	@Autowired
 	private LembreteRepository lr;
 	
-	LocalDateTime teste = LocalDateTime.parse("2023-08-29T14:50:26");
+	LocalDateTime teste = LocalDateTime.parse("2023-08-30T14:38:26");
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -81,9 +82,9 @@ public class Config implements CommandLineRunner{
 		
 		cd.saveAll(Arrays.asList(cd1,cd2, cd4));
 		
-		Entrevista e = new Entrevista(null, StatusComparacimento.COMPARECEU, StatusCandidato.APROVADO);
-		
+		Entrevista e = new Entrevista(null, teste, StatusComparacimento.COMPARECEU, StatusCandidato.APROVADO);
 		er.save(e);
+		
 //		CandidatoVaga cv1 = new CandidatoVaga(c1, v4);
 //		CandidatoVaga cv2 = new CandidatoVaga(c1, v3);
 //		CandidatoVaga cv3 = new CandidatoVaga(c2, v1);

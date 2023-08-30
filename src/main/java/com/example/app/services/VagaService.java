@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.app.controller.excecao.Tratamentoexcecao;
@@ -72,6 +73,17 @@ public class VagaService {
 		vagaAtualizada.setLocalizacao(vaga.getLocalizacao());
 		vagaAtualizada.setFormato(vaga.getFormato());
 
+	}
+	
+	public void excluirVaga(Integer id) {
+		try {
+			
+			buscarPorId(id);
+			vr.deleteById(id);
+		} 
+		catch(EmptyResultDataAccessException e) {
+			throw new Tratamentoexcecao("Vaga não encontrada");
+		}
 	}
 
 	@Transactional
