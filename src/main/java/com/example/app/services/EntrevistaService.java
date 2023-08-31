@@ -155,4 +155,17 @@ public class EntrevistaService {
 		List<MensagemEntrevista> convites = mensagemEntrevistaRepository.findAll();
 		return convites;
 	}
+	
+	@Transactional
+	public MensagemEntrevista buscarConvitePorId(Integer id) {
+		MensagemEntrevista convite = mensagemEntrevistaRepository.findById(id).get();
+		return convite;
+	}
+	
+	@Transactional
+	public void excluirConvitePorId(Integer id) {
+		buscarConvitePorId(id);
+		mensagemEntrevistaRepository.deleteById(id);
+		
+	}
 }

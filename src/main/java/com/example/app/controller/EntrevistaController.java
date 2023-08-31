@@ -108,4 +108,10 @@ public class EntrevistaController {
 		List<MensagemEntrevista> convites = entrevistaService.getConvites();
 		return ResponseEntity.ok().body(convites);
 	}
+	
+	@DeleteMapping(value="/convidar_candidato/{id}")
+	public ResponseEntity<MensagemEntrevista> deletarConvitePorId(@PathVariable Integer id) {
+		entrevistaService.excluirConvitePorId(id);
+		return ResponseEntity.ok().build();
+	}
 }
