@@ -1,11 +1,11 @@
 package com.example.app.services;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.app.controller.excecao.Tratamentoexcecao;
@@ -74,6 +74,17 @@ public class VagaService {
 		vagaAtualizada.setFormato(vaga.getFormato());
 
 	}
+	
+	public void excluirVaga(Integer id) {
+		try {
+			
+			buscarPorId(id);
+			vr.deleteById(id);
+		} 
+		catch(EmptyResultDataAccessException e) {
+			throw new Tratamentoexcecao("Vaga não encontrada");
+		}
+	}
 
 	@Transactional
 	public Vaga fecharVaga(Integer id) {
@@ -97,7 +108,7 @@ public class VagaService {
 			LocalDateTime dateAbertura = vaga.getDataAbertura();
 			LocalDateTime dataFechamento = vaga.getDataFechamento();
 			
-			dias = ChronoUnit.DAYS.between(dateAbertura, dataFechamento);
+			dias = ChronoUnit.HOURS.between(dateAbertura, dataFechamento);
 		}else {
 			dias = ChronoUnit.DAYS.between(vaga.getDataAbertura(), LocalDateTime.now());
 		}

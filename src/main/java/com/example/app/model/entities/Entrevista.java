@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.example.app.utils.StatusCandidato;
 import com.example.app.utils.StatusComparacimento;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,22 +18,28 @@ import jakarta.persistence.Table;
 @Entity
 @Table
 public class Entrevista implements Serializable{
-
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	private LocalDateTime data;
-	private StatusComparacimento compareceu;
-	private Candidato candidato;
-	private Recrutador recrutador;
 	
-	public Entrevista(Integer id, LocalDateTime data, StatusComparacimento compareceu) {
-		this.id = id;
-		this.data = data;
-		this.compareceu = compareceu;
+	@Enumerated(EnumType.STRING)
+	private StatusComparacimento presenca;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusCandidato situacao;
+
+	public Entrevista() {
+	}
+
+	public Entrevista(Integer id, LocalDateTime data, StatusComparacimento presenca, StatusCandidato situacao) {
+		this.id= id;
+		this.data= data;
+		this.presenca = presenca;
+		this.situacao = situacao;
 	}
 
 	public Integer getId() {
@@ -49,37 +58,25 @@ public class Entrevista implements Serializable{
 		this.data = data;
 	}
 
-	public StatusComparacimento getCompareceu() {
-		return compareceu;
+	public StatusComparacimento getPresenca() {
+		return presenca;
 	}
 
-	public void setCompareceu(StatusComparacimento compareceu) {
-		this.compareceu = compareceu;
+	public void setPresenca(StatusComparacimento presenca) {
+		this.presenca = presenca;
 	}
 
-	public Candidato getCandidato() {
-		return candidato;
+	public StatusCandidato getSituacao() {
+		return situacao;
 	}
 
-	public void setCandidato(Candidato candidato) {
-		this.candidato = candidato;
-	}
-
-	public Recrutador getRecrutador() {
-		return recrutador;
-	}
-
-	public void setRecrutador(Recrutador recrutador) {
-		this.recrutador = recrutador;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setSituacao(StatusCandidato situacao) {
+		this.situacao = situacao;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(data, id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -91,9 +88,8 @@ public class Entrevista implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Entrevista other = (Entrevista) obj;
-		return Objects.equals(data, other.data) && Objects.equals(id, other.id);
+		return Objects.equals(id, other.id);
 	}
 	
 	
-
 }
