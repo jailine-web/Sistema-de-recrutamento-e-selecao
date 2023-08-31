@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Entrevista;
@@ -95,7 +94,6 @@ public class EntrevistaService {
 		catch(EmptyResultDataAccessException e) {
 			throw new Tratamentoexcecao("Lembrete não encontrado");
 		}
-		
 	}
 	
 	@Transactional
@@ -111,7 +109,6 @@ public class EntrevistaService {
 		}
 		return horas;
 	}
-
 	
 	@Transactional
 	public MensagemEntrevista inserirSegundaMensagem(MensagemEntrevista mensagem) {
@@ -135,4 +132,27 @@ public class EntrevistaService {
 		return mensagem;
 	}
 	
+	@Transactional
+	public MensagemEntrevista convidarCandidato(MensagemEntrevista convite) {
+		mensagemEntrevistaRepository.save(convite);
+		return convite;
+	}
+	
+	@Transactional
+	public MensagemEntrevista atualizarConvite(Integer id, MensagemEntrevista convite) {
+		MensagemEntrevista conviteAtualizado = mensagemEntrevistaRepository.getReferenceById(id);
+		conviteAtualizado.setTitulo(convite.getTitulo());
+		conviteAtualizado.setTextoDescritivo(convite.getTextoDescritivo());
+		conviteAtualizado.setLinkDaSala(convite.getLinkDaSala());
+		conviteAtualizado.setCandidatoId(convite.getCandidatoId());
+		conviteAtualizado.setDataHora(convite.getDataHora());
+		mensagemEntrevistaRepository.save(conviteAtualizado);
+		return conviteAtualizado;
+	}
+	
+	@Transactional
+	public List<MensagemEntrevista> getConvites(){
+		List<MensagemEntrevista> convites = mensagemEntrevistaRepository.findAll();
+		return convites;
+	}
 }

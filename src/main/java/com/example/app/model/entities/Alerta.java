@@ -12,7 +12,7 @@ public class Alerta {
 	private Long id;
 	
 	private Integer candidaturaId;
-	private String mensagem;
+	private String mensagemDeAlerta;
 	
 	public Alerta() {
 	}
@@ -26,10 +26,10 @@ public class Alerta {
 	}
 
 	public String getMensagem() {
-		return mensagem;
+		return mensagemDeAlerta;
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
+	public void setMensagem(String mensagemDeAlerta) {
+		this.mensagemDeAlerta = mensagemDeAlerta;
 	}
 }
