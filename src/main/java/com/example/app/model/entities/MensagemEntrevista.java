@@ -26,6 +26,9 @@ public class MensagemEntrevista implements Serializable{
 	private String textoDescritivo;
 	private String linkDaSala;
 	
+	private Integer candidatoId;
+	private String dataHora;
+	
 	public MensagemEntrevista() {
 		
 	}
@@ -67,6 +70,22 @@ public class MensagemEntrevista implements Serializable{
 
 	public void setLinkDaSala(String linkDaSala) {
 		this.linkDaSala = linkDaSala;
+	}
+	
+	public Integer getCandidatoId() {
+		return candidatoId;
+	}
+
+	public void setCandidatoId(Integer candidatoId) {
+		this.candidatoId = candidatoId;
+	}
+
+	public String getDataHora() {
+		return dataHora;
+	}
+
+	public void setDataHora(String dataHora) {
+		this.dataHora = dataHora;
 	}
 
 	public static long getSerialversionuid() {
