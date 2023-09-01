@@ -1,9 +1,17 @@
 # Desenvolvimento dos módulos do sistema HISIG 
 
-#### Módulo 01 - módulo divulgação de vagas. 💻
- 
-Módulo inicail do sistema Hisig (Sistema de gerenciamento de seleção de candidatos) responsável pelo CRUD de candidatos, 
+#### Autores: Jailine Almeida 👩🏻‍💻 e Vinícius Valverde 👨🏻‍💻
+
+### Módulo 01 - módulo divulgação de vagas. 
+### Módulo 02 - Triagem do candidato. 
+### Módulo 03 Entrevista do candidato. 💻🍵
+
+Módulo de divulgação de vagas: módulo inicial do sistema Hisig (Sistema de gerenciamento de seleção de candidatos) responsável pelo CRUD de candidatos, 
 recrutadores, login e vagas. O módulo também é responsável por realizar o processamento das etapas do processo de recrutamento.
+
+Módulo Triagem do candidato: módulo responsável por realizar a classificação dos candidatos de acordo com às vagas publicadas no sistema.
+
+Módulo entrevista: módulo responsável pela marcação e realização de entrevista.
 
 Ferramentas utilizadas ⚒️
 * Spring suite tools v4: https://spring.io/tools
@@ -18,6 +26,6 @@ Itens essenciais para a aplicação 📥
 *   Erlang: https://www.erlang.org/
 * Dependência Jpa/Hibernate: https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
 
-#### Módulo 02
+
 
 
