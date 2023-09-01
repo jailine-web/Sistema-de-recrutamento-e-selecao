@@ -110,6 +110,7 @@ public class EntrevistaController {
 		return ResponseEntity.ok().build();
 	
 	}
+	
 	@PostMapping(value="/convidar_candidato")
 	public ResponseEntity<MensagemEntrevista> convidarCandidato(@RequestBody MensagemEntrevista convite) {
 		convite = entrevistaService.convidarCandidato(convite);

@@ -31,7 +31,7 @@ public class Entrevista implements Serializable{
 	
 	@Enumerated(EnumType.STRING)
 	private StatusCandidato situacao;
-
+	
 	public Entrevista() {
 	}
 

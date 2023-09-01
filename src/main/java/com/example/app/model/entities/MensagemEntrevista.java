@@ -109,5 +109,4 @@ public class MensagemEntrevista implements Serializable{
 		return Objects.equals(id, other.id) && Objects.equals(titulo, other.titulo);
 	}
 
-	
 }
