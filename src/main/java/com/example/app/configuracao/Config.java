@@ -58,8 +58,10 @@ public class Config implements CommandLineRunner{
 		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false,"semestre", "curso", "Terminio", "Anhanguera","São Paulo");
 		c1.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "semestre", "curso", "Terminio", "Unip", "Bahia");
+		c2.setCurriculoAvaliado(StatusCurriculoAvaliado.NAO_AVALIADO);
 		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "semestre", "curso", "meio", "Estacio","SC");
-
+		c3.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
+		
 		cr.saveAll(Arrays.asList(c1,c2,c3));
 	
 		Vaga v1 = new Vaga(null, "Programador", "Desenvolver programas na linguagem C#", "Conhecimento em C# e Banco de dados", "Bahia", "Home office", "TI", teste);

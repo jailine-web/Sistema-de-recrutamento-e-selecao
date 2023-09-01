@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Entrevista;
@@ -33,7 +32,7 @@ public class EntrevistaService {
 
 	@Transactional
 	public Entrevista inserirEntrevista(Entrevista entrevista) {
-		
+
 		Entrevista entrevistaSalva = entrevistaRepository.save(entrevista);
 		return entrevistaSalva;
 	}
@@ -85,19 +84,18 @@ public class EntrevistaService {
 		Lembrete lembrete = lr.findById(id).get();
 		return lembrete;
 	}
-	
+
 	@Transactional
 	public void excluirLembrete(Integer id) {
 		try {
 			buscarLembretePorId(id);
 			lr.deleteById(id);
-		}
-		catch(EmptyResultDataAccessException e) {
+		} catch (EmptyResultDataAccessException e) {
 			throw new Tratamentoexcecao("Lembrete não encontrado");
 		}
-		
+
 	}
-	
+
 	@Transactional
 	public long enviarLembrete(Integer id) {
 
@@ -112,7 +110,12 @@ public class EntrevistaService {
 		return horas;
 	}
 
-	
+	@Transactional
+	public List<Lembrete> buscarLembretes() {
+		List<Lembrete> listaLembretes = lr.findAll();
+		return listaLembretes;
+	}
+
 	@Transactional
 	public MensagemEntrevista inserirSegundaMensagem(MensagemEntrevista mensagem) {
 		MensagemEntrevista msg = mensagemEntrevistaRepository.save(mensagem);
@@ -134,5 +137,21 @@ public class EntrevistaService {
 		MensagemEntrevista mensagem = mensagemEntrevistaRepository.findById(id).get();
 		return mensagem;
 	}
-	
+
+	@Transactional
+	public void excluirSegundaMensagem(Integer id) {
+
+		try {
+			buscarSegundaMensagemPorId(id);
+			lr.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new Tratamentoexcecao("Mensagem não encontrada, por favor, digite um id válido!");
+		}
+	}
+
+	@Transactional
+	public List<MensagemEntrevista> buscarSegundaMensagens(){
+		List<MensagemEntrevista> mensagens = mensagemEntrevistaRepository.findAll();
+		return mensagens;
+	}
 }

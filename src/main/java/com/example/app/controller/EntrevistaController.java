@@ -64,7 +64,7 @@ public class EntrevistaController {
 	@DeleteMapping(value="/lembrete/{id}")
 	public ResponseEntity<Void> excluirLembrete(@PathVariable Integer id){
 		entrevistaService.excluirLembrete(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping(value="/lembrete/{id}")
@@ -73,10 +73,17 @@ public class EntrevistaController {
 		return ResponseEntity.ok().build();
 	}
 	
+	
 	@GetMapping(value="/{id}/enviarLembrete")
 	public long enviarLembrete(@PathVariable Integer id) {
 		Long horas = entrevistaService.enviarLembrete(id);
 		return horas;
+	}
+	
+	@GetMapping(value="/lembretes")
+	public ResponseEntity<List<Lembrete>> buscarLembretes(){
+		List<Lembrete> lembretes = entrevistaService.buscarLembretes();
+		return ResponseEntity.ok().build();
 	}
 	
 	@PostMapping(value="/segunda_mensagem")
@@ -88,6 +95,18 @@ public class EntrevistaController {
 	@PutMapping(value="/segunda_mensagem/{id}")
 	public ResponseEntity<MensagemEntrevista> atualizarMensagem(@PathVariable Integer id, @RequestBody MensagemEntrevista mensagem){
 		mensagem = entrevistaService.atualizarSegundaMensagem(id, mensagem);
+		return ResponseEntity.ok().build();
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<Void> excluirMensagem(@PathVariable Integer id){
+		entrevistaService.excluirSegundaMensagem(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value="/segunda_mensagem")
+	public ResponseEntity<List<MensagemEntrevista>> buscarMensagens(){
+		List<MensagemEntrevista> mensagens = entrevistaService.buscarSegundaMensagens();
 		return ResponseEntity.ok().build();
 	}
 }
