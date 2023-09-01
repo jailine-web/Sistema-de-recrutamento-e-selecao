@@ -1,6 +1,6 @@
 # Desenvolvimento dos módulos do sistema HISIG 
 
-### Autores: Jailine Almeida 👩‍💻 e Vinícius Valverde 👨🏻‍💻
+### Autores: Jailine Almeida 👩🏻‍💻 e Vinícius Valverde 👨🏻‍💻
 
 #### Módulo 01 - módulo divulgação de vagas. | Módulo 02 - Triagem do candidato. | Módulo 03 Entrevista do candidato. 💻🍵
 
