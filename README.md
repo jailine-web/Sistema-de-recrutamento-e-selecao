@@ -2,7 +2,9 @@
 
 #### Autores: Jailine Almeida 👩🏻‍💻 e Vinícius Valverde 👨🏻‍💻
 
-### Módulo 01 - módulo divulgação de vagas. | Módulo 02 - Triagem do candidato. | Módulo 03 Entrevista do candidato. 💻🍵
+### Módulo 01 - módulo divulgação de vagas. 
+### Módulo 02 - Triagem do candidato. 
+### Módulo 03 Entrevista do candidato. 💻🍵
 
 Módulo inicail do sistema Hisig (Sistema de gerenciamento de seleção de candidatos) responsável pelo CRUD de candidatos, 
 recrutadores, login e vagas. O módulo também é responsável por realizar o processamento das etapas do processo de recrutamento.
