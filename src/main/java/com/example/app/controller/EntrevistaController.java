@@ -108,5 +108,29 @@ public class EntrevistaController {
 	public ResponseEntity<List<MensagemEntrevista>> buscarMensagens(){
 		List<MensagemEntrevista> mensagens = entrevistaService.buscarSegundaMensagens();
 		return ResponseEntity.ok().build();
+	
+	}
+	@PostMapping(value="/convidar_candidato")
+	public ResponseEntity<MensagemEntrevista> convidarCandidato(@RequestBody MensagemEntrevista convite) {
+		convite = entrevistaService.convidarCandidato(convite);
+		return ResponseEntity.ok().build();
+	}
+	
+	@PutMapping(value="/convidar_candidato/{id}")
+	public ResponseEntity<MensagemEntrevista> atualizarConvite(@PathVariable Integer id, @RequestBody MensagemEntrevista convite) {
+		convite = entrevistaService.atualizarConvite(id, convite);
+		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping(value="/convidar_candidato")
+	public ResponseEntity<List<MensagemEntrevista>> retornarConvites() {
+		List<MensagemEntrevista> convites = entrevistaService.getConvites();
+		return ResponseEntity.ok().body(convites);
+	}
+	
+	@DeleteMapping(value="/convidar_candidato/{id}")
+	public ResponseEntity<MensagemEntrevista> deletarConvitePorId(@PathVariable Integer id) {
+		entrevistaService.excluirConvitePorId(id);
+		return ResponseEntity.ok().build();
 	}
 }

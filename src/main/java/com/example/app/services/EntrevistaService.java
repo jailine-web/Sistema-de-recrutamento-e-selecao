@@ -150,8 +150,45 @@ public class EntrevistaService {
 	}
 
 	@Transactional
-	public List<MensagemEntrevista> buscarSegundaMensagens(){
+	public List<MensagemEntrevista> buscarSegundaMensagens() {
 		List<MensagemEntrevista> mensagens = mensagemEntrevistaRepository.findAll();
 		return mensagens;
+	}
+
+	@Transactional
+	public MensagemEntrevista convidarCandidato(MensagemEntrevista convite) {
+		mensagemEntrevistaRepository.save(convite);
+		return convite;
+	}
+
+	@Transactional
+	public MensagemEntrevista atualizarConvite(Integer id, MensagemEntrevista convite) {
+		MensagemEntrevista conviteAtualizado = mensagemEntrevistaRepository.getReferenceById(id);
+		conviteAtualizado.setTitulo(convite.getTitulo());
+		conviteAtualizado.setTextoDescritivo(convite.getTextoDescritivo());
+		conviteAtualizado.setLinkDaSala(convite.getLinkDaSala());
+		conviteAtualizado.setCandidatoId(convite.getCandidatoId());
+		conviteAtualizado.setDataHora(convite.getDataHora());
+		mensagemEntrevistaRepository.save(conviteAtualizado);
+		return conviteAtualizado;
+	}
+
+	@Transactional
+	public List<MensagemEntrevista> getConvites() {
+		List<MensagemEntrevista> convites = mensagemEntrevistaRepository.findAll();
+		return convites;
+	}
+
+	@Transactional
+	public MensagemEntrevista buscarConvitePorId(Integer id) {
+		MensagemEntrevista convite = mensagemEntrevistaRepository.findById(id).get();
+		return convite;
+	}
+
+	@Transactional
+	public void excluirConvitePorId(Integer id) {
+		buscarConvitePorId(id);
+		mensagemEntrevistaRepository.deleteById(id);
+
 	}
 }
