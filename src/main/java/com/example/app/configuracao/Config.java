@@ -1,5 +1,6 @@
 package com.example.app.configuracao;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -10,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Candidatura;
 import com.example.app.model.entities.Entrevista;
-import com.example.app.model.entities.Login;
 import com.example.app.model.entities.Recrutador;
 import com.example.app.model.entities.Vaga;
 import com.example.app.repositories.CandidatoRepository;
@@ -84,8 +84,8 @@ public class Config implements CommandLineRunner{
 		
 		cd.saveAll(Arrays.asList(cd1,cd2, cd4));
 		
-		Entrevista e = new Entrevista(null, teste, StatusComparacimento.COMPARECEU, StatusCandidato.APROVADO);
-		er.save(e);
+//		Entrevista e = new Entrevista(null,teste01, StatusComparacimento.COMPARECEU, StatusCandidato.APROVADO);
+//		er.save(e);
 		
 //		CandidatoVaga cv1 = new CandidatoVaga(c1, v4);
 //		CandidatoVaga cv2 = new CandidatoVaga(c1, v3);

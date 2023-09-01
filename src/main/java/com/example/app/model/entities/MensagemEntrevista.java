@@ -88,9 +88,6 @@ public class MensagemEntrevista implements Serializable{
 		this.dataHora = dataHora;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	@Override
 	public int hashCode() {

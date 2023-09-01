@@ -26,7 +26,7 @@ public class EntrevistaController {
 	private EntrevistaService entrevistaService;
 
 	@PostMapping
-	public ResponseEntity<Entrevista> inserirEntrevista(Entrevista entrevista){
+	public ResponseEntity<Entrevista> inserirEntrevista(@RequestBody Entrevista entrevista){
 		entrevista = entrevistaService.inserirEntrevista(entrevista);
 		return ResponseEntity.ok().body(entrevista);
 	}

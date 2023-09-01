@@ -24,6 +24,7 @@ public class Entrevista implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private LocalDateTime data;
 	
 	@Enumerated(EnumType.STRING)
@@ -32,12 +33,14 @@ public class Entrevista implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private StatusCandidato situacao;
 	
+	private String dataRecebida;
 	public Entrevista() {
+		
 	}
 
-	public Entrevista(Integer id, LocalDateTime data, StatusComparacimento presenca, StatusCandidato situacao) {
+	public Entrevista(Integer id, String data,StatusComparacimento presenca, StatusCandidato situacao) {
 		this.id= id;
-		this.data= data;
+		this.data = LocalDateTime.parse(dataRecebida);
 		this.presenca = presenca;
 		this.situacao = situacao;
 	}
