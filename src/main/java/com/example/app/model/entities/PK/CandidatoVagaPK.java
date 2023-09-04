@@ -6,6 +6,9 @@ import com.example.app.model.entities.Candidato;
 import com.example.app.model.entities.Vaga;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
@@ -19,6 +22,7 @@ public class CandidatoVagaPK {
 	@ManyToOne
 	@JoinColumn(name = "vaga_id")
 	private Vaga vaga;
+	
 	
 	public CandidatoVagaPK() {
 		
@@ -44,6 +48,7 @@ public class CandidatoVagaPK {
 	public void setVaga(Vaga vaga) {
 		this.vaga = vaga;
 	}
+	
 
 	@Override
 	public int hashCode() {

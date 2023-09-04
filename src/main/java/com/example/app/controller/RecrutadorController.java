@@ -79,6 +79,7 @@ public class RecrutadorController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	
 	@GetMapping("/relatorio")
 	public ResponseEntity<List<CandidaturaRelatorio>> gerarRelatorioCandidaturasAdequadas() {
 		List<Candidatura> candidaturasSelecionadas = candidaturaRepository.findByEstado(EstadoInscricao.SELECIONADO);

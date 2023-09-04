@@ -34,7 +34,7 @@ import com.example.app.utils.EstadoInscricao;
 import com.example.app.utils.StatusCurriculoAvaliado;
 
 @RestController
-@RequestMapping("/hisig10/candidaturas")
+@RequestMapping(value="/hisig10/candidaturas")
 public class CandidaturaController {
 
 	@Autowired
@@ -54,6 +54,7 @@ public class CandidaturaController {
 	
 	@Autowired
 	private CandidaturaRelatorioRepository relatorioRepository;
+	
 
 	@PostMapping
 	public ResponseEntity<?> criarCandidatura(@RequestBody Candidatura candidatura) {
@@ -255,4 +256,5 @@ public class CandidaturaController {
 		
 		return ResponseEntity.ok(curriculosAvaliados);
 	}
+	
 }

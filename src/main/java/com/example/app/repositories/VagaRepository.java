@@ -19,7 +19,7 @@ public interface VagaRepository extends JpaRepository<Vaga, Integer> {
 	// Adicionei o Transactional para proteger o código de SQL Injection pois ela garante que todos os comandos SQL emitidos
 	//pelo método sejam executados dentro de uma transação, se falhar, todos os comandos serão desfeitos protegendo contra danos
 	@Query(nativeQuery = true, value = """
-			SELECT DISTINCT v.nome FROM VAGA as v inner join CANDIDATO as c inner join CANDIDATO_VAGA as cv 
+			SELECT DISTINCT v.titulo FROM VAGA as v inner join CANDIDATO as c inner join CANDIDATURAS as cv 
 			where cv.vaga_id = v.id and cv.candidato_id = :idCand """)
 	//Parametrização de argumentos para sanitizar a entrada de dados (Anti-SQL Injection)
 	List<CandidaturasCandidatoProjection> buscarCandidaturas(@Param("idCand") Integer idCand);

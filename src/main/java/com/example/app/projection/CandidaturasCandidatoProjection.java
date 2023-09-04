@@ -2,6 +2,7 @@ package com.example.app.projection;
 
 public interface CandidaturasCandidatoProjection {
 
-	String getNome();
+	String getTitulo();
+	
 	
 }

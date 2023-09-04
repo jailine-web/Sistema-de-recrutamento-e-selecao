@@ -45,7 +45,7 @@ public class Candidatura implements Serializable {
 	}
 	
 	public Candidatura(Long id, Vaga vaga, Candidato candidato, EstadoInscricao estado, LocalDateTime dataInscricao) {
-		this.id = id;
+		this.id = id; 
 		this.vaga = vaga;
 		this.candidato = candidato;
 		this.estado = estado;

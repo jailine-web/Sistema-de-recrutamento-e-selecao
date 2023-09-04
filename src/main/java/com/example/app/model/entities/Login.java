@@ -1,5 +1,6 @@
 package com.example.app.model.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table
-public class Login implements UserDetails{
+public class Login implements UserDetails, Serializable{
 
 	private static final long serialVersionUID = 1L;
 
