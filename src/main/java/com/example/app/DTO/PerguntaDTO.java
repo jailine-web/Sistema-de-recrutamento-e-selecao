@@ -3,7 +3,9 @@ package com.example.app.DTO;
 import java.util.List;
 
 public class PerguntaDTO {
+	
 	private String texto;
+	
 	private List<String> opcoesResposta;
 	
 	public String getTexto() {

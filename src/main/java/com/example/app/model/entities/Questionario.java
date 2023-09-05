@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -16,8 +17,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table
 public class Questionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +32,7 @@ public class Questionario implements Serializable {
 	private String titulo;
 	
 	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "questionario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Pergunta> perguntas = new ArrayList<>();
 	
@@ -38,6 +42,7 @@ public class Questionario implements Serializable {
 	private Vaga vaga;
 	
 	public Questionario() {
+		
 	}
 
 	public Long getId() {
@@ -56,6 +61,7 @@ public class Questionario implements Serializable {
 		this.titulo = titulo;
 	}
 
+	@JsonIgnore
 	public List<Pergunta> getPerguntas() {
 		return perguntas;
 	}

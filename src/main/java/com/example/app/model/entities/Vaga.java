@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import com.example.app.utils.EstadoVaga;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -33,8 +34,7 @@ public class Vaga implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(unique= true)
+	private String codigo;
 	private String titulo;
 	
 	@Column(columnDefinition = "TEXT")
@@ -50,6 +50,7 @@ public class Vaga implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private EstadoVaga estadoVaga;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Questionario> questionarios = new ArrayList<>();
 	
@@ -59,16 +60,18 @@ public class Vaga implements Serializable{
 	private Candidato candidato;
 	
 	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "vaga")
 	private List<Candidatura> candidaturas;
 
 	public Vaga() {
-		super();
+
 	}
 
-	public Vaga(Integer id, String titulo, String descricao, String requisitos, String localizacao, 
+	public Vaga(Integer id, String codigo,String titulo, String descricao, String requisitos, String localizacao, 
 			String formato, String categoria, LocalDateTime dataAbertura) {
 		this.id = id;
+		this.codigo = codigo;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.requisitos = requisitos;
@@ -87,6 +90,14 @@ public class Vaga implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getTitulo() {
@@ -154,6 +165,7 @@ public class Vaga implements Serializable{
 		this.categoria = categoria;
 	}
 	
+	@JsonIgnore
 	public List<Questionario> getQuestionarios() {
 		return questionarios;
 	}
@@ -162,6 +174,7 @@ public class Vaga implements Serializable{
 		this.questionarios = questionarios;
 	}
 
+	@JsonIgnore
 	public List<Candidatura> getCandidaturas() {
 		return candidaturas;
 	}

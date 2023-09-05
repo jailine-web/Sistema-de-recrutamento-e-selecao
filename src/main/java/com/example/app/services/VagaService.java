@@ -35,13 +35,11 @@ public class VagaService {
 	@Transactional
 	public Vaga inserirVaga(Vaga vaga) {
 
-		if (vaga.getDataAbertura() == null) {
-			vaga.setDataAbertura(LocalDateTime.now());
-		}
 		if (vaga.getEstadoVaga() == null) {
 			vaga.setEstadoVaga(EstadoVaga.ATIVA);
 		}
 
+		vaga.setDataAbertura(LocalDateTime.now());
 		Vaga v = vr.save(vaga);
 		return v;
 	}
@@ -108,7 +106,7 @@ public class VagaService {
 			LocalDateTime dateAbertura = vaga.getDataAbertura();
 			LocalDateTime dataFechamento = vaga.getDataFechamento();
 			
-			dias = ChronoUnit.HOURS.between(dateAbertura, dataFechamento);
+			dias = ChronoUnit.DAYS.between(dateAbertura, dataFechamento);
 		}else {
 			dias = ChronoUnit.DAYS.between(vaga.getDataAbertura(), LocalDateTime.now());
 		}

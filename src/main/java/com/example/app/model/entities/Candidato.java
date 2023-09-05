@@ -47,8 +47,8 @@ public class Candidato implements Serializable {
 	private String curso;
 	private String termino;
 	private String instituicao;
-	@Column
 	private String localizacao;
+	
 	@Column(name = "curriculo_avaliado")
 	@Enumerated(EnumType.STRING)
 	private StatusCurriculoAvaliado curriculoAvaliado;
