@@ -15,7 +15,7 @@ Módulo responsável por realizar a classificação dos candidatos de acordo com
 Módulo responsável pela marcação e realização de entrevista.
 
 ### Ferramentas utilizadas ⚒️
-* Spring suite tools v4: [https://spring.io/tools](https://spring.io/blog/2022/10/26/spring-tools-4-16-1-released)
+* Spring suite tools v4.16.1: https://spring.io/tools
 * Spring boot v3.1.1: https://start.spring.io/
 * MySQL (workbench):  https://dev.mysql.com/downloads/workbench/
 * Postman: https://www.postman.com/
