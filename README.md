@@ -1,7 +1,5 @@
 # Desenvolvimento dos módulos do sistema HISIG 
 
-#### Autores: Jailine Almeida 👩🏻‍💻 e Vinícius Valverde 👨🏻‍💻
-
 ### Módulos desenvolvidos:
 
 #### Módulo de divulgação de vagas:
@@ -29,6 +27,8 @@ Módulo responsável pela marcação e realização de entrevista.
 * Erlang: https://www.erlang.org/
 * Dependência Jpa/Hibernate: https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
 
-
+### Autores: 
+* Jailine Almeida 👩🏻‍💻
+*  Vinícius Valverde 👨🏻‍💻
 
 
