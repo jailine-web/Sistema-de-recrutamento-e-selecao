@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "candidatura_relatorios")
 public class CandidaturaRelatorio implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id

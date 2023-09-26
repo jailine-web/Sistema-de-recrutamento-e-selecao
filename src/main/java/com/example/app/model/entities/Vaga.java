@@ -78,9 +78,7 @@ public class Vaga implements Serializable{
 		this.localizacao = localizacao;
 		this.formato = formato;
 		this.categoria = categoria;
-//		setDataAbertura(LocalDateTime.now());
 		this.dataAbertura = dataAbertura;
-		setEstadoVaga(estadoVaga.ATIVA);
 		
 	}
 

@@ -4,23 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realizar login</title>
+    <title>Realizar Cadastro</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="./login.js" defer> </script>
+    <script src="./cadastroLogin.js" defer> </script>
 </head>
 
 <body>
     <div class="formulario">
         <h1>Realizar Cadastro</h1>
         <form >
-            <input type="email" id="email" name="email" placeholder="Email"> <br>
+            <input type="email" id="email" name="email"  placeholder="Email"> <br>
             <input type="text" id="usuario" name="usuario" placeholder="Usuário"> <br>
             <input type="password" id="senha" name="senha" placeholder="Senha"> <br>
-            <input type="text" id="adm" placeholder="Digite ADMIN ou EST"> <br>
+            <input type="text" id="regras" placeholder="Digite ADMIN, ESTAGIARIO ou CANDIDATO"> <br>
            
             <Button onclick="cadastrar()">Cadastrar</Button>
             
         </form>
+        <div id="novoCadastro"></div>
     </div>
 </body>
 

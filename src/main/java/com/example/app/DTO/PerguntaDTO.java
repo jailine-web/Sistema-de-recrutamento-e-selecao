@@ -11,12 +11,15 @@ public class PerguntaDTO {
 	public String getTexto() {
 		return texto;
 	}
+	
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
+	
 	public List<String> getOpcoesResposta() {
 		return opcoesResposta;
 	}
+	
 	public void setOpcoesResposta(List<String> opcoesResposta) {
 		this.opcoesResposta = opcoesResposta;
 	}

@@ -18,6 +18,7 @@ import com.example.app.model.entities.Vaga;
 import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
+import com.example.app.utils.Notas;
 import com.example.app.utils.StatusCurriculoAvaliado;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -95,14 +96,35 @@ public class CandidatoService {
 		candidatoAux.setCurso(candidato.getCurso());
 		candidatoAux.setTermino(candidato.getTermino());
 		candidatoAux.setInstituicao(candidato.getInstituicao());
+		candidatoAux.setCurriculoAvaliado(candidato.getCurriculoAvaliado());
+		candidatoAux.setNotas(candidato.getNotas());
 	}
 
+	@Transactional
+	public Candidato atualizarNota(Integer id, Candidato candidato) {
+		Candidato candidatto = cr.getReferenceById(id);
+		candidatto.setNotas(candidato.getNotas());
+		cr.save(candidatto);
+		return candidato;
+	}
+	
+	@Transactional
+	public Candidato atualizarAvaliacaoCurriculo(Integer id, Candidato candidato) {
+		Candidato candidatto = cr.getReferenceById(id);
+		candidatto.setCurriculoAvaliado(candidato.getCurriculoAvaliado());
+		cr.save(candidatto);
+		return candidato;
+	}
+	
+	
+	@Transactional
 	public List<VagaMinDTO> buscarCandidaturas(Integer id){
 		List<CandidaturasCandidatoProjection> lista = vr.buscarCandidaturas(id);
 		List<VagaMinDTO> vagas = lista.stream().map(x -> new VagaMinDTO(x)).toList();
 		return vagas;
 	}
 	
+	@Transactional
 	public void inserirCurriculo(Integer candidatoId, MultipartFile curriculo) throws IOException {
 		Candidato candidato = cr.findById(candidatoId).orElseThrow(() -> new NoSuchElementException("Candidato não encontrado"));
 		
@@ -124,4 +146,5 @@ public class CandidatoService {
 		}
 		return candidatos;
 	}
+	
 }

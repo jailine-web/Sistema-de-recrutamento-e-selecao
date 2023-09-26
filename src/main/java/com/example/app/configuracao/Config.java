@@ -19,6 +19,7 @@ import com.example.app.repositories.LembreteRepository;
 import com.example.app.repositories.RecrutadorRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.utils.EstadoInscricao;
+import com.example.app.utils.Notas;
 import com.example.app.utils.StatusCurriculoAvaliado;
 
 @Configuration
@@ -44,23 +45,23 @@ public class Config implements CommandLineRunner {
 	private LembreteRepository lr;
 	
 
-	LocalDateTime teste = LocalDateTime.parse("2023-09-05T14:38:26");
+	LocalDateTime teste = LocalDateTime.parse("2023-09-06T13:30:26");
 	LocalDateTime teste01 = LocalDateTime.parse("2023-08-10T14:38:26");
 
-	@Override
 	public void run(String... args) throws Exception {
 
-		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false, "semestre", "curso",
+		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false, "4°", "ADS",
 				"Terminio", "Anhanguera", "São Paulo");
-		c1.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
+		//c1.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		
-		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "semestre", "curso",
+		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "3°", "Redação",
 				"Terminio", "Unip", "Bahia");
-		c2.setCurriculoAvaliado(StatusCurriculoAvaliado.NAO_AVALIADO);
-		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "semestre", "curso",
+		//c2.setCurriculoAvaliado(StatusCurriculoAvaliado.NAO_AVALIADO);
+		c2.setNotas(Notas.NOTA1);
+		
+		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "5°", "ADS",
 				"meio", "Estacio", "SC");
-		c3.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
-
+		//c3.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		cr.saveAll(Arrays.asList(c1, c2, c3));
 
 		Vaga v1 = new Vaga(null,"xx01" ,"Programador", "Desenvolver programas na linguagem C#",
@@ -76,7 +77,7 @@ public class Config implements CommandLineRunner {
 
 		c1.addVaga(v1);
 
-		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO, LocalDateTime.now());
+		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO, teste);
 		c1.addVaga(v1);
 		v2.setCandidato(c1);
 		Candidatura cd2 = new Candidatura(null, v2, c1, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());

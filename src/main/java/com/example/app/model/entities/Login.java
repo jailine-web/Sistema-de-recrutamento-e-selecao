@@ -34,6 +34,7 @@ public class Login implements UserDetails, Serializable{
 	
 	@Email
 	@NotBlank
+	@Column(unique =true)
 	private String email;
 	
 	@NotBlank
@@ -59,8 +60,14 @@ public class Login implements UserDetails, Serializable{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		if(this.regras == Regras.ADMIN) return java.util.List.of(new SimpleGrantedAuthority("REGRA_ADMIN")
-				,new SimpleGrantedAuthority("REGRA_ESTAGIARIOS"), new SimpleGrantedAuthority("REGRA_CANDIDATOS"));
+		if(this.regras == Regras.ADMIN) return java.util.List.of
+				(new SimpleGrantedAuthority("REGRA_ADMIN")
+				,new SimpleGrantedAuthority("REGRA_ESTAGIARIOS"),
+				new SimpleGrantedAuthority("REGRA_CANDIDATOS"));
+		if(this.regras == Regras.ESTAGIARIO) return java.util.List.of
+				(new SimpleGrantedAuthority("REGRA_ESTAGIARIOS"),
+				new SimpleGrantedAuthority("REGRA_CANDIDATOS"));
+		
 		else return java.util.List.of(new SimpleGrantedAuthority("REGRA_CANDIDATOS"));
 	}
 	

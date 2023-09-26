@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class FiltroDeSeguranca extends OncePerRequestFilter {
-
+//Classe que define os filtros pelo qual as requisições irão passar
 	@Autowired
 	private TokenService tokenService;
 
@@ -42,6 +42,7 @@ public class FiltroDeSeguranca extends OncePerRequestFilter {
 		}
 
 		filterChain.doFilter(request, response);
+		
 	}
 
 	private String recuperarToken(HttpServletRequest request) {

@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import com.example.app.projection.CandidaturasProjection;
+import com.example.app.utils.Notas;
 import com.example.app.utils.StatusCurriculoAvaliado;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,6 +24,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 
 @Entity
 @JsonInclude(Include.NON_NULL)
@@ -37,6 +39,9 @@ public class Candidato implements Serializable {
 
 	private String nome;
 	private String telefone;
+	
+	@Email
+	@Column(unique= true)
 	private String email;
 	private boolean recrutador;
 
@@ -49,12 +54,16 @@ public class Candidato implements Serializable {
 	private String instituicao;
 	private String localizacao;
 	
+	@Enumerated(EnumType.ORDINAL)
+	private Notas notas; 
+	
 	@Column(name = "curriculo_avaliado")
 	@Enumerated(EnumType.STRING)
 	private StatusCurriculoAvaliado curriculoAvaliado;
 	
 	@OneToMany(mappedBy = "candidato")
 	private List<Candidatura> candidaturas;
+	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidato")
@@ -68,7 +77,7 @@ public class Candidato implements Serializable {
 		BeanUtils.copyProperties(projection, this);
 	}
 
-	public Candidato(Integer id, String nome, String telefone, String email, boolean recrutador,
+	public Candidato(Integer id, String nome, String telefone,@Email String email, boolean recrutador,
 			String semestreVigente, String curso, String termino, String instituicao, 
 			String localizacao) {
 
@@ -168,10 +177,27 @@ public class Candidato implements Serializable {
 		return localizacao;
 	}
 
+	public Notas getNotas() {
+		return notas;
+	}
+
+	public void setNotas(Notas notas) {
+		this.notas = notas;
+	}
+
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
 	}
 	
+	@JsonIgnore
+	public List<Candidatura> getCandidaturas() {
+		return candidaturas;
+	}
+
+	public void setCandidaturas(List<Candidatura> candidaturas) {
+		this.candidaturas = candidaturas;
+	}
+
 	public StatusCurriculoAvaliado getCurriculoAvaliado() {
 		return curriculoAvaliado;
 	}

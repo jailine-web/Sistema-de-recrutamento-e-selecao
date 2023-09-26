@@ -157,6 +157,8 @@ public class CandidaturaController {
 	public List<Candidatura> listarCandidaturasPorDataInscricao(
 			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime start,
 			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime end) {
+		
+		
 		List<Candidatura> candidaturas = candidaturaRepository.findByDataInscricaoBetween(start, end);
 		return candidaturas;
 	}

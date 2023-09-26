@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.app.model.entities.Entrevista;
 import com.example.app.model.entities.Lembrete;
 import com.example.app.model.entities.MensagemEntrevista;
+import com.example.app.repositories.MensagemEntrevistaRepository;
 import com.example.app.services.EntrevistaService;
 
 @RestController
@@ -24,6 +25,10 @@ public class EntrevistaController {
 	
 	@Autowired
 	private EntrevistaService entrevistaService;
+	
+	@Autowired
+	private MensagemEntrevistaRepository mensagemEntrevistaRepository;
+	
 
 	@PostMapping
 	public ResponseEntity<Entrevista> inserirEntrevista(@RequestBody Entrevista entrevista){
@@ -40,7 +45,7 @@ public class EntrevistaController {
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<Void> excluirEntrevista(@PathVariable Integer id){
 		entrevistaService.excluirEntrevista(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping
@@ -55,37 +60,6 @@ public class EntrevistaController {
 		return ResponseEntity.ok().build();
 	}
 	
-	@PostMapping(value="/lembrete")
-	public ResponseEntity<Lembrete> inserirLembrete(@RequestBody Lembrete lembrete){
-		lembrete = entrevistaService.inserirLembrete(lembrete);
-		return ResponseEntity.ok().build();
-	}
-	
-	@DeleteMapping(value="/lembrete/{id}")
-	public ResponseEntity<Void> excluirLembrete(@PathVariable Integer id){
-		entrevistaService.excluirLembrete(id);
-		return ResponseEntity.noContent().build();
-	}
-	
-	@PutMapping(value="/lembrete/{id}")
-	public ResponseEntity<Lembrete>atualizarLembrete(@PathVariable Integer id, @RequestBody Lembrete lembrete){
-		lembrete = entrevistaService.atualizarLembrete(id, lembrete);
-		return ResponseEntity.ok().build();
-	}
-	
-	
-	@GetMapping(value="/{id}/enviarLembrete")
-	public long enviarLembrete(@PathVariable Integer id) {
-		Long horas = entrevistaService.enviarLembrete(id);
-		return horas;
-	}
-	
-	@GetMapping(value="/lembretes")
-	public ResponseEntity<List<Lembrete>> buscarLembretes(){
-		List<Lembrete> lembretes = entrevistaService.buscarLembretes();
-		return ResponseEntity.ok().build();
-	}
-	
 	@PostMapping(value="/segunda_mensagem")
 	public ResponseEntity<MensagemEntrevista> cadastrarMensagem(@RequestBody MensagemEntrevista mensagem) {
 		mensagem = entrevistaService.inserirSegundaMensagem(mensagem);
@@ -93,12 +67,12 @@ public class EntrevistaController {
 	}
 	
 	@PutMapping(value="/segunda_mensagem/{id}")
-	public ResponseEntity<MensagemEntrevista> atualizarMensagem(@PathVariable Integer id, @RequestBody MensagemEntrevista mensagem){
+	public ResponseEntity<MensagemEntrevistaRepository> atualizarMensagem(@PathVariable Integer id, @RequestBody MensagemEntrevista mensagem){
 		mensagem = entrevistaService.atualizarSegundaMensagem(id, mensagem);
 		return ResponseEntity.ok().build();
 	}
 	
-	@DeleteMapping
+	@DeleteMapping(value="segunda_mensagem/{id}") 
 	public ResponseEntity<Void> excluirMensagem(@PathVariable Integer id){
 		entrevistaService.excluirSegundaMensagem(id);
 		return ResponseEntity.noContent().build();

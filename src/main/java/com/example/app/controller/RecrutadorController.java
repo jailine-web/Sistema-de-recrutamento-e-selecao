@@ -52,7 +52,7 @@ public class RecrutadorController {
 	public ResponseEntity<Recrutador> inserirRecrutador(@RequestBody Recrutador recrutador) {
 		recrutador = rs.inserirRecrutador(recrutador);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(recrutador.getId()).toUri();
-		return ResponseEntity.created(uri).body(recrutador);
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@GetMapping(value="/{idVagas}/candidaturas")

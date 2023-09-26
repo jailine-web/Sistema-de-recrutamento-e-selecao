@@ -5,8 +5,9 @@ import java.util.List;
 public class QuestionarioDTO {
 	
 	private String titulo;
-	private List<PerguntaDTO> perguntas;
 	
+	private List<PerguntaDTO> perguntas;
+		
 	public String getTitulo() {
 		return titulo;
 	}

@@ -2,6 +2,7 @@ package com.example.app.model.entities;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,11 +10,15 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Mensagem {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer candidatoId;
+	
+	@Column(columnDefinition = "TEXT")
 	private String conteudo;
+	
 	private LocalDateTime dataEnvio;
 	
 	public Mensagem() {

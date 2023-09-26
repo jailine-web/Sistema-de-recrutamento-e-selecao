@@ -19,10 +19,10 @@ import com.example.app.repositories.UsuarioRepository;
 import com.example.app.security.TokenService;
 import com.example.app.utils.Regras;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping(value = "/hisig10/auth")
 public class LoginAutenticacaoController {
 
@@ -48,8 +48,10 @@ public class LoginAutenticacaoController {
 	}
 
 	//Passa o email, usuario e senha no corpo da requisição
+	@CrossOrigin()
 	@PostMapping(value = "/cadastro")
-	public ResponseEntity cadastro(@RequestBody @Valid CadastroLoginDTO login) {
+	@Transactional
+	public ResponseEntity<Login> cadastro(@RequestBody @Valid CadastroLoginDTO login) {
 
 		if (usuarioRepository.findByUsuario(login.usuario()) != null)
 			return ResponseEntity.badRequest().build();

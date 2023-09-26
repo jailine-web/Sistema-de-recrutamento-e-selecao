@@ -6,8 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="">
         <title>Candidatar-se a vaga</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="vagas.js"></script>
     </head>
-
+    <div>
+        <h1>Vagas criadas</h1>
+        <div id="vagas"></div><br>
+        <button onclick="obterVagas()"> Buscar vagas</button><br>
+        <br><button onclick="limpar()">limpar</button>
+        <button onclick="novaVaga()">inserirVaga</button>
+    </div>
     <body>
     </body>
 

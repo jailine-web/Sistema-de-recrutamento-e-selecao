@@ -54,7 +54,6 @@ public class QuestionariosController {
 				pergunta.setQuestionario(questionario);
 				perguntas.add(pergunta);
 			}
-			
 			questionario.setPerguntas(perguntas);
 			questionario.setVaga(vaga);
 			
@@ -71,7 +70,6 @@ public class QuestionariosController {
 		List<Questionario> questionarios = questionarioRepository.findAll();
 		return ResponseEntity.ok().body(questionarios);
 	}
-	
 
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarQuestionarioPorId(@PathVariable Long id){

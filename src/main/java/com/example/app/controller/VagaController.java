@@ -1,13 +1,11 @@
 package com.example.app.controller;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,13 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.app.DTO.PerguntaDTO;
-import com.example.app.DTO.QuestionarioDTO;
-import com.example.app.model.entities.Pergunta;
-import com.example.app.model.entities.Questionario;
 import com.example.app.model.entities.Vaga;
-import com.example.app.repositories.QuestionarioRepository;
 import com.example.app.services.VagaService;
+import com.example.app.utils.EstadoVaga;
 
 @RestController
 @RequestMapping(value = "/hisig10/vagas")
@@ -33,17 +27,19 @@ public class VagaController {
 	@Autowired
 	private VagaService vs;
 
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<List<Vaga>> buscarTodos() {
 		List<Vaga> listaVagas = vs.buscarTodos();
 		return ResponseEntity.ok().body(listaVagas);
 	}
 
+	@CrossOrigin()	
 	@PostMapping
 	public ResponseEntity<Vaga> inserirVaga(@RequestBody Vaga vaga) {
 		vaga = vs.inserirVaga(vaga);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(vaga.getId()).toUri();
-		return ResponseEntity.created(uri).body(vaga);
+		return ResponseEntity.created(uri).build();
 	}
 
 	@GetMapping(value = "/{id}")

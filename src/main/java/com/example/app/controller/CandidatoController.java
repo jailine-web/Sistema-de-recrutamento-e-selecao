@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,12 +25,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.app.DTO.CandidatoReduzido;
+import com.example.app.controller.excecao.Tratamentoexcecao;
 import com.example.app.model.entities.Candidato;
 import com.example.app.projection.CandidaturasCandidatoProjection;
 import com.example.app.repositories.CandidatoRepository;
 import com.example.app.repositories.VagaRepository;
 import com.example.app.services.CandidatoService;
+import com.example.app.utils.Notas;
 import com.example.app.utils.StatusCurriculoAvaliado;
+
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping(value="/hisig10/usuarios/candidatos")
@@ -67,7 +72,7 @@ public class CandidatoController {
 		
 		candidato = cs.inserirCandidato(candidato);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(candidato.getId()).toUri();
-		return ResponseEntity.created(uri).body(candidato);
+		return ResponseEntity.created(uri).build();
 	}
 
 	@DeleteMapping(value="/{id}")
@@ -137,7 +142,8 @@ public class CandidatoController {
 	}
 	
 	@PutMapping("/perfil/{id}")
-	public ResponseEntity<Candidato> atualizarPerfilCandidato(@PathVariable Integer id, @RequestBody Candidato candidatoNovo){
+	public ResponseEntity<Candidato> atualizarPerfilCandidato(@PathVariable Integer id, 
+															  @RequestBody Candidato candidatoNovo){
 		Optional<Candidato> candidatoOptional = cr.findById(id);
 		if(candidatoOptional.isPresent()) {
 			Candidato candidatoAtual = candidatoOptional.get();
@@ -159,4 +165,17 @@ public class CandidatoController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+	@PatchMapping(value="/{id}/nota")
+	public ResponseEntity<Candidato> atualizarNota(@PathVariable Integer id, @RequestBody Candidato candidato) {
+		candidato = cs.atualizarNota(id, candidato);
+		return ResponseEntity.ok().build();
+	}
+	
+	@PatchMapping(value="/{id}/avaliarCurriculo")
+	public ResponseEntity<Candidato> atualizarAvaliacaoCurriculo(@PathVariable Integer id, @RequestBody Candidato candidato) {
+		candidato = cs.atualizarAvaliacaoCurriculo(id, candidato);
+		return ResponseEntity.ok().build();
+	}
+	
 }
