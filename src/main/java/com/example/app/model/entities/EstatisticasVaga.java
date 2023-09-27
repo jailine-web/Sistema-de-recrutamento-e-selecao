@@ -24,7 +24,7 @@ public class EstatisticasVaga implements Serializable {
 	private Long taxaDeConversao;
 	
 	public EstatisticasVaga() {
-		super();
+
 	}
 
 	public EstatisticasVaga(Integer id, Long numeroDeVisualizacoes, Long numeroDeCandidaturas, Long taxaDeConversao) {

@@ -16,8 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.example.app.services.FiltroDeSeguranca;
 
@@ -27,8 +27,9 @@ public class ConfiguracaoDeSeguranca {
 
 	@Autowired
 	private FiltroDeSeguranca filtroDeSeguranca;
-	
-	// corrente de filtro(métodos de validação para cada uma das requisições) de segurança
+
+	// Corrente de filtro(métodos de validação para cada uma das requisições) de
+	// segurança
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity.csrf(csrf -> csrf.disable())
@@ -40,8 +41,8 @@ public class ConfiguracaoDeSeguranca {
 //						.requestMatchers(HttpMethod.POST, "/hisig10/usuarios/recrutadores").hasAnyRole("ADMIN")
 //						.requestMatchers(HttpMethod.GET,"/hisig10/vagas").permitAll()
 //						.anyRequest().authenticated())
+//				
 //				.addFilterBefore(filtroDeSeguranca, UsernamePasswordAuthenticationFilter.class)
-
 				.build();
 	}
 
@@ -55,15 +56,16 @@ public class ConfiguracaoDeSeguranca {
 	public PasswordEncoder criptografarSenha() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("*"));
-		configuration.setAllowedHeaders(Arrays.asList("*"));
-		configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+	 CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
+		CorsConfiguration config = new CorsConfiguration();
+		config.addAllowedOrigin("*"); // Domínio do seu frontend
+		config.addAllowedHeader("*");
+		config.addAllowedMethod("*");
+		config.setAllowedMethods(Arrays.asList("GET","POST"));
+		source.registerCorsConfiguration("/**", config);
+		return new CorsFilter(source);
 	}
 }

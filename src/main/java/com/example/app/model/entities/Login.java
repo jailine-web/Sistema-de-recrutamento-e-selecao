@@ -34,7 +34,7 @@ public class Login implements UserDetails, Serializable{
 	
 	@Email
 	@NotBlank
-	@Column(unique =true)
+	@Column(unique = true)
 	private String email;
 	
 	@NotBlank

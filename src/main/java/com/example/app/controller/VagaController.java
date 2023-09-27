@@ -34,7 +34,7 @@ public class VagaController {
 		return ResponseEntity.ok().body(listaVagas);
 	}
 
-	@CrossOrigin()	
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Vaga> inserirVaga(@RequestBody Vaga vaga) {
 		vaga = vs.inserirVaga(vaga);

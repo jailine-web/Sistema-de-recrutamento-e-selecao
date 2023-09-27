@@ -48,7 +48,6 @@ public class LoginAutenticacaoController {
 	}
 
 	//Passa o email, usuario e senha no corpo da requisição
-	@CrossOrigin()
 	@PostMapping(value = "/cadastro")
 	@Transactional
 	public ResponseEntity<Login> cadastro(@RequestBody @Valid CadastroLoginDTO login) {
