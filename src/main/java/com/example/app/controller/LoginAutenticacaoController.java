@@ -36,6 +36,7 @@ public class LoginAutenticacaoController {
 	private TokenService tokenService;
 
 	//Passa usuário e senha no corpo da requisição para validação do usuário
+	
 	@PostMapping(value = "/logar")
 	public ResponseEntity login(@RequestBody @Valid DadosLoginDTO data) {
 
