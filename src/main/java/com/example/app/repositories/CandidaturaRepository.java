@@ -12,6 +12,7 @@ import com.example.app.model.entities.Vaga;
 import com.example.app.utils.EstadoInscricao;
 
 public interface CandidaturaRepository extends JpaRepository<Candidatura, Long> {
+	
 	List<Candidatura> findByCandidatoLocalizacao(@Param("localizacao") String localizacao);
 	
 	List<Candidatura> findAllByOrderByCandidatoNomeAsc();

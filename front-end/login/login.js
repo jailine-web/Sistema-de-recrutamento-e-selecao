@@ -22,6 +22,8 @@ function logar(){
     })
     .then(function(res){console.log(res)})
     .catch(function (res) {console.log(res)})
+
+    return "";
 }
 
 function limpar(){

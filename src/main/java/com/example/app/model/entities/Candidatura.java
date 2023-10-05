@@ -42,9 +42,11 @@ public class Candidatura implements Serializable {
 	private LocalDateTime dataInscricao;
 	
 	public Candidatura() {
+		
 	}
 	
-	public Candidatura(Long id, Vaga vaga, Candidato candidato, EstadoInscricao estado, LocalDateTime dataInscricao) {
+	public Candidatura(Long id, Vaga vaga, Candidato candidato, 
+					   EstadoInscricao estado, LocalDateTime dataInscricao) {
 		this.id = id; 
 		this.vaga = vaga;
 		this.candidato = candidato;

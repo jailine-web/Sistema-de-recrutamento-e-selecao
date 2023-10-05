@@ -29,8 +29,10 @@ import com.example.app.repositories.CandidaturaRelatorioRepository;
 import com.example.app.repositories.CandidaturaRepository;
 import com.example.app.repositories.MensagemRepository;
 import com.example.app.repositories.VagaRepository;
+import com.example.app.services.CandidaturaService;
 import com.example.app.services.NotificacaoService;
 import com.example.app.utils.EstadoInscricao;
+import com.example.app.utils.Notas;
 import com.example.app.utils.StatusCurriculoAvaliado;
 
 @RestController
@@ -55,12 +57,16 @@ public class CandidaturaController {
 	@Autowired
 	private CandidaturaRelatorioRepository relatorioRepository;
 	
+	@Autowired
+	private CandidaturaService candidaturaService;
+	
 
 	@PostMapping
 	public ResponseEntity<?> criarCandidatura(@RequestBody Candidatura candidatura) {
 
 		// Requisição JSON com "vaga":{"id": 1}, "candidato":{"id": 2}, "estado": "SELECIONADO"
-		List<Candidatura> candidaturasExistentes = candidaturaRepository.findByCandidatoAndVaga(candidatura.getCandidato(), candidatura.getVaga());
+		List<Candidatura> candidaturasExistentes = candidaturaRepository.findByCandidatoAndVaga(
+				candidatura.getCandidato(), candidatura.getVaga());
 		if (!candidaturasExistentes.isEmpty()) {
 			return ResponseEntity.badRequest().body("Este candidato já se candidatou para uma vaga");
 		}
@@ -91,13 +97,20 @@ public class CandidaturaController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<?> retornarCandidatura(@PathVariable Long id) {
-		Candidatura candidatura = candidaturaRepository.findById(id).orElse(null);
+		
+		Candidatura candidatura = candidaturaRepository.findById(id).orElse(null);		
 		if (candidatura == null) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(candidatura);
 	}
-
+	
+	@GetMapping(value="/adequadas")
+	public List<Candidatura> adequadas(){
+		
+		return candidaturaService.candidaturasSelecionadas();
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> excluirCandidatura(@PathVariable Long id) {
 		Candidatura candidatura = candidaturaRepository.findById(id).orElse(null);
@@ -161,10 +174,12 @@ public class CandidaturaController {
 		
 		List<Candidatura> candidaturas = candidaturaRepository.findByDataInscricaoBetween(start, end);
 		return candidaturas;
+		
 	}
 
 	@GetMapping("/relatorio")
 	public ResponseEntity<List<CandidaturaRelatorio>> gerarRelatorioCandidaturasAdequadas() {
+		
 		List<Candidatura> candidaturasSelecionadas = candidaturaRepository.findByEstado(EstadoInscricao.SELECIONADO);
 
 		List<CandidaturaRelatorio> relatorioDTOs = new ArrayList<>();
@@ -194,6 +209,7 @@ public class CandidaturaController {
 
 	@GetMapping("/inadequadas")
 	public ResponseEntity<List<CandidaturaRelatorio>> getCandidaturasInadequadas() {
+		
 		List<Candidatura> candidaturasRejeitadas = candidaturaRepository.findByEstado(EstadoInscricao.INADEQUADO);
 
 		List<CandidaturaRelatorio> relatorioDTOs = new ArrayList<>();
@@ -230,6 +246,7 @@ public class CandidaturaController {
 
 	@GetMapping("/talvez")
 	public ResponseEntity<List<CandidaturaRelatorio>> getCandidaturasTalvez(){
+		
 		List<Candidatura> candidaturasTalvez = candidaturaRepository.findByEstado(EstadoInscricao.TALVEZ);
 		
 		List<CandidaturaRelatorio> relatorioDTOs = new ArrayList<>();

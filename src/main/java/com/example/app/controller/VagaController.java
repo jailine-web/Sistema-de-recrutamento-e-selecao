@@ -27,14 +27,12 @@ public class VagaController {
 	@Autowired
 	private VagaService vs;
 
-	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<List<Vaga>> buscarTodos() {
 		List<Vaga> listaVagas = vs.buscarTodos();
 		return ResponseEntity.ok().body(listaVagas);
 	}
 
-	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Vaga> inserirVaga(@RequestBody Vaga vaga) {
 		vaga = vs.inserirVaga(vaga);

@@ -53,6 +53,7 @@ public class Config implements CommandLineRunner {
 		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false, "4°", "ADS",
 				"Terminio", "Anhanguera", "São Paulo");
 		//c1.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
+		c1.setNotas(Notas.NOTA0);
 		
 		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "3°", "Redação",
 				"Terminio", "Unip", "Bahia");
@@ -62,6 +63,7 @@ public class Config implements CommandLineRunner {
 		Candidato c3 = new Candidato(null, "Felix", "47999999999", "felix@gmail.com", false, "5°", "ADS",
 				"meio", "Estacio", "SC");
 		//c3.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
+		c3.setNotas(Notas.NOTA4);
 		cr.saveAll(Arrays.asList(c1, c2, c3));
 
 		Vaga v1 = new Vaga(null,"xx01" ,"Programador", "Desenvolver programas na linguagem C#",
@@ -77,11 +79,9 @@ public class Config implements CommandLineRunner {
 
 		c1.addVaga(v1);
 
-		Candidatura cd1 = new Candidatura(null, v1, c1, EstadoInscricao.SELECIONADO, teste);
-		c1.addVaga(v1);
-		v2.setCandidato(c1);
+		Candidatura cd1 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
 		Candidatura cd2 = new Candidatura(null, v2, c1, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
-		Candidatura cd4 = new Candidatura(null, v1, c3, EstadoInscricao.TALVEZ, LocalDateTime.now());
+		Candidatura cd4 = new Candidatura(null, v1, c3, EstadoInscricao.ENTREVISTA_REALIZADA, LocalDateTime.now());
 
 		cd.saveAll(Arrays.asList(cd1,cd2, cd4));
 

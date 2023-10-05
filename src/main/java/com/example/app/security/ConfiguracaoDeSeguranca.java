@@ -31,15 +31,15 @@ public class ConfiguracaoDeSeguranca {
 	// Corrente de filtro(métodos de validação para cada uma das requisições) de
 	// segurança
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+	 SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity.csrf(csrf -> csrf.disable())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //				.authorizeHttpRequests(authorize -> authorize
 //						.requestMatchers(HttpMethod.POST, "/hisig10/auth/cadastro").permitAll()
 //						.requestMatchers(HttpMethod.POST, "/hisig10/auth/logar").permitAll()
-//						.requestMatchers(HttpMethod.POST, "/hisig10/vagas").permitAll()
+//						.requestMatchers(HttpMethod.GET, "/hisig10/vagas").permitAll()
 //						.requestMatchers(HttpMethod.POST, "/hisig10/usuarios/recrutadores").hasAnyRole("ADMIN")
-//						.requestMatchers(HttpMethod.GET,"/hisig10/vagas").permitAll()
+//						.requestMatchers(HttpMethod.POST,"/hisig10/vagas").permitAll()
 //						.anyRequest().authenticated())
 //				
 //				.addFilterBefore(filtroDeSeguranca, UsernamePasswordAuthenticationFilter.class)
@@ -47,13 +47,13 @@ public class ConfiguracaoDeSeguranca {
 	}
 
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfig)
+	 AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfig)
 			throws Exception {
 		return authenticationConfig.getAuthenticationManager();
 	}
 
 	@Bean
-	public PasswordEncoder criptografarSenha() {
+	 PasswordEncoder criptografarSenha() {
 		return new BCryptPasswordEncoder();
 	}
 
@@ -64,8 +64,10 @@ public class ConfiguracaoDeSeguranca {
 		config.addAllowedOrigin("*"); // Domínio do seu frontend
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
-		config.setAllowedMethods(Arrays.asList("GET","POST"));
+		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT"));
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
 	}
+	
+	
 }
