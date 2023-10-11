@@ -79,11 +79,11 @@ public class Config implements CommandLineRunner {
 
 		c1.addVaga(v1);
 
-		Candidatura cd1 = new Candidatura(null, v2, c2, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
+		Candidatura cd1 = new Candidatura(null, v2, c2, EstadoInscricao.SELECIONADO,LocalDateTime.now());
 		Candidatura cd2 = new Candidatura(null, v2, c1, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
-		Candidatura cd4 = new Candidatura(null, v1, c3, EstadoInscricao.ENTREVISTA_REALIZADA, LocalDateTime.now());
+		Candidatura cd3 = new Candidatura(null, v1, c3, EstadoInscricao.ENTREVISTA_REALIZADA, LocalDateTime.now());
 
-		cd.saveAll(Arrays.asList(cd1,cd2, cd4));
+		cd.saveAll(Arrays.asList(cd1, cd2, cd3));
 
 
 		

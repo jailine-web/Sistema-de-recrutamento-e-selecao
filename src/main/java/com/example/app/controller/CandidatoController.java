@@ -97,7 +97,8 @@ public class CandidatoController {
 	}
 	
 	@PostMapping("/curriculo/{id}")
-    public ResponseEntity<String> adicionarCurriculo(@RequestParam("curriculo") MultipartFile curriculo, @PathVariable Integer id) {
+    public ResponseEntity<String> adicionarCurriculo(@RequestParam("curriculo") MultipartFile curriculo, 
+    		@PathVariable Integer id) {
         try {
             cs.inserirCurriculo(id, curriculo);
             return ResponseEntity.ok("Currículo enviado com sucesso.");
@@ -167,7 +168,8 @@ public class CandidatoController {
 	}
 	
 	@PatchMapping(value="/{id}/nota")
-	public ResponseEntity<Candidato> atualizarNota(@PathVariable Integer id, @RequestBody Candidato candidato) {
+	public ResponseEntity<Candidato> atualizarNota(@PathVariable Integer id, 
+			@RequestBody Candidato candidato) {
 		candidato = cs.atualizarNota(id, candidato);
 		return ResponseEntity.ok().build();
 	}

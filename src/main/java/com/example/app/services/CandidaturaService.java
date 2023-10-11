@@ -37,4 +37,12 @@ public class CandidaturaService {
 		}
 		return candidaturas;
 	}
+	
+	@Transactional
+	public Candidatura mudarEstadoCandidatura(Long id, Candidatura candidatura) {
+		 Candidatura candidattura = candidaturaRepository.getReferenceById(id);
+		 candidattura.setEstado(candidatura.getEstado());
+		candidaturaRepository.save(candidattura);
+		return candidattura;
+	}
 }

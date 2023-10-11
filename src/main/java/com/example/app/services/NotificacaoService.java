@@ -59,7 +59,7 @@ public class NotificacaoService {
 				candidatura.setEstado(EstadoInscricao.ALERTA_GERADO);
 				
 			} else if (estado == EstadoInscricao.ENTREVISTA_REALIZADA) {
-				emitirAlerta(candidatura.getId().intValue(),"Sua entrevista foi realizada, aguarda os próximos passo");
+				emitirAlerta(candidatura.getId().intValue(),"Sua entrevista foi realizada, aguarde os próximos passo");
 				candidatura.setEstado(EstadoInscricao.ALERTA_GERADO);
 			}
 

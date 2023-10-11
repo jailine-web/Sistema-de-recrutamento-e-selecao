@@ -11,11 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.app.model.entities.Candidato;
@@ -147,6 +149,13 @@ public class CandidaturaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(mensagemSalva);
 	}
 
+	@PatchMapping(value="/{id}/selecionarEstado")
+	public ResponseEntity<Candidatura> mudarEstadoCandidatura(@PathVariable Long id, @RequestBody Candidatura candidatura){
+		candidatura = candidaturaService.mudarEstadoCandidatura(id, candidatura);
+		return ResponseEntity.ok().build();
+	}
+	
+	
 	@GetMapping
 	public List<Candidatura> listarCandidaturas() {
 		return candidaturaRepository.findAll();
@@ -267,7 +276,9 @@ public class CandidaturaController {
 	
 	@GetMapping("/curriculos/avaliados")
 	public ResponseEntity<List<CurriculoAvaliadoProjection>> obterCurriculosAvaliados(){
-		List<CurriculoAvaliadoProjection> curriculosAvaliados = candidatoRepository.findByCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
+		
+		List<CurriculoAvaliadoProjection> curriculosAvaliados = candidatoRepository.
+				findByCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		
 		if (curriculosAvaliados.isEmpty()) {
 			return ResponseEntity.notFound().build();

@@ -2,8 +2,8 @@ package com.example.app.utils;
 
 public enum EstadoVaga {
 
-	ATIVA("a"),
-	FECHADA("f");
+	ATIVA("aberta"),
+	FECHADA("fechada");
 	
 	private String estado;
 	
