@@ -79,24 +79,4 @@ public class RecrutadorController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	
-	@GetMapping("/relatorio")
-	public ResponseEntity<List<CandidaturaRelatorio>> gerarRelatorioCandidaturasAdequadas() {
-		List<Candidatura> candidaturasSelecionadas = candidaturaRepository.findByEstado(EstadoInscricao.SELECIONADO);
-
-		List<CandidaturaRelatorio> relatorioDTOs = new ArrayList<>();
-		for (Candidatura candidatura : candidaturasSelecionadas) {
-			CandidaturaRelatorio relatorio = new CandidaturaRelatorio();
-			relatorio.setCandidaturaId(candidatura.getId());
-			relatorio.setVagaId(candidatura.getVaga().getId().longValue());
-			relatorio.setVagaTitulo(candidatura.getVaga().getTitulo());
-			relatorio.setCandidatoId(candidatura.getCandidato().getId().longValue());
-			relatorio.setCandidatoNome(candidatura.getCandidato().getNome());
-			relatorio.setEstadoInscricao(candidatura.getEstado());
-			
-			relatorioRepository.save(relatorio);
-			relatorioDTOs.add(relatorio);
-		}
-		return ResponseEntity.ok(relatorioDTOs);
-	}
 }

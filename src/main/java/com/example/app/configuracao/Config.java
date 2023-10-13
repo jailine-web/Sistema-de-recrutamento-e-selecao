@@ -52,7 +52,7 @@ public class Config implements CommandLineRunner {
 
 		Candidato c1 = new Candidato(null, "Paulo", "32 9 9867-4657", "paulo@gmail.com", false, "4°", "ADS",
 				"Terminio", "Anhanguera", "São Paulo");
-		//c1.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
+		c1.setCurriculoAvaliado(StatusCurriculoAvaliado.AVALIADO);
 		c1.setNotas(Notas.NOTA0);
 		
 		Candidato c2 = new Candidato(null, "Felipe", "45 9 9097-4755", "felipe@gmail.com", false, "3°", "Redação",
@@ -80,7 +80,7 @@ public class Config implements CommandLineRunner {
 		c1.addVaga(v1);
 
 		Candidatura cd1 = new Candidatura(null, v2, c2, EstadoInscricao.SELECIONADO,LocalDateTime.now());
-		Candidatura cd2 = new Candidatura(null, v2, c1, EstadoInscricao.AGUARDANDO_ENTREVISTA,LocalDateTime.now());
+		Candidatura cd2 = new Candidatura(null, v2, c1, EstadoInscricao.ENTREVISTA_REALIZADA,LocalDateTime.now());
 		Candidatura cd3 = new Candidatura(null, v1, c3, EstadoInscricao.ENTREVISTA_REALIZADA, LocalDateTime.now());
 
 		cd.saveAll(Arrays.asList(cd1, cd2, cd3));
