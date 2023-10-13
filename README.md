@@ -1,4 +1,4 @@
-# Desenvolvimento dos módulos do sistema HISIG 🌌
+# Desenvolvimento dos módulos do sistema de Recrutamento 🌌
 
 ### Módulos desenvolvidos:
 
