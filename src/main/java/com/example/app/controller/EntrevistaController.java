@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.app.model.entities.Entrevista;
-import com.example.app.model.entities.Lembrete;
-import com.example.app.model.entities.MensagemEntrevista;
-import com.example.app.repositories.MensagemEntrevistaRepository;
+import com.example.app.repositories.SegundaMensagemRepository;
 import com.example.app.services.EntrevistaService;
 
 @RestController
@@ -27,7 +25,7 @@ public class EntrevistaController {
 	private EntrevistaService entrevistaService;
 	
 	@Autowired
-	private MensagemEntrevistaRepository mensagemEntrevistaRepository;
+	private SegundaMensagemRepository mensagemEntrevistaRepository;
 	
 
 	@PostMapping
@@ -60,52 +58,4 @@ public class EntrevistaController {
 		return ResponseEntity.ok().build();
 	}
 	
-	@PostMapping(value="/segunda_mensagem")
-	public ResponseEntity<MensagemEntrevista> cadastrarMensagem(@RequestBody MensagemEntrevista mensagem) {
-		mensagem = entrevistaService.inserirSegundaMensagem(mensagem);
-		return ResponseEntity.ok().build();
-	}
-	
-	@PutMapping(value="/segunda_mensagem/{id}")
-	public ResponseEntity<MensagemEntrevistaRepository> atualizarMensagem(@PathVariable Integer id, @RequestBody MensagemEntrevista mensagem){
-		mensagem = entrevistaService.atualizarSegundaMensagem(id, mensagem);
-		return ResponseEntity.ok().build();
-	}
-	
-	@DeleteMapping(value="segunda_mensagem/{id}") 
-	public ResponseEntity<Void> excluirMensagem(@PathVariable Integer id){
-		entrevistaService.excluirSegundaMensagem(id);
-		return ResponseEntity.noContent().build();
-	}
-	
-	@GetMapping(value="/segunda_mensagem")
-	public ResponseEntity<List<MensagemEntrevista>> buscarMensagens(){
-		List<MensagemEntrevista> mensagens = entrevistaService.buscarSegundaMensagens();
-		return ResponseEntity.ok().build();
-	
-	}
-	
-	@PostMapping(value="/convidar_candidato")
-	public ResponseEntity<MensagemEntrevista> convidarCandidato(@RequestBody MensagemEntrevista convite) {
-		convite = entrevistaService.convidarCandidato(convite);
-		return ResponseEntity.ok().build();
-	}
-	
-	@PutMapping(value="/convidar_candidato/{id}")
-	public ResponseEntity<MensagemEntrevista> atualizarConvite(@PathVariable Integer id, @RequestBody MensagemEntrevista convite) {
-		convite = entrevistaService.atualizarConvite(id, convite);
-		return ResponseEntity.ok().build();
-	}
-	
-	@GetMapping(value="/convidar_candidato")
-	public ResponseEntity<List<MensagemEntrevista>> retornarConvites() {
-		List<MensagemEntrevista> convites = entrevistaService.getConvites();
-		return ResponseEntity.ok().body(convites);
-	}
-	
-	@DeleteMapping(value="/convidar_candidato/{id}")
-	public ResponseEntity<MensagemEntrevista> deletarConvitePorId(@PathVariable Integer id) {
-		entrevistaService.excluirConvitePorId(id);
-		return ResponseEntity.ok().build();
-	}
 }
