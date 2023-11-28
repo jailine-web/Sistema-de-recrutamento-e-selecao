@@ -3,8 +3,8 @@
 ### Módulos desenvolvidos:
 
 #### Módulo de divulgação de vagas:
-Módulo inicial do sistema Hisig (Sistema de gerenciamento de seleção de candidatos) responsável pelo CRUD de candidatos, 
-recrutadores, login e vagas. O módulo também é responsável por realizar o processamento das etapas do processo de recrutamento.
+Módulo inicial do sistema de recrutamento e seleção responsável pelo CRUD de candidatos, recrutadores, login 
+e vagas. O módulo também é responsável por realizar o processamento das etapas do processo de recrutamento.
 
 #### Módulo Triagem do candidato:
 Módulo responsável por realizar a classificação dos candidatos de acordo com às vagas publicadas no sistema.
